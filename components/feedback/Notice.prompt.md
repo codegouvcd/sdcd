@@ -1,0 +1,1 @@
+Bandeau d\u2019information pleine largeur.\n\n```jsx\n<Notice onClose={()=>{}}>Le portail sera indisponible dimanche de 2 h \u00e0 4 h.</Notice>\n```

@@ -1,0 +1,1 @@
+Navigation tertiaire.\n\n```jsx\n<Tabnav onglets={["Vue d\u2019ensemble","Textes","Contacts"]} actif={0} />\n```

@@ -1,0 +1,1 @@
+En-t\u00eate officiel complet (variante A retenue).\n\n```jsx\n<Header entite="Minist\u00e8re du Num\u00e9rique" sousTitre="numerique.gouv.cd" nav={["Accueil","D\u00e9marches","Actualit\u00e9s"]} actif={0} assetsBase="../../" />\n```

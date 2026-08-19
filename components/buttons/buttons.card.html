@@ -1,0 +1,30 @@
+<!-- @dsCard group="Composants" viewport="700x230" subtitle="Button, IconButton — variantes et états" name="Boutons" -->
+<link rel="stylesheet" href="../../styles.css">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {Button, IconButton} = NS;
+function Demo(){return <div style={{display:'flex',flexDirection:'column',gap:16}}>
+  <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
+    <Button>Se connecter</Button>
+    <Button variant="secondaire">Annuler</Button>
+    <Button variant="tertiaire" iconRight="ri-arrow-right-line">En savoir plus</Button>
+    <Button disabled>Indisponible</Button>
+  </div>
+  <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
+    <Button size="sm" icon="ri-download-line">Télécharger</Button>
+    <Button size="sm" variant="secondaire" icon="ri-printer-line">Imprimer</Button>
+    <IconButton icon="ri-search-line" label="Rechercher"/>
+    <IconButton icon="ri-close-line" label="Fermer" variant="tertiaire"/>
+    <IconButton icon="ri-arrow-right-line" label="Suivant" variant="primaire"/>
+  </div>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

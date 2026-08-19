@@ -1,0 +1,1 @@
+Lecteur vid\u00e9o/audio avec transcription.\n\n```jsx\n<MediaPlayer titre="Adresse \u00e0 la Nation" duree="12:36" poster={<image-slot id="v1"/>} />\n```

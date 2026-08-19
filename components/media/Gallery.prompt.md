@@ -1,0 +1,1 @@
+Galerie + visionneuse.\n\n```jsx\n<Gallery items={[{contenu:<image-slot id="g1"/>,legende:"Palais de la Nation"}]} />\n```

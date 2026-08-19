@@ -1,0 +1,1 @@
+Citation.\n\n```jsx\n<Quote auteur="Ministre du Num\u00e9rique" source="15 ao\u00fbt 2026">Le service public\u2026</Quote>\n```

@@ -1,0 +1,1 @@
+Bandeau cookies RGPD.\n\n```jsx\n<CookieConsent onChoice={c=>...} />\n```

@@ -1,0 +1,38 @@
+<!-- @dsCard group="Composants" viewport="1150x560" subtitle="Wizard (assistant de démarche) et DataTable (filtre, tri, export CSV, édition en ligne)" name="Wizard & tableau avancé" -->
+<link rel="stylesheet" href="../../styles.css">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {Wizard, DataTable} = NS;
+function Demo(){return <div style={{display:'grid','--sdcd-cols':'620px minmax(0,1fr)','--sdcd-cols-md':'minmax(0,1fr)',gap:'clamp(15px,3.5vw,28px)',alignItems:'start'}}>
+  <Wizard titre="Demande d’acte de naissance"
+    etapes={[
+      {titre:"Votre identité",champs:[
+        {cle:"nom",label:"Nom et prénom",requis:true},
+        {cle:"naissance",label:"Date de naissance",type:"date",requis:true},
+        {cle:"province",label:"Province de naissance",type:"choix",options:["Kinshasa","Haut-Katanga","Nord-Kivu","Kongo-Central"],requis:true}]},
+      {titre:"Contact et retrait",champs:[
+        {cle:"email",label:"Adresse électronique",type:"email",requis:true,hint:"Le récépissé y sera envoyé."},
+        {cle:"copies",label:"Nombre de copies",type:"nombre",hint:"1 à 5"}]}]}
+  />
+  <DataTable titre="Textes publiés au Journal officiel" parPage={5}
+    colonnes={[{cle:"ref",label:"Référence"},{cle:"intitule",label:"Intitulé"},{cle:"nature",label:"Nature"},{cle:"articles",label:"Articles",type:"nombre"}]}
+    lignes={[
+      {ref:"JO n° 17",intitule:"Loi de finances rectificative 2026",nature:"Loi",articles:84},
+      {ref:"JO n° 16",intitule:"Organisation des services du numérique",nature:"Ordonnance",articles:31},
+      {ref:"JO n° 15",intitule:"Modalités de l’identité numérique",nature:"Décret",articles:22},
+      {ref:"JO n° 14",intitule:"État civil dématérialisé",nature:"Arrêté",articles:12},
+      {ref:"JO n° 13",intitule:"Statut des agents de l’État",nature:"Loi",articles:145},
+      {ref:"JO n° 12",intitule:"Marchés publics — seuils 2026",nature:"Décret",articles:18},
+      {ref:"JO n° 11",intitule:"Protection des données personnelles",nature:"Loi",articles:96}]}
+  />
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

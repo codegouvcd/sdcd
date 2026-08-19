@@ -1,0 +1,1 @@
+Curseur de valeur.\n\n```jsx\n<Range label="Rayon de recherche" min={1} max={50} unite="km" />\n```

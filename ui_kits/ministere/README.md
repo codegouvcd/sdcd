@@ -1,0 +1,2 @@
+# UI kit — Site type d'un ministère
+Déclinaison de la marque d'État par une entité (Ministère du Numérique, numerique.gouv.cd) : héro à image, missions, actualités, démarches, bloc ministre. Les autres entrées de nav affichent une page type.

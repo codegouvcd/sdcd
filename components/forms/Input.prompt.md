@@ -1,0 +1,1 @@
+Champ texte officiel : lib\u00e9ll\u00e9 au-dessus, aide en dessous, erreur rouge avec ic\u00f4ne.\n\n```jsx\n<Input label="Num\u00e9ro national" hint="Format : 12 chiffres" error="Ce champ est requis." />\n```

@@ -1,0 +1,1 @@
+Case \u00e0 cocher.\n\n```jsx\n<Checkbox label="J\u2019accepte les conditions" />\n```

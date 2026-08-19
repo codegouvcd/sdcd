@@ -1,0 +1,1 @@
+Accord\u00e9on \u00e0 filets, ic\u00f4ne +/\u2212.\n\n```jsx\n<Accordion items={[{titre:"Qui peut demander ?",contenu:"Tout citoyen\u2026"}]} />\n```

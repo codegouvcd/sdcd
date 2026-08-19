@@ -1,0 +1,3 @@
+# Site public MINESURSI — la face citoyenne du back-office
+Le pendant public du back-office des équivalences, cohérent avec lui (mêmes chiffres : 85 USD / 238 000 CDF, 4,2 mois, mêmes références MINESURSI/DSA/…) :
+Accueil (héro, 4 chiffres clés, parcours en 4 étapes, FAQ, mise en garde anti-intermédiaires) · Fiche démarche (pièces, téléchargements, textes) · Dépôt en ligne (Wizard 3 étapes + récapitulatif) · Suivi de dossier (validation du format MINESURSI/DSA/…, chronologie identique à celle vue par l'agent) · Contact.

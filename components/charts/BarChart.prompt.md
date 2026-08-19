@@ -1,0 +1,1 @@
+Barres group\u00e9es + bascule tableau.\n\n```jsx\n<BarChart titre="Dossiers trait\u00e9s" categories={["Jan","F\u00e9v"]} series={[{nom:"2026",valeurs:[1200,1800]}]} source="DGM, 2026" />\n```

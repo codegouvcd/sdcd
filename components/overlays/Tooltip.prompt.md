@@ -1,0 +1,1 @@
+Infobulle.\n\n```jsx\n<Tooltip texte="Num\u00e9ro figurant sur votre r\u00e9c\u00e9piss\u00e9"><i className="ri-question-line"/></Tooltip>\n```

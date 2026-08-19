@@ -1,0 +1,43 @@
+<!-- @dsCard group="Composants" viewport="1100x640" subtitle="Modal, Callout, Sidemenu, Stepper, Tag, Upload, Tooltip, CookieConsent, Follow, SkipLink" name="Compléments" -->
+<link rel="stylesheet" href="../../styles.css">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {Modal,Tooltip,CookieConsent,Callout,Sidemenu,Stepper,Tag,Upload,Follow,Button} = NS;
+function Demo(){
+  const [modal,setModal]=React.useState(false);
+  const [tags,setTags]=React.useState(['Kinshasa']);
+  const flip=(t)=>setTags(tags.includes(t)?tags.filter(x=>x!==t):[...tags,t]);
+  return <div style={{display:'flex',flexDirection:'column',gap:22}}>
+    <div style={{display:'grid','--sdcd-cols':'240px minmax(0,1fr) minmax(0,1fr)','--sdcd-cols-md':'minmax(0,1fr)',gap:24,alignItems:'start'}}>
+      <Sidemenu sections={[{titre:"Démarches",liens:["Passeport","Carte d’identité","Visa"]},{titre:"Le service",liens:["Horaires","Contact"]}]} actif="Passeport"/>
+      <div style={{display:'flex',flexDirection:'column',gap:18}}>
+        <Stepper etape={2} total={4} titre="Pièces justificatives" suivant="Paiement des frais"/>
+        <Upload label="Justificatifs de résidence"/>
+        <div style={{display:'flex',gap:8,flexWrap:'wrap',alignItems:'center'}}>
+          {['Kinshasa','Lubumbashi','Goma'].map(t=><Tag key={t} actif={tags.includes(t)} onClick={()=>flip(t)}>{t}</Tag>)}
+          <Tag supprimable onDelete={()=>{}}>PDF uniquement</Tag>
+          <Tooltip texte="Les filtres actifs restreignent la liste des résultats."><i className="ri-question-line" style={{color:'var(--sdcd-muet)',fontSize:17}} tabIndex="0"></i></Tooltip>
+        </div>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:18}}>
+        <Callout titre="Nouveau service" action="Découvrir">Le suivi de dossier en temps réel est disponible dans l’espace citoyen.</Callout>
+        <Button variant="secondaire" onClick={()=>setModal(true)} icon="ri-window-line">Ouvrir la modale</Button>
+      </div>
+    </div>
+    <Follow/>
+    <CookieConsent fixe={false}/>
+    <Modal ouvert={modal} titre="Confirmer l’envoi du dossier" onClose={()=>setModal(false)}
+      actions={<><Button variant="secondaire" onClick={()=>setModal(false)}>Annuler</Button><Button onClick={()=>setModal(false)}>Confirmer l’envoi</Button></>}>
+      Une fois transmis, le dossier ne peut plus être modifié. Vous recevrez un récépissé par courriel avec votre numéro de suivi.
+    </Modal>
+  </div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

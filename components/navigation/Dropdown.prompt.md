@@ -1,0 +1,1 @@
+Menu d\u00e9roulant d\u2019actions.\n\n```jsx\n<Dropdown libelle="Actions" items={[{libelle:"Exporter",icone:"ri-download-line"},{libelle:"Supprimer",icone:"ri-delete-bin-line",danger:true}]} />\n```

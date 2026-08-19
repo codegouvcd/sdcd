@@ -1,0 +1,1 @@
+Bouton radio.\n\n```jsx\n<Radio name="langue" label="Fran\u00e7ais" defaultChecked />\n```

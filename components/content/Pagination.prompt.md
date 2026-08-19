@@ -1,0 +1,1 @@
+Pagination.\n\n```jsx\n<Pagination pages={8} actif={3} onChange={n=>...} />\n```

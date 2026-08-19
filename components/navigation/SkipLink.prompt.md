@@ -1,0 +1,1 @@
+Lien d\u2019\u00e9vitement clavier.\n\n```jsx\n<SkipLink cible="#contenu" />\n```

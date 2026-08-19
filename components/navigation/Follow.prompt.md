@@ -1,0 +1,1 @@
+Bloc lettre d\u2019information + r\u00e9seaux sociaux, \u00e0 placer au-dessus du Footer.\n\n```jsx\n<Follow onSubscribe={em=>...} />\n```

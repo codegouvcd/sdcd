@@ -1,0 +1,1 @@
+Calendrier mensuel fran\u00e7ais (lundi en premier).\n\n```jsx\n<Calendar annee={2026} mois={7} evenements={[3,17,25]} onSelect={d=>...} />\n```

@@ -1,0 +1,1 @@
+Barre de recherche : champ + bouton bleu accol\u00e9 (signature du syst\u00e8me).\n\n```jsx\n<SearchBar large onSearch={q=>...} />\n```

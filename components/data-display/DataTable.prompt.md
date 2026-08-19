@@ -1,0 +1,1 @@
+Tableau avanc\u00e9 (filtre, tri, pagination, export CSV, \u00e9dition en ligne).\n\n```jsx\n<DataTable titre="Textes publi\u00e9s" colonnes={[{cle:"ref",label:"R\u00e9f\u00e9rence"},{cle:"nb",label:"Articles",type:"nombre"}]} lignes={[{ref:"JO n\u00b0 17",nb:42}]} />\n```

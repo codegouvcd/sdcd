@@ -1,0 +1,1 @@
+Bouton d\u2019identit\u00e9 num\u00e9rique officielle.\n\n```jsx\n<ConnectButton assetsBase="../../" onClick={...} />\n```

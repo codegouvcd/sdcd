@@ -1,0 +1,1 @@
+Mise en avant.\n\n```jsx\n<Callout titre="Nouveau service" action="D\u00e9couvrir">Le suivi de dossier est disponible.</Callout>\n```

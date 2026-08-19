@@ -1,0 +1,1 @@
+Menu d\u00e9roulant FR \u25be des 6 langues (FR, EN, LN, SW, KG, TS).\n\n```jsx\n<LangMenu value="FR" onChange={c=>...} />\n```

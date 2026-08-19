@@ -1,0 +1,1 @@
+Alerte contextuelle, fond p\u00e2le + contour s\u00e9mantique + ic\u00f4ne.\n\n```jsx\n<Alert type="succes" titre="Demande transmise">Vous recevrez un accus\u00e9 sous 48 h.</Alert>\n```

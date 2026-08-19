@@ -1,0 +1,1 @@
+Tableau officiel.\n\n```jsx\n<Table colonnes={["Texte","Date"]} lignes={[["Ordonnance n° 23/006","13/01/2023"]]} />\n```

@@ -1,0 +1,1 @@
+Onglets \u00e0 languettes.\n\n```jsx\n<Tabs onglets={["Pr\u00e9senter","Pi\u00e8ces","D\u00e9lais"]}><p>\u2026</p><p>\u2026</p><p>\u2026</p></Tabs>\n```

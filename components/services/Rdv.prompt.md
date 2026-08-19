@@ -1,0 +1,1 @@
+Prise de rendez-vous administrative.\n\n```jsx\n<Rdv lieu="Bureau des passeports \u2014 Lubumbashi" onConfirm={(d,h)=>...} />\n```

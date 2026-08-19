@@ -1,0 +1,1 @@
+Bouton d\u2019action officiel, angles 2 px, casse de phrase, jamais de majuscules.\n\n```jsx\n<Button icon="ri-user-line">Se connecter</Button>\n<Button variant="secondaire">Annuler</Button>\n```\nVariantes : primaire (plein), secondaire (contour), tertiaire (texte) ; tailles md/sm ; `icon`/`iconRight` (Remix Icon).

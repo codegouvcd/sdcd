@@ -1,0 +1,23 @@
+<!-- @dsCard group="Composants" viewport="1100x560" subtitle="Rdv (prise de rendez-vous), Tracking (suivi de dossier), Calendar" name="Services au citoyen" -->
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../image-slot.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {Rdv, Tracking, Calendar} = NS;
+function Demo(){return <div style={{display:'grid','--sdcd-cols':'minmax(0,1fr) minmax(0,1fr)',gap:24,alignItems:'start'}}>
+  <Rdv/>
+  <div style={{display:'flex',flexDirection:'column',gap:20}}>
+    <Tracking/>
+  </div>
+  <Calendar annee={2026} mois={7} selection={16} evenements={[3,17,25]}/>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

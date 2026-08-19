@@ -1,0 +1,27 @@
+<!-- @dsCard group="Composants" viewport="1100x520" subtitle="BarChart, LineChart, DonutChart — bascule graphique/tableau, source (inspiré de dsfr-chart)" name="Graphiques" -->
+<link rel="stylesheet" href="../../styles.css">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {BarChart, LineChart, DonutChart} = NS;
+function Demo(){return <div style={{display:'grid','--sdcd-cols':'minmax(0,1fr) minmax(0,1fr)',gap:20}}>
+  <BarChart titre="Dossiers traités par trimestre" unite="dossiers" source="Direction générale de migration, 2026"
+    categories={["T1","T2","T3","T4"]}
+    series={[{nom:"2025",valeurs:[8200,9100,8800,10400]},{nom:"2026",valeurs:[11200,13400,15100,16800]}]}/>
+  <DonutChart titre="Démarches par thématique" unite="démarches" source="gouv.cd, août 2026"
+    donnees={[{nom:"Papiers et citoyenneté",valeur:412},{nom:"Impôts et taxes",valeur:230},{nom:"Entreprise",valeur:184},{nom:"Transports",valeur:121},{nom:"Autres",valeur:96}]}/>
+  <div style={{gridColumn:'1 / -1'}}>
+  <LineChart titre="Visites mensuelles du portail gouv.cd" unite="visites" hauteur={220} source="Mesure d’audience de l’État, 2026"
+    categories={["Mars","Avril","Mai","Juin","Juillet","Août"]}
+    series={[{nom:"gouv.cd",valeurs:[42000,58000,71000,84000,97000,126000]},{nom:"Espace citoyen",valeurs:[8000,14000,22000,31000,42000,58000]}]}/>
+  </div>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

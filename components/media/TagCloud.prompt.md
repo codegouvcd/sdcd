@@ -1,0 +1,1 @@
+Nuage de mots-cl\u00e9s pond\u00e9r\u00e9.\n\n```jsx\n<TagCloud tags={[{label:"Passeport",poids:124},{label:"Imp\u00f4ts",poids:87}]} />\n```

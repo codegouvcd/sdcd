@@ -1,0 +1,1 @@
+Carrousel sobre.\n\n```jsx\n<Carousel legende={["Vue 1","Vue 2"]}><div style={{height:320}}><image-slot id="c1"/></div><div style={{height:320}}><image-slot id="c2"/></div></Carousel>\n```

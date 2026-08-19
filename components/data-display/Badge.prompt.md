@@ -1,0 +1,1 @@
+Badge pilule.\n\n```jsx\n<Badge ton="succes">Publi\u00e9</Badge>\n```

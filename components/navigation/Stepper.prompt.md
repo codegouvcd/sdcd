@@ -1,0 +1,1 @@
+Indicateur d\u2019\u00e9tapes.\n\n```jsx\n<Stepper etape={2} total={4} titre="Pi\u00e8ces justificatives" suivant="Paiement" />\n```

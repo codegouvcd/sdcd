@@ -1,0 +1,1 @@
+Interrupteur.\n\n```jsx\n<Toggle label="Mode sombre" defaultChecked />\n```

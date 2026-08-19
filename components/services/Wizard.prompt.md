@@ -1,0 +1,1 @@
+Assistant multi-\u00e9tapes d\u00e9claratif avec r\u00e9capitulatif.\n\n```jsx\n<Wizard etapes={[{titre:"Identit\u00e9",champs:[{cle:"nom",label:"Nom",requis:true}]},{titre:"Contact",champs:[{cle:"em",label:"Courriel",type:"email",requis:true}]}]} onFinish={d=>...} />\n```

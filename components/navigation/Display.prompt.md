@@ -1,0 +1,1 @@
+S\u00e9lecteur de th\u00e8me clair/sombre/syst\u00e8me.\n\n```jsx\n<Display onChange={m=>...} />\n```

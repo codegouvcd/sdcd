@@ -1,0 +1,2 @@
+# UI kit — Documentation du SDCD
+Site de référence du système (équivalent de systeme-de-design.gouv.fr) : méga-menu horizontal (Fondamentaux, Composants, Modèles, Principes, Marque d'État), mode sombre par bascule, page composant avec aperçu vivant + code + règles, pages principes (accessibilité, multilinguisme, écriture, sombre) et guide de la marque d'État.

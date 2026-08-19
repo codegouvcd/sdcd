@@ -1,0 +1,31 @@
+<!-- @dsCard group="Composants" viewport="1000x560" subtitle="Article, Tabs, Accordion, Quote, Pagination" name="Contenu éditorial" -->
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../image-slot.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {Article, Tabs, Accordion, Quote, Pagination} = NS;
+function Demo(){return <div style={{display:'grid','--sdcd-cols':'minmax(0,1.3fr) minmax(0,1fr)',gap:'clamp(15px,3.5vw,28px)'}}>
+  <Article surTitre="Communiqué" titre="Le portail unique des démarches est ouvert" chapo="Depuis le 12 août, gouv.cd rassemble les démarches administratives de la République." date="15 août 2026" tempsLecture="3 min" sommaire={["Contexte","Ce qui change","Calendrier"]} tags={["Numérique","Démarches"]}>
+    <p>Chaque démarche présente ses conditions, ses pièces et ses délais, dans un parcours unique et accessible.</p>
+    <Quote auteur="Ministère du Numérique">Un seul point d’entrée, la même exigence de service partout.</Quote>
+  </Article>
+  <div style={{display:'flex',flexDirection:'column',gap:22}}>
+    <Tabs onglets={["Présenter","Pièces","Délais"]}>
+      <p>La demande se fait en ligne ou au guichet de votre commune.</p>
+      <p>Acte de naissance, photo d’identité, preuve de résidence.</p>
+      <p>Délai moyen constaté : 15 jours ouvrés.</p>
+    </Tabs>
+    <Accordion items={[{titre:"Qui peut faire la demande ?",contenu:"Tout citoyen congolais majeur, ou le représentant légal pour un mineur."},{titre:"Quel est le coût ?",contenu:"Le montant est fixé par arrêté interministériel, payable en ligne."},{titre:"Comment suivre mon dossier ?",contenu:"Depuis l’espace citoyen, rubrique « Suivi de dossier »."}]}/>
+    <Pagination pages={6} actif={2}/>
+  </div>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

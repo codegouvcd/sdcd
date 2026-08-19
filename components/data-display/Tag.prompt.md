@@ -1,0 +1,1 @@
+Tag de filtre.\n\n```jsx\n<Tag actif onClick={...}>Kinshasa</Tag> <Tag supprimable onDelete={...}>PDF</Tag>\n```

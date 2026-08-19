@@ -1,0 +1,1 @@
+Anneau tricolore 3D officiel \u2014 seul mouvement continu autoris\u00e9 du syst\u00e8me.\n\n```jsx\n<Loader label="Chargement\u2026" />\n```

@@ -1,0 +1,56 @@
+<!doctype html><meta charset="utf-8"><title>SDCD — vérificateur de couverture typographique</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+ body{max-width:900px;margin:0 auto;padding:var(--sdcd-6) var(--sdcd-gouttiere)}
+ table{width:100%;border-collapse:collapse;margin-top:var(--sdcd-5)}
+ th,td{padding:var(--sdcd-2) var(--sdcd-3);text-align:left;border-bottom:1px solid var(--sdcd-ligne);font-size:var(--sdcd-sm)}
+ th{border-bottom:2px solid var(--sdcd-encre);font-size:var(--sdcd-xs);text-transform:uppercase;letter-spacing:.05em}
+ .ok{color:var(--sdcd-succes);font-weight:700}.ko{color:var(--sdcd-erreur);font-weight:700}
+ .ech{font-size:2rem;font-family:var(--sdcd-font)}
+</style>
+<body>
+<div class="sdcd-filet-tricolore" aria-hidden="true"><div style="background:#0095C9"></div><div style="background:#FFF24B"></div><div style="background:#DB3832"></div></div>
+<h1>Couverture typographique des langues nationales</h1>
+<p>Vérifie que la fonte du système sait écrire le français, le lingala, le kiswahili,
+le kikongo et le tshiluba. Un glyphe manquant se traduit par une substitution
+visible ; un accent mal ancré rend le mot illisible.</p>
+<p class="ech" id="ech">Bɔ́ngɔ́ — mbɔ́tɛ — lɛlɔ́ — nyɔnsɔ — ŋanga</p>
+<div id="sortie">Test en cours…</div>
+<script>
+const GLYPHES=[['ɛ','U+025B e ouvert — lingala, kikongo'],['ɔ','U+0254 o ouvert — lingala, kikongo'],
+ ['ŋ','U+014B eng — lingala, tshiluba'],['Ɛ','U+0190'],['Ɔ','U+0186'],['Ŋ','U+014A'],
+ ['ɓ','U+0253 b implosif'],['ɗ','U+0257 d implosif'],['é','français — témoin'],['a','latin de base — témoin']];
+const SEQUENCES=[['ɛ','ɛ́','ɛ + accent aigu combinant'],['ɔ','ɔ́','ɔ + accent aigu combinant'],
+ ['a','á','a + accent aigu combinant — témoin'],['e','é','e + accent aigu combinant — témoin']];
+const mesure=(t,fam)=>{const s=document.createElement('span');s.textContent=t;
+  s.style.cssText='position:absolute;visibility:hidden;font-size:200px;white-space:pre;font-family:'+fam;
+  document.body.appendChild(s);const w=s.getBoundingClientRect().width;s.remove();return w;};
+// Un glyphe est présent si sa chasse ne dépend pas de la police de repli déclarée.
+const present=(ch,f)=>{const a=mesure(ch,`${f}, monospace`),b=mesure(ch,`${f}, serif`),c=mesure(ch,`${f}, cursive`);
+  return Math.max(Math.abs(a-b),Math.abs(a-c))<0.5;};
+(async()=>{
+  await document.fonts.ready;
+  await Promise.all([...document.fonts].map(f=>f.load().catch(()=>{})));
+  await new Promise(r=>setTimeout(r,1200));
+  // N'extraire que la PREMIERE famille du jeton : tester la pile entière laisserait
+  // system-ui s'interposer avant les replis de contrôle, et tout paraîtrait présent.
+  const premiere=(v)=>v.split(',')[0].trim().replace(/^['"]|['"]$/g,'');
+  const fam=premiere(getComputedStyle(document.documentElement).getPropertyValue('--sdcd-font').trim());
+  const mono=premiere(getComputedStyle(document.documentElement).getPropertyValue('--sdcd-font-mono').trim());
+  let echecs=0, html=`<h2>Fonte de texte — <code>${fam}</code></h2><table><tr><th>Glyphe</th><th>Rôle</th><th>État</th></tr>`;
+  for(const [ch,nom] of GLYPHES){const ok=present(ch,`"${fam}"`);if(!ok)echecs++;
+    html+=`<tr><td style="font-size:1.5rem">${ch}</td><td>${nom}</td><td class="${ok?'ok':'ko'}">${ok?'présent':'ABSENT — substitution'}</td></tr>`;}
+  html+='</table><h2>Ancrage des accents combinants</h2><table><tr><th>Séquence</th><th>Rôle</th><th>Écart de chasse</th><th>État</th></tr>';
+  // repli explicite identique pour la base et la séquence : sans lui, le navigateur
+  // substitue la séquence entière et l'écart mesuré n'a plus de sens.
+  for(const [base,seq,nom] of SEQUENCES){const pile=`"${fam}", monospace`;
+    const d=mesure(seq,pile)-mesure(base,pile);const ok=Math.abs(d)<5;if(!ok)echecs++;
+    html+=`<tr><td style="font-size:1.5rem">${seq}</td><td>${nom}</td><td>${d.toFixed(1)} px / 200</td><td class="${ok?'ok':'ko'}">${ok?'ancré':'ACCENT NON ANCRÉ'}</td></tr>`;}
+  html+='</table><h2>Fonte monospace — <code>'+mono+'</code></h2><table><tr><th>Glyphe</th><th>État</th></tr>';
+  for(const [ch] of GLYPHES.slice(0,8)){const ok=present(ch,`"${mono}"`);if(!ok)echecs++;
+    html+=`<tr><td style="font-size:1.5rem">${ch}</td><td class="${ok?'ok':'ko'}">${ok?'présent':'ABSENT'}</td></tr>`;}
+  html+=`</table><p style="margin-top:var(--sdcd-5);font-weight:700" class="${echecs?'ko':'ok'}">${echecs?echecs+' défaut(s) de couverture.':'Couverture complète des langues nationales.'}</p>`;
+  document.getElementById('sortie').innerHTML=html;
+  window.__echecs=echecs;
+})();
+</script></body>

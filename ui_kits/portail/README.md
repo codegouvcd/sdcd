@@ -1,0 +1,2 @@
+# UI kit — Portail national gouv.cd
+Accueil (héro titre + image, recherche, tuiles de démarches, actualités, annuaire, bandeau espace citoyen), pages Démarches, Actualités, Institutions, Journal officiel et Connexion. Navigation interactive via l'en-tête. Compose les composants du SDCD (aucune primitive redéfinie). Images : zones de dépôt <image-slot>.

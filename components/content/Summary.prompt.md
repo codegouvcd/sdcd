@@ -1,0 +1,1 @@
+Sommaire de page.\n\n```jsx\n<Summary items={["Contexte","D\u00e9cision","Calendrier"]} />\n```

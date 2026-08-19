@@ -1,0 +1,1 @@
+Pied de page officiel complet (5 zones : filet tricolore, marque + liens institutionnels + colonnes, langues, l\u00e9gal + drapeau, licence).\n\n```jsx\n<Footer entite="gouv.cd \u2014 Portail officiel" colonnes={[{titre:"Services",liens:["D\u00e9marches","Annuaire"]}]} assetsBase="../../" />\n```

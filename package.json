@@ -1,0 +1,56 @@
+{
+  "name": "@gouv-cd/sdcd",
+  "version": "0.5.0",
+  "description": "Système de design RDC (SDCD) — identité numérique officielle des sites de l'État de la République Démocratique du Congo.",
+  "license": "MIT",
+  "author": "République Démocratique du Congo",
+  "homepage": "https://systeme-de-design.gouv.cd",
+  "type": "module",
+  "main": "styles.css",
+  "style": "styles.css",
+  "exports": {
+    ".": "./styles.css",
+    "./styles.css": "./styles.css",
+    "./base.css": "./base.css",
+    "./responsive.css": "./responsive.css",
+    "./tokens/*": "./tokens/*",
+    "./assets/*": "./assets/*",
+    "./components/*": "./components/*",
+    "./components.css": "./components.css"
+  },
+  "files": [
+    "styles.css",
+    "base.css",
+    "components.css",
+    "responsive.css",
+    "image-slot.js",
+    "sdcd-fallback.js",
+    "tokens/",
+    "assets/",
+    "components/",
+    "guidelines/",
+    "outils/",
+    "exemples/",
+    "readme.md",
+    "LICENSE.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node outils/verifier-contraste.mjs",
+    "verifier-contraste": "node outils/verifier-contraste.mjs"
+  },
+  "keywords": [
+    "design-system",
+    "rdc",
+    "gouv.cd",
+    "sdcd",
+    "accessibilite",
+    "rgaa"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}

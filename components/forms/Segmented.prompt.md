@@ -1,0 +1,1 @@
+Contr\u00f4le segment\u00e9.\n\n```jsx\n<Segmented label="Affichage" options={["Liste","Carte","Calendrier"]} />\n```

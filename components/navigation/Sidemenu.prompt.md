@@ -1,0 +1,1 @@
+Menu lat\u00e9ral.\n\n```jsx\n<Sidemenu sections={[{titre:"D\u00e9marches",liens:["Passeport","Visa"]}]} actif="Passeport" />\n```

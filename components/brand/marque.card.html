@@ -1,0 +1,44 @@
+<!-- @dsCard group="Composants" viewport="1150x620" subtitle="BlocMarque, ConnectButton, Segmented, Range, Password, Highlight, Lien, Summary, Share, Tabnav, Dropdown, Display" name="Compléments DSFR 2" -->
+<link rel="stylesheet" href="../../styles.css">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script src="../../sdcd-fallback.js"></script>
+<body style="margin:0;padding:16px;font-family:var(--sdcd-font);background:var(--sdcd-fond)">
+<div id="root"></div>
+<script type="text/babel">
+(window.__sdcdReady||Promise.resolve()).then(()=>{
+const NS = window[Object.keys(window).find(k=>/_[0-9a-fA-F]{6}$/.test(k)&&window[k]&&typeof window[k]==='object'&&window[k].Button)]||{};
+const {BlocMarque,ConnectButton,Segmented,Range,Password,Highlight,Lien,Summary,Share,Tabnav,Dropdown,Display} = NS;
+function Demo(){return <div style={{display:'flex',flexDirection:'column',gap:24}}>
+  <div style={{display:'flex',gap:'clamp(18px,3.5vw,32px)',alignItems:'center',flexWrap:'wrap'}}>
+    <BlocMarque entite="Ministère du Numérique" sousTitre="numerique.gouv.cd" assetsBase="../../"/>
+    <div style={{background:'#005D7C',padding:'14px 20px'}}><BlocMarque fondSombre assetsBase="../../" taille={48}/></div>
+    <ConnectButton assetsBase="../../"/>
+  </div>
+  <Tabnav onglets={["Vue d’ensemble","Textes officiels","Contacts","Historique"]} actif={0}/>
+  <div style={{display:'grid','--sdcd-cols':'repeat(3,minmax(0,1fr))','--sdcd-cols-md':'repeat(2,minmax(0,1fr))',gap:'clamp(15px,3.5vw,28px)',alignItems:'start'}}>
+    <div style={{display:'flex',flexDirection:'column',gap:20}}>
+      <Segmented label="Affichage des résultats" options={["Liste","Carte","Calendrier"]}/>
+      <Range label="Rayon de recherche" min={1} max={50} valeur={12} unite="km"/>
+      <Dropdown libelle="Actions" items={[{libelle:"Exporter en CSV",icone:"ri-download-line"},{libelle:"Imprimer",icone:"ri-printer-line"},{libelle:"Supprimer",icone:"ri-delete-bin-line",danger:true}]}/>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:20}}>
+      <Password creation/>
+      <Display/>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:20}}>
+      <Highlight>Le dépôt des demandes de bourse ferme le 30 septembre 2026.</Highlight>
+      <Summary items={["Qui est concerné ?","Comment faire la démarche ?","Coût et délais"]}/>
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        <Lien telechargement detail="PDF – 1,2 Mo">Formulaire de demande</Lien>
+        <Lien externe>Portail de la Présidence</Lien>
+        <Lien icone="ri-arrow-right-line">Toutes les démarches</Lien>
+      </div>
+      <Share/>
+    </div>
+  </div>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+});
+</script>

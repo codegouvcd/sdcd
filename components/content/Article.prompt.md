@@ -1,0 +1,1 @@
+Gabarit d\u2019article complet.\n\n```jsx\n<Article surTitre="Communiqu\u00e9" titre="\u2026" chapo="\u2026" date="15 ao\u00fbt 2026" tempsLecture="4 min" sommaire={["Contexte","D\u00e9cision"]} tags={["Num\u00e9rique"]}><p>\u2026</p></Article>\n```

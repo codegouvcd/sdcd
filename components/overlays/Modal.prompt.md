@@ -1,0 +1,1 @@
+Modale officielle.\n\n```jsx\n<Modal ouvert titre="Confirmer l\u2019envoi" onClose={...} actions={<><Button variant=\"secondaire\">Annuler</Button><Button>Confirmer</Button></>}>\u2026</Modal>\n```

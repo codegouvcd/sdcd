@@ -1,0 +1,1 @@
+Anneau de r\u00e9partition.\n\n```jsx\n<DonutChart titre="D\u00e9marches par th\u00e9matique" donnees={[{nom:"Papiers",valeur:412},{nom:"Imp\u00f4ts",valeur:230}]} source="gouv.cd, 2026" />\n```

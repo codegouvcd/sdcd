@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MINESURSI — Équivalence des diplômes étrangers</title>
+<meta name="ext-resource-dependency" content="../../components/buttons/Button.jsx" data-resource-id="c0" />
+<meta name="ext-resource-dependency" content="../../components/buttons/IconButton.jsx" data-resource-id="c1" />
+<meta name="ext-resource-dependency" content="../../components/forms/Input.jsx" data-resource-id="c2" />
+<meta name="ext-resource-dependency" content="../../components/forms/Select.jsx" data-resource-id="c3" />
+<meta name="ext-resource-dependency" content="../../components/forms/Checkbox.jsx" data-resource-id="c4" />
+<meta name="ext-resource-dependency" content="../../components/forms/Radio.jsx" data-resource-id="c5" />
+<meta name="ext-resource-dependency" content="../../components/forms/Toggle.jsx" data-resource-id="c6" />
+<meta name="ext-resource-dependency" content="../../components/forms/SearchBar.jsx" data-resource-id="c7" />
+<meta name="ext-resource-dependency" content="../../components/brand/BlocMarque.jsx" data-resource-id="c8" />
+<meta name="ext-resource-dependency" content="../../components/brand/ConnectButton.jsx" data-resource-id="c9" />
+<meta name="ext-resource-dependency" content="../../components/navigation/LangMenu.jsx" data-resource-id="c10" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Header.jsx" data-resource-id="c11" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Footer.jsx" data-resource-id="c12" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Breadcrumb.jsx" data-resource-id="c13" />
+<meta name="ext-resource-dependency" content="../../components/data-display/Card.jsx" data-resource-id="c14" />
+<meta name="ext-resource-dependency" content="../../components/data-display/Tile.jsx" data-resource-id="c15" />
+<meta name="ext-resource-dependency" content="../../components/data-display/Badge.jsx" data-resource-id="c16" />
+<meta name="ext-resource-dependency" content="../../components/data-display/Table.jsx" data-resource-id="c17" />
+<meta name="ext-resource-dependency" content="../../components/feedback/Alert.jsx" data-resource-id="c18" />
+<meta name="ext-resource-dependency" content="../../components/feedback/Notice.jsx" data-resource-id="c19" />
+<meta name="ext-resource-dependency" content="../../components/feedback/Loader.jsx" data-resource-id="c20" />
+<meta name="ext-resource-dependency" content="../../components/content/Accordion.jsx" data-resource-id="c21" />
+<meta name="ext-resource-dependency" content="../../components/content/Tabs.jsx" data-resource-id="c22" />
+<meta name="ext-resource-dependency" content="../../components/content/Pagination.jsx" data-resource-id="c23" />
+<meta name="ext-resource-dependency" content="../../components/content/Quote.jsx" data-resource-id="c24" />
+<meta name="ext-resource-dependency" content="../../components/content/Article.jsx" data-resource-id="c25" />
+<meta name="ext-resource-dependency" content="../../components/media/Carousel.jsx" data-resource-id="c26" />
+<meta name="ext-resource-dependency" content="../../components/media/Gallery.jsx" data-resource-id="c27" />
+<meta name="ext-resource-dependency" content="../../components/media/MediaPlayer.jsx" data-resource-id="c28" />
+<meta name="ext-resource-dependency" content="../../components/media/TagCloud.jsx" data-resource-id="c29" />
+<meta name="ext-resource-dependency" content="../../components/charts/BarChart.jsx" data-resource-id="c30" />
+<meta name="ext-resource-dependency" content="../../components/charts/LineChart.jsx" data-resource-id="c31" />
+<meta name="ext-resource-dependency" content="../../components/charts/DonutChart.jsx" data-resource-id="c32" />
+<meta name="ext-resource-dependency" content="../../components/services/Calendar.jsx" data-resource-id="c33" />
+<meta name="ext-resource-dependency" content="../../components/services/Rdv.jsx" data-resource-id="c34" />
+<meta name="ext-resource-dependency" content="../../components/services/Tracking.jsx" data-resource-id="c35" />
+<meta name="ext-resource-dependency" content="../../components/forms/Upload.jsx" data-resource-id="c36" />
+<meta name="ext-resource-dependency" content="../../components/data-display/Tag.jsx" data-resource-id="c37" />
+<meta name="ext-resource-dependency" content="../../components/content/Callout.jsx" data-resource-id="c38" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Sidemenu.jsx" data-resource-id="c39" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Stepper.jsx" data-resource-id="c40" />
+<meta name="ext-resource-dependency" content="../../components/navigation/SkipLink.jsx" data-resource-id="c41" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Follow.jsx" data-resource-id="c42" />
+<meta name="ext-resource-dependency" content="../../components/overlays/Modal.jsx" data-resource-id="c43" />
+<meta name="ext-resource-dependency" content="../../components/overlays/Tooltip.jsx" data-resource-id="c44" />
+<meta name="ext-resource-dependency" content="../../components/overlays/BandeauCookies.jsx" data-resource-id="c45" />
+<meta name="ext-resource-dependency" content="../../components/data-display/DataTable.jsx" data-resource-id="c46" />
+<meta name="ext-resource-dependency" content="../../components/services/Wizard.jsx" data-resource-id="c47" />
+<meta name="ext-resource-dependency" content="../../components/forms/Segmented.jsx" data-resource-id="c48" />
+<meta name="ext-resource-dependency" content="../../components/forms/Range.jsx" data-resource-id="c49" />
+<meta name="ext-resource-dependency" content="../../components/forms/Password.jsx" data-resource-id="c50" />
+<meta name="ext-resource-dependency" content="../../components/content/Highlight.jsx" data-resource-id="c51" />
+<meta name="ext-resource-dependency" content="../../components/content/Lien.jsx" data-resource-id="c52" />
+<meta name="ext-resource-dependency" content="../../components/content/Summary.jsx" data-resource-id="c53" />
+<meta name="ext-resource-dependency" content="../../components/content/Share.jsx" data-resource-id="c54" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Tabnav.jsx" data-resource-id="c55" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Dropdown.jsx" data-resource-id="c56" />
+<meta name="ext-resource-dependency" content="../../components/navigation/Display.jsx" data-resource-id="c57" />
+<meta name="ext-resource-dependency" content="./app-standalone.jsx.txt" data-resource-id="appsrc" />
+<meta name="ext-resource-dependency" content="../../assets/armoiries-rdc.png" data-resource-id="armoiries" />
+<meta name="ext-resource-dependency" content="../../assets/logo-blanc-tricolore.png" data-resource-id="logoBlanc" />
+<link rel="stylesheet" href="../../styles.css">
+<template id="__bundler_thumbnail" data-bg-color="#0095C9">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="800" fill="#0095C9"/>
+<rect x="470" y="240" width="20" height="320" fill="#FFFFFF"/>
+<rect x="510" y="240" width="20" height="320" fill="#FFF24B"/>
+<rect x="550" y="240" width="20" height="320" fill="#DB3832"/>
+<text x="620" y="480" font-family="Arial, sans-serif" font-size="220" font-weight="bold" fill="#FFFFFF">CD</text>
+</svg></template>
+<script src="../../image-slot.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.6/babel.min.js"></script>
+<script>
+(function(){
+  var N=58;
+  function patch(t){
+    t=t.split("assetsBase+(fondSombre?'assets/logo-blanc-tricolore.png':'assets/armoiries-rdc.png')").join('(fondSombre?window.__resources.logoBlanc:window.__resources.armoiries)');
+    t=t.split("assetsBase+'assets/armoiries-rdc.png'").join('window.__resources.armoiries');
+    t=t.split("assetsBase+'assets/logo-blanc-tricolore.png'").join('window.__resources.logoBlanc');
+    return t;}
+  window.__sdcdReady=(async function(){
+    var ids=[];for(var i=0;i<N;i++)ids.push("c"+i);
+    var textes=await Promise.all(ids.map(function(id){return fetch(window.__resources[id]).then(function(r){return r.text();});}));
+    var exp={};
+    for(var i=0;i<textes.length;i++){
+      try{
+        var txt=patch(textes[i]);
+        var names=[];var re=/export\s+(?:function|const)\s+(\w+)/g;var mm;
+        while((mm=re.exec(txt)))names.push(mm[1]);
+        var code=txt.replace(/^import[^\n]*$/gm,'').replace(/\bexport\s+/g,'');
+        code+='\n;'+names.map(function(n){return '__exp.'+n+'='+n+';';}).join('');
+        var js=Babel.transform(code,{presets:[['react',{runtime:'classic'}]]}).code;
+        var keys=Object.keys(exp).filter(function(k){return !(new RegExp('(?:function|const|let|var|class)\\s+'+k+'\\b')).test(js);});
+        new Function('React','__exp',...keys,js)(React,exp,...keys.map(function(k){return exp[k];}));
+      }catch(e){console.error('standalone:',i,e);}
+    }
+    window.SDCD_ab12cd=exp;
+  })();
+  window.__sdcdReady.then(async function(){
+    var t=patch(await (await fetch(window.__resources.appsrc)).text());
+    var js=Babel.transform(t,{presets:[['react',{runtime:'classic'}]]}).code;
+    var lancer=function(){(0,eval)(js);};
+    if(document.getElementById('root'))lancer();
+    else{var it=setInterval(function(){if(document.getElementById('root')){clearInterval(it);lancer();}},50);}
+  });
+})();
+</script>
+</head><body><div id="root"></div></body></html>

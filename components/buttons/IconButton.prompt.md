@@ -1,0 +1,1 @@
+Bouton ic\u00f4ne carr\u00e9 (Remix Icon), label accessible requis.\n\n```jsx\n<IconButton icon="ri-search-line" label="Rechercher" />\n```

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SDCD — composants en HTML seul, sans React</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="sdcd-skiplink" href="#contenu">Aller au contenu</a>
+
+<div class="sdcd-filet-tricolore" aria-hidden="true">
+  <div class="sdcd-filet-tricolore__bande--bleu"></div>
+  <div class="sdcd-filet-tricolore__bande--jaune"></div>
+  <div class="sdcd-filet-tricolore__bande--rouge"></div>
+</div>
+
+<main id="contenu" class="sdcd-container" style="padding-top:32px;padding-bottom:64px">
+
+  <h1>Composants SDCD en HTML seul</h1>
+  <p>Cette page ne charge <strong>aucun JavaScript</strong>. Elle démontre que le balisage
+     et <code>components.css</code> suffisent : survol, focus, états actifs et désactivés
+     sont portés par CSS.</p>
+
+  <h2>Boutons</h2>
+  <p>
+    <button type="button" class="sdcd-button sdcd-button--primaire">Effectuer la démarche</button>
+    <button type="button" class="sdcd-button sdcd-button--secondaire">Consulter le dossier</button>
+    <button type="button" class="sdcd-button sdcd-button--tertiaire">Annuler</button>
+    <button type="button" class="sdcd-button sdcd-button--primaire" disabled>Indisponible</button>
+    <button type="button" class="sdcd-button sdcd-button--secondaire sdcd-button--sm">
+      <i class="sdcd-button__icone ri-download-line" aria-hidden="true"></i>Télécharger
+    </button>
+    <button type="button" class="sdcd-iconbutton sdcd-iconbutton--secondaire" aria-label="Imprimer">
+      <i class="ri-printer-line" aria-hidden="true"></i>
+    </button>
+  </p>
+
+  <h2>Marque d'État</h2>
+  <div class="sdcd-blocmarque" style="--sdcd-marque-taille:64px">
+    <img class="sdcd-blocmarque__armoiries" src="../assets/armoiries-rdc.png" alt="Armoiries de la République Démocratique du Congo">
+    <div>
+      <div class="sdcd-blocmarque__republique">République Démocratique<br>du Congo</div>
+      <div class="sdcd-blocmarque__devise">Justice · Paix · Travail</div>
+    </div>
+    <div class="sdcd-blocmarque__filet" aria-hidden="true"></div>
+    <div>
+      <div class="sdcd-blocmarque__entite">Ministère de l'Enseignement supérieur</div>
+      <div class="sdcd-blocmarque__sous-titre">Direction des équivalences</div>
+    </div>
+  </div>
+
+  <h2>Formulaire</h2>
+  <div class="sdcd-champ sdcd-input" style="max-width:420px">
+    <label class="sdcd-champ__label" for="nom">Nom de famille</label>
+    <div class="sdcd-champ__aide">Tel qu'il figure sur votre pièce d'identité.</div>
+    <input class="sdcd-input__champ" id="nom" type="text" placeholder="Kabila">
+  </div>
+  <div class="sdcd-champ sdcd-input" style="max-width:420px;margin-top:16px">
+    <label class="sdcd-champ__label" for="ref">Numéro de dossier</label>
+    <input class="sdcd-input__champ" id="ref" type="text" value="EQ-2026-00" aria-invalid="true">
+    <div class="sdcd-champ__erreur"><i class="ri-error-warning-line" aria-hidden="true"></i>Le numéro doit comporter 10 caractères.</div>
+  </div>
+  <p style="margin-top:16px">
+    <label class="sdcd-checkbox">
+      <input class="sdcd-checkbox__case" type="checkbox" checked>
+      <span>Je certifie l'exactitude des informations</span>
+    </label>
+  </p>
+  <p>
+    <label class="sdcd-toggle">
+      <button type="button" class="sdcd-toggle__piste" role="switch" aria-checked="true">
+        <span class="sdcd-toggle__pastille"></span>
+      </button>
+      <span>Recevoir les notifications par SMS</span>
+    </label>
+  </p>
+  <form class="sdcd-searchbar sdcd-searchbar--large" role="search" style="margin-top:16px">
+    <input class="sdcd-searchbar__champ" type="search" placeholder="Rechercher une démarche…">
+    <button type="submit" class="sdcd-searchbar__bouton" aria-label="Rechercher">
+      <i class="ri-search-line" aria-hidden="true"></i><span class="sdcd-searchbar__libelle">Rechercher</span>
+    </button>
+  </form>
+
+  <h2>Retours utilisateur</h2>
+  <div class="sdcd-alert sdcd-alert--succes" role="alert" style="margin-bottom:12px">
+    <i class="sdcd-alert__icone ri-checkbox-circle-line" aria-hidden="true"></i>
+    <div class="sdcd-alert__corps">
+      <div class="sdcd-alert__titre">Dossier transmis</div>
+      <div class="sdcd-alert__texte">Votre demande porte la référence EQ-2026-00931.</div>
+    </div>
+    <button type="button" class="sdcd-fermer" aria-label="Fermer"><i class="ri-close-line" aria-hidden="true"></i></button>
+  </div>
+  <div class="sdcd-alert sdcd-alert--erreur" role="alert">
+    <i class="sdcd-alert__icone ri-error-warning-line" aria-hidden="true"></i>
+    <div class="sdcd-alert__corps">
+      <div class="sdcd-alert__titre">Pièce non conforme</div>
+      <div class="sdcd-alert__texte">Le relevé de notes est illisible.</div>
+    </div>
+  </div>
+
+  <h2>Présentation de données</h2>
+  <p>
+    <span class="sdcd-badge">Brouillon</span>
+    <span class="sdcd-badge sdcd-badge--info">En instruction</span>
+    <span class="sdcd-badge sdcd-badge--succes">Validé</span>
+    <span class="sdcd-badge sdcd-badge--alerte">En retard</span>
+    <span class="sdcd-badge sdcd-badge--erreur">Rejeté</span>
+    <span class="sdcd-badge sdcd-badge--nouveau">Nouveau</span>
+  </p>
+  <p>
+    <button type="button" class="sdcd-tag sdcd-tag--cliquable" aria-pressed="true">
+      <i class="sdcd-tag__coche ri-check-line" aria-hidden="true"></i>Kinshasa</button>
+    <button type="button" class="sdcd-tag sdcd-tag--cliquable" aria-pressed="false">Lubumbashi</button>
+  </p>
+
+  <div class="sdcd-grid" style="--sdcd-cols:repeat(3,minmax(0,1fr));--sdcd-cols-sm:minmax(0,1fr);margin-top:16px">
+    <a class="sdcd-tile" href="#">
+      <i class="sdcd-tile__icone ri-passport-line" aria-hidden="true"></i>
+      <div>
+        <div class="sdcd-tile__titre">Demander un passeport</div>
+        <div class="sdcd-tile__description">Ministère de l'Intérieur</div>
+      </div>
+    </a>
+    <a class="sdcd-tile" href="#">
+      <i class="sdcd-tile__icone ri-graduation-cap-line" aria-hidden="true"></i>
+      <div>
+        <div class="sdcd-tile__titre">Équivalence de diplôme</div>
+        <div class="sdcd-tile__description">Enseignement supérieur</div>
+      </div>
+    </a>
+    <a class="sdcd-tile" href="#">
+      <i class="sdcd-tile__icone ri-file-user-line" aria-hidden="true"></i>
+      <div>
+        <div class="sdcd-tile__titre">Acte de naissance</div>
+        <div class="sdcd-tile__description">État civil</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="sdcd-scroll-x" style="--sdcd-table-min:480px;margin-top:24px">
+    <table class="sdcd-table" data-empilable>
+      <caption>Dossiers en cours</caption>
+      <thead><tr><th scope="col">Référence</th><th scope="col">Demandeur</th><th scope="col">État</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Référence">EQ-2026-00931</td><td data-label="Demandeur">M. Kabeya</td><td data-label="État">En instruction</td></tr>
+        <tr><td data-label="Référence">EQ-2026-00932</td><td data-label="Demandeur">Mme Ilunga</td><td data-label="État">Validé</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Contenu éditorial</h2>
+  <div class="sdcd-callout">
+    <div class="sdcd-callout__titre"><i class="ri-information-line" aria-hidden="true"></i>Pièces à fournir</div>
+    <div class="sdcd-callout__texte">Le dossier doit comporter le diplôme original, le relevé de notes et une pièce d'identité en cours de validité.</div>
+  </div>
+  <div class="sdcd-highlight" style="margin-top:20px">Le délai d'instruction est de trois mois à compter de la réception du dossier complet.</div>
+  <figure class="sdcd-quote">
+    <i class="sdcd-quote__guillemet ri-double-quotes-l" aria-hidden="true"></i>
+    <blockquote class="sdcd-quote__texte">La reconnaissance des diplômes est une condition de la mobilité des compétences.</blockquote>
+    <figcaption class="sdcd-quote__source"><strong>Direction des équivalences</strong> — Rapport annuel</figcaption>
+  </figure>
+  <nav class="sdcd-pagination" aria-label="Pagination">
+    <button type="button" class="sdcd-pagination__lien" aria-label="Page précédente"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+    <button type="button" class="sdcd-pagination__lien" aria-current="page">1</button>
+    <button type="button" class="sdcd-pagination__lien">2</button>
+    <button type="button" class="sdcd-pagination__lien">3</button>
+    <button type="button" class="sdcd-pagination__lien" aria-label="Page suivante"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+  </nav>
+
+  <h2>Infobulle (survol et focus, sans JavaScript)</h2>
+  <p>
+    Référence du dossier
+    <span class="sdcd-tooltip" tabindex="0">
+      <i class="ri-question-line" aria-hidden="true" style="color:var(--sdcd-action)"></i>
+      <span role="tooltip" class="sdcd-tooltip__bulle">Le numéro figure sur l'accusé de réception envoyé par courriel.</span>
+    </span>
+  </p>
+
+  <h2>Chargement</h2>
+  <div class="sdcd-loader" style="--sdcd-loader-taille:56px">
+    <div class="sdcd-loader__anneaux" aria-hidden="true">
+      <div class="sdcd-loader__anneau sdcd-loader__anneau--bleu"></div>
+      <div class="sdcd-loader__anneau sdcd-loader__anneau--jaune"></div>
+      <div class="sdcd-loader__anneau sdcd-loader__anneau--rouge"></div>
+    </div>
+    <span class="sdcd-loader__label">Chargement…</span>
+  </div>
+
+</main>
+</body>
+</html>

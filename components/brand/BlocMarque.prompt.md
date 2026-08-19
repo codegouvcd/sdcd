@@ -1,0 +1,1 @@
+Bloc-marque d\u2019\u00c9tat autonome.\n\n```jsx\n<BlocMarque entite="Minist\u00e8re du Num\u00e9rique" sousTitre="numerique.gouv.cd" assetsBase="../../" />\n```
