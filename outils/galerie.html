@@ -98,7 +98,7 @@ Elle sert de sujet aux tests de non-régression : ne pas la modifier à la main.
   </div>
   
   <button type="button" class="sdcd-fermer" title="Masquer le message"
-          onclick="this.closest('.sdcd-alert').remove()">
+          data-sdcd-fermer-parent=".sdcd-alert">
     <i class="ri-close-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Masquer le message</span>
   </button>
   

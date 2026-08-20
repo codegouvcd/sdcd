@@ -1,6 +1,6 @@
 {
   "name": "@gouv-cd/sdcd",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Système de design RDC (SDCD) — identité numérique officielle des sites de l'État de la République Démocratique du Congo.",
   "license": "MIT",
   "author": "République Démocratique du Congo",
@@ -45,7 +45,8 @@
     "verifier-wordpress": "php adaptateurs/wordpress/verifier.php",
     "galerie": "python outils/galerie.py",
     "verifier-visuel": "node outils/verifier-visuel.mjs",
-    "figer-visuel": "node outils/verifier-visuel.mjs --figer"
+    "figer-visuel": "node outils/verifier-visuel.mjs --figer",
+    "auditer": "node outils/auditer.mjs"
   },
   "keywords": [
     "design-system",

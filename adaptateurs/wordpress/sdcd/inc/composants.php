@@ -82,8 +82,10 @@ function sdcd_alerte( $a = array() ) {
 	$html .= '</div>';
 	if ( $a['fermable'] ) {
 		$masquer = esc_attr__( 'Masquer le message', 'sdcd' );
+		// Pas d'`onclick` en ligne : il exigerait `unsafe-inline` dans la
+		// politique de sécurité de contenu. `sdcd.js` traite cet attribut.
 		$html   .= '<button type="button" class="sdcd-fermer" title="' . $masquer . '"'
-			. ' onclick="this.closest(\'.sdcd-alert\').remove()">'
+			. ' data-sdcd-fermer-parent=".sdcd-alert">'
 			. '<i class="ri-close-line" aria-hidden="true"></i>'
 			. '<span class="sdcd-lecteur-seul">' . $masquer . '</span></button>';
 	}

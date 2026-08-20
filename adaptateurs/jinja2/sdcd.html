@@ -54,7 +54,7 @@
   </div>
   {% if fermable %}
   <button type="button" class="sdcd-fermer" title="Masquer le message"
-          onclick="this.closest('.sdcd-alert').remove()">
+          data-sdcd-fermer-parent=".sdcd-alert">
     <i class="ri-close-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Masquer le message</span>
   </button>
   {% endif %}
@@ -71,7 +71,7 @@
     </p>
     {% if fermable %}
     <button type="button" class="sdcd-fermer" title="Masquer le message"
-            onclick="this.closest('.sdcd-notice').remove()">
+            data-sdcd-fermer-parent=".sdcd-notice">
       <i class="ri-close-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Masquer</span>
     </button>
     {% endif %}
@@ -83,10 +83,10 @@
 {# ---------------------------------------------------------------- actions #}
 
 {% macro bouton(libelle, type="primaire", taille="", html_type="button", icone="", icone_droite="",
-                desactive=false, onclick="", classes="") -%}
+                desactive=false, classes="") -%}
 <button type="{{ html_type }}"
         class="sdcd-button sdcd-button--{{ type }}{% if taille %} sdcd-button--{{ taille }}{% endif %}{{ _classes(classes) }}"
-        {% if onclick %}onclick="{{ onclick }}"{% endif %}{% if desactive %} disabled{% endif %}>
+        {% if desactive %}disabled{% endif %}>
   {%- if icone %}<i class="{{ icone }}" aria-hidden="true"></i> {% endif -%}
   {{ libelle }}
   {%- if icone_droite %} <i class="{{ icone_droite }}" aria-hidden="true"></i>{% endif -%}

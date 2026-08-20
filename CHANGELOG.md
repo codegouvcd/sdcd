@@ -4,6 +4,77 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.9.0] — 2026-08-19
+
+Audit sécurité, responsive et ergonomie, puis correction de ce qu'il a trouvé.
+
+### Corrigé — sécurité
+
+- **11 gestionnaires `onclick` en ligne supprimés**, dans les trois piles.
+  Un `onclick` impose `unsafe-inline` dans la politique de sécurité de
+  contenu — c'est-à-dire renoncer à la protection principale contre
+  l'injection de script. Les composants déclarent désormais leur intention par
+  `data-sdcd-fermer-parent` et `sdcd.js` s'en charge par délégation.
+  Vérifié : **0 attribut `onclick` dans le DOM rendu**, fermeture opérante.
+- **Le paramètre `onclick` est retiré de l'API** de `bouton`, `tag` et
+  `button_group`. Il injectait du JavaScript arbitraire dans un attribut :
+  dès lors que sa valeur vient du CMS, un rédacteur pouvait exécuter du script
+  chez les visiteurs. L'échappement de Django empêchait la sortie de
+  l'attribut, pas l'exécution de son contenu.
+
+### Corrigé — responsive
+
+- **Pagination débordant sous 375 px.** Douze pages ne tenaient pas :
+  388 px de large pour un écran de 320. `flex-wrap` sur `.sdcd-pagination`.
+  Vérifié aux quatre largeurs : **320, 375, 768 et 1280 px, aucun débordement**.
+
+### Corrigé — cibles tactiles
+
+La règle `pointer: coarse` ne posait qu'une hauteur minimale : les boutons
+d'icône restaient étroits (`.sdcd-fermer` mesurait 19 px de large). Ajout
+d'une largeur minimale pour les commandes carrées, et d'un remplissage
+vertical pour les liens de navigation.
+
+Les liens au fil du texte, les titres de carte et de tuile en sont exclus :
+**WCAG 2.5.8 réserve une exception aux liens insérés dans un bloc de texte**,
+et les agrandir dégraderait la typographie sans rien gagner.
+
+### Ajouté
+
+- **`outils/auditer.mjs`** — audit automatisé : débordement horizontal à
+  quatre largeurs, taille des cibles tactiles, visibilité du focus,
+  association des étiquettes, messages d'erreur reliés, `aria-controls`
+  pointant sur un élément existant, identifiants en double, respect de
+  `prefers-reduced-motion`. Sortie 0/1.
+
+### Ce que l'audit a trouvé conforme
+
+| Contrôle | Résultat |
+|---|---|
+| Indicateur de focus | **39 éléments sur 39** |
+| Étiquettes de formulaire | toutes associées |
+| Messages d'erreur | reliés par `aria-describedby` |
+| `aria-controls` | aucun ne pointe dans le vide |
+| Identifiants | aucun doublon |
+| `prefers-reduced-motion` | aucune transition ni animation active |
+| `innerHTML`, `eval` dans `sdcd.js` | aucun |
+| Liens externes | tous avec `rel="noopener"` |
+
+### Signalé, hors périmètre du système
+
+Le CMS `sites-conformes` référence `request.csp_nonce` dans ses gabarits, mais
+**aucun middleware CSP n'est installé** : `django-csp` n'est pas une
+dépendance et le nonce se résout à vide. Le site n'a donc aujourd'hui aucune
+politique de sécurité de contenu. Le SDCD est désormais compatible avec une
+CSP stricte ; l'activer relève du CMS.
+
+### Deux réserves sur l'audit lui-même
+
+- La référence visuelle est capturée à 1 280 px avec un pointeur fin : elle ne
+  couvre donc pas les règles `pointer: coarse` ni les points de rupture.
+- L'audit mesure ce qui se mesure. Il ne dit rien de la clarté des libellés,
+  de la logique d'un parcours ni de la pertinence d'un contenu.
+
 ## [0.8.0] — 2026-08-19
 
 Non-régression visuelle. Le système peut désormais détecter qu'une
