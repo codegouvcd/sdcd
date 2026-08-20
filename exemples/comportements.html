@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SDCD — comportements sans React</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { max-width: 900px; margin: 0 auto; padding: var(--sdcd-6) var(--sdcd-gouttiere); }
+  section { margin-block: var(--sdcd-7); }
+  h2 { border-bottom: 1px solid var(--sdcd-ligne); padding-bottom: var(--sdcd-2); }
+</style>
+</head>
+<body>
+
+<div class="sdcd-filet-tricolore" aria-hidden="true">
+  <div class="sdcd-filet-tricolore__bande--bleu"></div>
+  <div class="sdcd-filet-tricolore__bande--jaune"></div>
+  <div class="sdcd-filet-tricolore__bande--rouge"></div>
+</div>
+
+<h1>Comportements sans React</h1>
+<p>Cette page n'emploie ni React ni aucune bibliothèque : seulement
+<code>styles.css</code> et <code>sdcd.js</code>. Chaque composant y est
+manipulable, c'est ce qui la distingue de <a href="sans-react.html">l'exemple
+statique</a>.</p>
+
+<section>
+  <h2>Interrupteur</h2>
+  <label class="sdcd-toggle" for="t1">
+    <button type="button" class="sdcd-toggle__piste" role="switch" id="t1" aria-checked="false">
+      <span class="sdcd-toggle__pastille" aria-hidden="true"></span>
+    </button>
+    <span>Recevoir les notifications par SMS</span>
+  </label>
+</section>
+
+<section>
+  <h2>Contrôle segmenté</h2>
+  <div class="sdcd-segmented" role="radiogroup" aria-label="Période">
+    <button type="button" class="sdcd-segmented__option" role="radio" aria-checked="true" aria-controls="seg-a">7 jours</button>
+    <button type="button" class="sdcd-segmented__option" role="radio" aria-checked="false" aria-controls="seg-b">30 jours</button>
+    <button type="button" class="sdcd-segmented__option" role="radio" aria-checked="false" aria-controls="seg-c">1 an</button>
+  </div>
+  <p id="seg-a" class="sdcd-mt-3">Données des 7 derniers jours.</p>
+  <p id="seg-b" class="sdcd-mt-3" hidden>Données des 30 derniers jours.</p>
+  <p id="seg-c" class="sdcd-mt-3" hidden>Données de l'année écoulée.</p>
+</section>
+
+<section>
+  <h2>Étiquettes sélectionnables</h2>
+  <div class="sdcd-flex sdcd-wrap" style="gap:var(--sdcd-2)">
+    <button type="button" class="sdcd-tag sdcd-tag--cliquable" aria-pressed="false">État civil</button>
+    <button type="button" class="sdcd-tag sdcd-tag--cliquable" aria-pressed="true">Passeport</button>
+    <button type="button" class="sdcd-tag sdcd-tag--cliquable" aria-pressed="false">Fiscalité</button>
+  </div>
+</section>
+
+<section>
+  <h2>Accordéon</h2>
+  <div class="sdcd-accordion">
+    <div class="sdcd-accordion__item">
+      <button type="button" class="sdcd-accordion__entete" aria-expanded="false" aria-controls="acc-1">
+        Quelles pièces fournir ?
+      </button>
+      <div class="sdcd-accordion__contenu" id="acc-1" hidden>
+        <p>Une pièce d'identité et un justificatif de domicile de moins de trois mois.</p>
+      </div>
+    </div>
+    <div class="sdcd-accordion__item">
+      <button type="button" class="sdcd-accordion__entete" aria-expanded="false" aria-controls="acc-2">
+        Quel est le délai de traitement ?
+      </button>
+      <div class="sdcd-accordion__contenu" id="acc-2" hidden>
+        <p>Quinze jours ouvrables à compter de la réception du dossier complet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Onglets</h2>
+  <div class="sdcd-tabs">
+    <div class="sdcd-tabs__liste" role="tablist" aria-label="Sections">
+      <button type="button" class="sdcd-tabs__onglet" role="tab" aria-selected="true" aria-controls="ong-1" tabindex="0">Démarche</button>
+      <button type="button" class="sdcd-tabs__onglet" role="tab" aria-selected="false" aria-controls="ong-2" tabindex="-1">Pièces</button>
+      <button type="button" class="sdcd-tabs__onglet" role="tab" aria-selected="false" aria-controls="ong-3" tabindex="-1">Coûts</button>
+    </div>
+    <div class="sdcd-tabs__panneau" id="ong-1" role="tabpanel"><p>Déroulé de la démarche.</p></div>
+    <div class="sdcd-tabs__panneau" id="ong-2" role="tabpanel" hidden><p>Liste des pièces à fournir.</p></div>
+    <div class="sdcd-tabs__panneau" id="ong-3" role="tabpanel" hidden><p>Barème et modalités de paiement.</p></div>
+  </div>
+  <p class="sdcd-texte-xs sdcd-texte-muet">Les flèches gauche et droite naviguent entre les onglets.</p>
+</section>
+
+<section>
+  <h2>Carrousel</h2>
+  <div class="sdcd-carousel">
+    <div class="sdcd-carousel__cadre">
+      <div class="sdcd-carousel__piste">
+        <div class="sdcd-carousel__diapo"><div class="sdcd-fond-bleu-pale sdcd-p-8 sdcd-texte-centre">Première vue</div></div>
+        <div class="sdcd-carousel__diapo"><div class="sdcd-fond-alt sdcd-p-8 sdcd-texte-centre">Deuxième vue</div></div>
+        <div class="sdcd-carousel__diapo"><div class="sdcd-fond-bleu-pale sdcd-p-8 sdcd-texte-centre">Troisième vue</div></div>
+      </div>
+      <button type="button" class="sdcd-carousel__fleche sdcd-carousel__fleche--precedent" aria-label="Précédent">
+        <i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+      <button type="button" class="sdcd-carousel__fleche sdcd-carousel__fleche--suivant" aria-label="Suivant">
+        <i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+    </div>
+    <div class="sdcd-carousel__pied">
+      <span class="sdcd-carousel__compteur">1 / 3</span>
+      <div class="sdcd-carousel__puces">
+        <button type="button" class="sdcd-carousel__puce" aria-current="true" aria-label="Vue 1"></button>
+        <button type="button" class="sdcd-carousel__puce" aria-current="false" aria-label="Vue 2"></button>
+        <button type="button" class="sdcd-carousel__puce" aria-current="false" aria-label="Vue 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Menu de langue</h2>
+  <div class="sdcd-langmenu">
+    <button type="button" class="sdcd-langmenu__declencheur" aria-expanded="false" aria-controls="langues">
+      <i class="ri-global-line" aria-hidden="true"></i> FR
+      <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+    </button>
+    <div class="sdcd-langmenu__liste" id="langues" hidden>
+      <button type="button" class="sdcd-langmenu__option" aria-current="true" lang="fr">Français <span class="sdcd-langmenu__code">FR</span></button>
+      <button type="button" class="sdcd-langmenu__option" aria-current="false" lang="ln">Lingála <span class="sdcd-langmenu__code">LN</span></button>
+      <button type="button" class="sdcd-langmenu__option" aria-current="false" lang="sw">Kiswahili <span class="sdcd-langmenu__code">SW</span></button>
+      <button type="button" class="sdcd-langmenu__option" aria-current="false" lang="kg">Kikongo <span class="sdcd-langmenu__code">KG</span></button>
+      <button type="button" class="sdcd-langmenu__option" aria-current="false" lang="lua">Tshiluba <span class="sdcd-langmenu__code">TS</span></button>
+    </div>
+  </div>
+  <p class="sdcd-texte-xs sdcd-texte-muet">Contrôle des glyphes : mbɔ́tɛ — lɛlɔ́ — ŋanga — Bɔ́ngɔ́</p>
+</section>
+
+<section>
+  <h2>Modale</h2>
+  <button type="button" class="sdcd-button sdcd-button--primaire" data-sdcd-ouvre="ma-modale">
+    Ouvrir la modale
+  </button>
+  <dialog id="ma-modale" class="sdcd-modal" aria-labelledby="titre-modale">
+    <div class="sdcd-modal__entete">
+      <h2 class="sdcd-modal__titre" id="titre-modale">Confirmer la demande</h2>
+      <button type="button" class="sdcd-modal__fermer">Fermer <i class="ri-close-line" aria-hidden="true"></i></button>
+    </div>
+    <div class="sdcd-modal__corps">
+      <p>La touche Échap, le bouton et un clic hors du cadre referment cette boîte.</p>
+    </div>
+    <div class="sdcd-modal__actions">
+      <button type="button" class="sdcd-button sdcd-button--secondaire" data-sdcd-ferme>Annuler</button>
+      <button type="button" class="sdcd-button sdcd-button--primaire" data-sdcd-ferme>Confirmer</button>
+    </div>
+  </dialog>
+</section>
+
+<section>
+  <h2>Choix du thème</h2>
+  <fieldset class="sdcd-display">
+    <legend class="sdcd-display__legende">Affichage</legend>
+    <div class="sdcd-display__options">
+      <button type="button" class="sdcd-display__option" role="radio" aria-checked="false" data-sdcd-theme="clair">
+        <i class="ri-sun-line" aria-hidden="true"></i> Clair</button>
+      <button type="button" class="sdcd-display__option" role="radio" aria-checked="false" data-sdcd-theme="sombre">
+        <i class="ri-moon-line" aria-hidden="true"></i> Sombre</button>
+      <button type="button" class="sdcd-display__option" role="radio" aria-checked="true" data-sdcd-theme="systeme">
+        <i class="ri-computer-line" aria-hidden="true"></i> Système</button>
+    </div>
+  </fieldset>
+</section>
+
+<script src="../sdcd.js"></script>
+</body>
+</html>

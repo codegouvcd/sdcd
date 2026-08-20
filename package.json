@@ -1,43 +1,44 @@
 {
   "name": "@gouv-cd/sdcd",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Système de design RDC (SDCD) — identité numérique officielle des sites de l'État de la République Démocratique du Congo.",
   "license": "MIT",
   "author": "République Démocratique du Congo",
   "homepage": "https://systeme-de-design.gouv.cd",
   "type": "module",
-  "main": "styles.css",
-  "style": "styles.css",
+  "main": "dist/sdcd.css",
+  "style": "dist/sdcd.css",
   "exports": {
-    ".": "./styles.css",
-    "./styles.css": "./styles.css",
-    "./base.css": "./base.css",
-    "./responsive.css": "./responsive.css",
+    ".": "./dist/sdcd.css",
+    "./min": "./dist/sdcd.min.css",
+    "./js": "./dist/sdcd.js",
+    "./source": "./styles.css",
     "./tokens/*": "./tokens/*",
     "./assets/*": "./assets/*",
-    "./components/*": "./components/*",
-    "./components.css": "./components.css"
+    "./components/*": "./components/*"
   },
   "files": [
+    "dist/",
     "styles.css",
     "base.css",
     "components.css",
+    "utilitaires.css",
     "responsive.css",
-    "image-slot.js",
-    "sdcd-fallback.js",
+    "sdcd.js",
     "tokens/",
     "assets/",
     "components/",
     "guidelines/",
     "outils/",
-    "exemples/",
     "readme.md",
     "LICENSE.md",
     "CHANGELOG.md"
   ],
   "scripts": {
+    "build": "node outils/construire.mjs",
     "test": "node outils/verifier-contraste.mjs",
-    "verifier-contraste": "node outils/verifier-contraste.mjs"
+    "verifier-contraste": "node outils/verifier-contraste.mjs",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "design-system",

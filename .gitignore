@@ -10,3 +10,6 @@ uploads/
 .thumbnail
 
 node_modules/
+
+# Page d'essai de la distribution, non livrable.
+dist/essai.html

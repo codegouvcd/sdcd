@@ -4,6 +4,86 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.6.0] — 2026-08-19
+
+Le système devient consommable hors React : couche de comportements, fontes
+auto-hébergées, distribution en un fichier.
+
+### Ajouté
+
+- **`sdcd.js` — 385 lignes, sans dépendance.** Le CSS exprimait ses états par
+  attributs ARIA ; rien ne les posait hors React. Ce fichier le fait, par
+  délégation d'événements sur `document` : interrupteur, contrôle segmenté,
+  étiquettes, créneaux, jours de calendrier, accordéon, onglets (flèches
+  clavier comprises), carrousel, menus déroulants, tiroir latéral, modale
+  `<dialog>`, bascule de thème, défilement discret des tableaux.
+  Une API minimale est exposée sur `window.SDCD` pour le contenu injecté à la
+  volée.
+- **`outils/construire.mjs`** — aplatit la chaîne d'`@import` en un fichier
+  unique et le compacte. Contrôle à la construction que **toute `url()` pointe
+  sur un fichier réellement présent** ; sortie en erreur sinon.
+- **`exemples/comportements.html`** — page manipulable exerçant les
+  comportements, sans React ni bibliothèque.
+- **`assets/icones.css`** — règles de glyphes Remix Icon, séparées de la
+  déclaration de face.
+
+### Modifié
+
+- **Fontes et icônes auto-hébergées.** Plus aucune requête vers Google Fonts ni
+  jsDelivr. Pour un service de l'État : plus de fuite d'adresse IP des usagers
+  vers un hébergeur étranger, fonctionnement hors ligne, et une latence en
+  moins sur les connexions mobiles congolaises.
+  Sept fichiers, **548 Ko** : Inter et Noto Sans Mono sont variables, donc un
+  seul fichier couvre 400 à 900 ; seuls les sous-ensembles `latin` et
+  `latin-ext` sont embarqués — c'est `latin-ext` qui porte ɛ, ɔ et ŋ. Les 15
+  autres sous-ensembles servis par Google (cyrillique, grec, vietnamien) sont
+  écartés.
+- `package.json` en 0.6.0 : `exports` vers la distribution, `files` complet,
+  `prepublishOnly` enchaînant construction et vérification.
+
+### Corrigé
+
+- **Interrupteur inopérant hors React.** Le gabarit Django rendait un
+  `<input type="checkbox">` alors que le CSS ne réagit qu'à `aria-checked` sur
+  la piste : la pastille ne bougeait jamais. Remplacé par un
+  `<button role="switch">`, conforme au style comme au motif ARIA.
+
+### Distribution
+
+| Fichier | Poids |
+|---|---|
+| `dist/sdcd.css` | 246 Ko |
+| `dist/sdcd.min.css` | 205 Ko |
+| `dist/sdcd.js` | 14 Ko |
+| `dist/assets/` | fontes et marque d'État |
+
+Un intégrateur charge **une feuille et un script**, au lieu de dix requêtes en
+cascade vers trois domaines.
+
+### Vérifié en navigateur
+
+- Les 14 comportements manipulés un par un : interrupteur, segmenté,
+  étiquettes, accordéon, onglets, carrousel, menu de langue — tous posent
+  l'attribut attendu et le style suit.
+- Depuis `dist/sdcd.min.css` seul : **9 glyphes sur 9** présents en texte,
+  3 sur 3 en monospace, accents combinants ancrés (1,5 et 2,5 px), icônes
+  rendues depuis le fichier local.
+- `npm test` : contrat d'accessibilité respecté.
+
+### Piège consigné
+
+Le script de construction produisait des `url()` relatives fausses : les fontes
+étaient introuvables et la page s'affichait dans une **police de repli, sans
+aucune erreur visible**. Seule une mesure de glyphes l'a révélé. D'où le
+contrôle systématique des chemins désormais intégré à la construction.
+
+### Reste à faire
+
+- Publication du paquet npm : `npm whoami` renvoie `ENEEDAUTH`.
+- Adaptateurs Jinja2 (FastAPI) et thème WordPress.
+- Aucun test de non-régression visuelle.
+- Multilinguisme toujours absent.
+
 ## [0.5.0] — 2026-08-18
 
 Ajout de la couche utilitaire, qui manquait pour porter un CMS, et compaction du
