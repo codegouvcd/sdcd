@@ -1,15 +1,5 @@
-# Bundle d'un autre système de design, resté dans l'archive d'origine.
-# Référencé par aucun fichier du SDCD.
 _ds/
-
-# Sources tierces conservées hors dépôt : le DSFR français y figure, et sa
-# redistribution n'est pas de notre ressort. Voir LICENSE.md § 3.
 uploads/
-
-# Vignette générée par l'outil d'export d'origine.
 .thumbnail
-
 node_modules/
-
-# Page d'essai de la distribution, non livrable.
 dist/essai.html

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SDCD — galerie de référence</title>
+<link rel="stylesheet" href="../dist/sdcd.min.css">
+<style>
+  body { max-width: 940px; margin: 0 auto; padding: var(--sdcd-6) var(--sdcd-gouttiere); }
+  .galerie__bloc { margin-block: var(--sdcd-6); }
+  .galerie__titre { font-size: var(--sdcd-sm); text-transform: uppercase;
+    letter-spacing: .08em; color: var(--sdcd-muet); border-bottom: 1px solid var(--sdcd-ligne);
+    padding-bottom: var(--sdcd-2); margin-bottom: var(--sdcd-4); }
+</style>
+</head>
+<body>
+<h1 class="sdcd-h1">Galerie de référence</h1>
+<p class="sdcd-texte-muet">Page engendrée par <code>outils/galerie.py</code>.
+Elle sert de sujet aux tests de non-régression : ne pas la modifier à la main.</p>
+<section class="galerie__bloc" data-composant="filet">
+  <h2 class="galerie__titre">Filet tricolore</h2>
+  <div class="galerie__sujet"><div class="sdcd-filet-tricolore" aria-hidden="true">
+  <div class="sdcd-filet-tricolore__bande--bleu"></div>
+  <div class="sdcd-filet-tricolore__bande--jaune"></div>
+  <div class="sdcd-filet-tricolore__bande--rouge"></div>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="blocmarque">
+  <h2 class="galerie__titre">Bloc-marque</h2>
+  <div class="galerie__sujet"><div class="sdcd-blocmarque">
+  <img class="sdcd-blocmarque__armoiries" src="/static/sdcd/assets/armoiries-rdc.png"
+       alt="Armoiries de la République Démocratique du Congo">
+  <div>
+    <div class="sdcd-blocmarque__republique">République Démocratique du Congo</div>
+    <div class="sdcd-blocmarque__devise">Justice · Paix · Travail</div>
+    <div class="sdcd-blocmarque__entite">Ministère de l’Intérieur</div>
+    
+  </div>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="connect">
+  <h2 class="galerie__titre">CongoConnect</h2>
+  <div class="galerie__sujet"><div class="sdcd-connectbutton">
+  <button type="button" class="sdcd-connectbutton__bouton">
+    <img class="sdcd-connectbutton__logo" src="/static/sdcd/assets/logo-blanc-tricolore.png" alt="">
+    <span class="sdcd-connectbutton__textes">
+      <span class="sdcd-connectbutton__amorce">S’identifier avec</span>
+      <span class="sdcd-connectbutton__service">CongoConnect</span>
+    </span>
+  </button>
+  <a class="sdcd-connectbutton__aide" href="#">Qu’est-ce que CongoConnect ?</a>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="alerte-info">
+  <h2 class="galerie__titre">Alerte — information</h2>
+  <div class="galerie__sujet">
+<div role="alert" class="sdcd-alert sdcd-alert--info">
+  <i class="sdcd-alert__icone ri-information-line" aria-hidden="true"></i>
+  <div class="sdcd-alert__corps">
+    <p class="sdcd-alert__titre">Information</p>
+    <p class="sdcd-alert__texte">Texte.</p>
+  </div>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="alerte-succes">
+  <h2 class="galerie__titre">Alerte — succès</h2>
+  <div class="galerie__sujet">
+<div role="alert" class="sdcd-alert sdcd-alert--succes">
+  <i class="sdcd-alert__icone ri-checkbox-circle-line" aria-hidden="true"></i>
+  <div class="sdcd-alert__corps">
+    <p class="sdcd-alert__titre">Succès</p>
+    <p class="sdcd-alert__texte">Texte.</p>
+  </div>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="alerte-alerte">
+  <h2 class="galerie__titre">Alerte — avertissement</h2>
+  <div class="galerie__sujet">
+<div role="alert" class="sdcd-alert sdcd-alert--alerte">
+  <i class="sdcd-alert__icone ri-alert-line" aria-hidden="true"></i>
+  <div class="sdcd-alert__corps">
+    <p class="sdcd-alert__titre">Attention</p>
+    <p class="sdcd-alert__texte">Texte.</p>
+  </div>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="alerte-erreur">
+  <h2 class="galerie__titre">Alerte — erreur</h2>
+  <div class="galerie__sujet">
+<div role="alert" class="sdcd-alert sdcd-alert--erreur">
+  <i class="sdcd-alert__icone ri-error-warning-line" aria-hidden="true"></i>
+  <div class="sdcd-alert__corps">
+    <p class="sdcd-alert__titre">Erreur</p>
+    <p class="sdcd-alert__texte">Texte.</p>
+  </div>
+  
+  <button type="button" class="sdcd-fermer" title="Masquer le message"
+          onclick="this.closest('.sdcd-alert').remove()">
+    <i class="ri-close-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Masquer le message</span>
+  </button>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="bandeau">
+  <h2 class="galerie__titre">Bandeau</h2>
+  <div class="galerie__sujet"><div class="sdcd-notice">
+  <div class="sdcd-notice__corps">
+    <i class="sdcd-notice__icone ri-information-line" aria-hidden="true"></i>
+    <p class="sdcd-notice__texte">
+      Information Détail
+      <a href="/x" target="_blank" rel="noopener external">En savoir plus</a>
+    </p>
+    
+  </div>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="bouton-primaire">
+  <h2 class="galerie__titre">Bouton primaire</h2>
+  <div class="galerie__sujet"><button type="button"
+        class="sdcd-button sdcd-button--primaire"
+        ><i class="ri-send-plane-line" aria-hidden="true"></i> Envoyer</button></div>
+</section>
+<section class="galerie__bloc" data-composant="bouton-secondaire">
+  <h2 class="galerie__titre">Bouton secondaire</h2>
+  <div class="galerie__sujet"><button type="button"
+        class="sdcd-button sdcd-button--secondaire"
+        >Annuler</button></div>
+</section>
+<section class="galerie__bloc" data-composant="bouton-tertiaire">
+  <h2 class="galerie__titre">Bouton tertiaire</h2>
+  <div class="galerie__sujet"><button type="button"
+        class="sdcd-button sdcd-button--tertiaire"
+        >En savoir plus</button></div>
+</section>
+<section class="galerie__bloc" data-composant="bouton-sm">
+  <h2 class="galerie__titre">Bouton compact</h2>
+  <div class="galerie__sujet"><button type="button"
+        class="sdcd-button sdcd-button--primaire sdcd-button--sm"
+        >Compact</button></div>
+</section>
+<section class="galerie__bloc" data-composant="lien">
+  <h2 class="galerie__titre">Lien externe</h2>
+  <div class="galerie__sujet"><a class="sdcd-lien" href="/u"
+   target="_blank" rel="noopener external" title="Consulter le texte — ouvre une nouvelle fenêtre">
+  Consulter le texte<i class="sdcd-lien__icone ri-external-link-line" aria-hidden="true"></i>
+</a></div>
+</section>
+<section class="galerie__bloc" data-composant="carte">
+  <h2 class="galerie__titre">Carte</h2>
+  <div class="galerie__sujet"><div class="sdcd-card">
+  
+  <div class="sdcd-card__corps">
+    <p class="sdcd-card__sur-titre">Démarche</p>
+    <h3 class="sdcd-card__titre">
+      <a href="/d">Demander un passeport</a>
+    </h3>
+    <p class="sdcd-card__description">Ministère de l’Intérieur</p>
+    
+  </div>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="tuile">
+  <h2 class="galerie__titre">Tuile</h2>
+  <div class="galerie__sujet"><div class="sdcd-tile">
+  <i class="sdcd-tile__icone ri-file-user-line" aria-hidden="true"></i>
+  <h3 class="sdcd-tile__titre">
+    <a href="/p">Acte de naissance</a>
+  </h3>
+  <p class="sdcd-tile__description">État civil</p>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="citation">
+  <h2 class="galerie__titre">Citation</h2>
+  <div class="galerie__sujet"><figure class="sdcd-quote">
+  <i class="sdcd-quote__guillemet ri-double-quotes-l" aria-hidden="true"></i>
+  <blockquote class="sdcd-quote__texte">Justice, paix, travail.</blockquote>
+  
+  <figcaption class="sdcd-quote__source">
+    Devise nationale — Constitution</figcaption>
+  
+</figure></div>
+</section>
+<section class="galerie__bloc" data-composant="exergue">
+  <h2 class="galerie__titre">Exergue</h2>
+  <div class="galerie__sujet"><div class="sdcd-highlight">Texte mis en exergue.</div></div>
+</section>
+<section class="galerie__bloc" data-composant="miseenavant">
+  <h2 class="galerie__titre">Mise en avant</h2>
+  <div class="galerie__sujet"><div class="sdcd-callout">
+  <i class="ri-information-line" aria-hidden="true"></i>
+  <div>
+    <p class="sdcd-callout__titre">À noter</p>
+    <p class="sdcd-callout__texte">Contenu de la mise en avant.</p>
+  </div>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="etiquette">
+  <h2 class="galerie__titre">Étiquette</h2>
+  <div class="galerie__sujet">
+<p class="sdcd-tag">État civil</p>
+</div>
+</section>
+<section class="galerie__bloc" data-composant="etiquette-active">
+  <h2 class="galerie__titre">Étiquette sélectionnée</h2>
+  <div class="galerie__sujet">
+<button type="button" class="sdcd-tag sdcd-tag--cliquable"
+        aria-pressed="true">Passeport</button>
+</div>
+</section>
+<section class="galerie__bloc" data-composant="badge">
+  <h2 class="galerie__titre">Badge</h2>
+  <div class="galerie__sujet"><p class="sdcd-badge sdcd-badge--succes">Nouveau</p></div>
+</section>
+<section class="galerie__bloc" data-composant="filariane">
+  <h2 class="galerie__titre">Fil d’Ariane</h2>
+  <div class="galerie__sujet"><nav role="navigation" class="sdcd-breadcrumb" aria-label="vous êtes ici :">
+  <a class="sdcd-breadcrumb__lien" href="/">Accueil</a>
+  
+  <i class="sdcd-breadcrumb__separateur ri-arrow-right-s-line" aria-hidden="true"></i>
+  <a class="sdcd-breadcrumb__lien" href="/a">Démarches</a>
+  
+  <i class="sdcd-breadcrumb__separateur ri-arrow-right-s-line" aria-hidden="true"></i>
+  <span class="sdcd-breadcrumb__courant" aria-current="page">État civil</span>
+</nav></div>
+</section>
+<section class="galerie__bloc" data-composant="evitement">
+  <h2 class="galerie__titre">Liens d’évitement</h2>
+  <div class="galerie__sujet"><nav role="navigation" aria-label="Liens d’évitement">
+  <a class="sdcd-skiplink" href="#contenu">Aller au contenu</a>
+</nav></div>
+</section>
+<section class="galerie__bloc" data-composant="pagination">
+  <h2 class="galerie__titre">Pagination</h2>
+  <div class="galerie__sujet"><nav role="navigation" class="sdcd-pagination" aria-label="Pagination">
+  <a class="sdcd-pagination__lien"
+     href="?page=2">
+    <i class="ri-arrow-left-s-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Page précédente</span>
+  </a>
+  
+    
+      <a class="sdcd-pagination__lien"
+         title="Page 1" href="?page=1">1</a>
+    
+  
+    
+      <a class="sdcd-pagination__lien"
+         title="Page 2" href="?page=2">2</a>
+    
+  
+    
+      <a class="sdcd-pagination__lien" aria-current="page"
+         title="Page 3" href="?page=3">3</a>
+    
+  
+    
+      <a class="sdcd-pagination__lien"
+         title="Page 4" href="?page=4">4</a>
+    
+  
+    
+      <a class="sdcd-pagination__lien"
+         title="Page 5" href="?page=5">5</a>
+    
+  
+    
+      <span class="sdcd-pagination__lien" aria-hidden="true">…</span>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <a class="sdcd-pagination__lien"
+         title="Page 12" href="?page=12">12</a>
+    
+  
+  <a class="sdcd-pagination__lien"
+     href="?page=4">
+    <i class="ri-arrow-right-s-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Page suivante</span>
+  </a>
+</nav></div>
+</section>
+<section class="galerie__bloc" data-composant="sommaire">
+  <h2 class="galerie__titre">Sommaire</h2>
+  <div class="galerie__sujet"><nav class="sdcd-summary" aria-label="Sommaire">
+  <p class="sdcd-summary__titre">Sommaire</p>
+  <ol class="sdcd-summary__liste">
+    <li><a href="#a">Première section</a></li><li><a href="#b">Deuxième section</a></li>
+  </ol>
+</nav></div>
+</section>
+<section class="galerie__bloc" data-composant="menulateral">
+  <h2 class="galerie__titre">Menu latéral</h2>
+  <div class="galerie__sujet"><nav class="sdcd-sidemenu" aria-label="Rubriques">
+  <p class="sdcd-sidemenu__titre">Rubriques</p>
+  <ul class="sdcd-sidemenu__liens">
+    
+    <li><a class="sdcd-sidemenu__lien" href="/a"
+           aria-current="page">Démarches</a></li>
+    
+    <li><a class="sdcd-sidemenu__lien" href="/b"
+           >Actualités</a></li>
+    
+  </ul>
+</nav></div>
+</section>
+<section class="galerie__bloc" data-composant="accordeon">
+  <h2 class="galerie__titre">Accordéon</h2>
+  <div class="galerie__sujet"><div class="sdcd-accordion">
+  <div class="sdcd-accordion__item">
+    <button type="button" class="sdcd-accordion__entete"
+            aria-expanded="false" aria-controls="g-acc">Quelles pièces fournir ?</button>
+    <div class="sdcd-accordion__contenu" id="g-acc" hidden><p>Une pièce d’identité.</p></div>
+  </div>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="onglets">
+  <h2 class="galerie__titre">Onglets</h2>
+  <div class="galerie__sujet"><div class="sdcd-tabs">
+  <div class="sdcd-tabs__liste" role="tablist" aria-label="Sections">
+    
+    <button type="button" class="sdcd-tabs__onglet" role="tab"
+            aria-selected="true"
+            aria-controls="g-o1" tabindex="0">Démarche</button>
+    
+    <button type="button" class="sdcd-tabs__onglet" role="tab"
+            aria-selected="false"
+            aria-controls="g-o2" tabindex="-1">Pièces</button>
+    
+  </div>
+  
+  <div class="sdcd-tabs__panneau" id="g-o1" role="tabpanel">
+    <p>Un.</p>
+  </div>
+  
+  <div class="sdcd-tabs__panneau" id="g-o2" role="tabpanel" hidden>
+    <p>Deux.</p>
+  </div>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="interrupteur">
+  <h2 class="galerie__titre">Interrupteur</h2>
+  <div class="galerie__sujet"><div class="sdcd-champ">
+  <label class="sdcd-toggle" for="g-t">
+    <button type="button" class="sdcd-toggle__piste" role="switch" id="g-t"
+            aria-checked="true">
+      <span class="sdcd-toggle__pastille" aria-hidden="true"></span>
+    </button>
+    <span>Notifications par SMS</span>
+  </label>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="interrupteur-off">
+  <h2 class="galerie__titre">Interrupteur éteint</h2>
+  <div class="galerie__sujet"><div class="sdcd-champ">
+  <label class="sdcd-toggle" for="g-t2">
+    <button type="button" class="sdcd-toggle__piste" role="switch" id="g-t2"
+            aria-checked="false">
+      <span class="sdcd-toggle__pastille" aria-hidden="true"></span>
+    </button>
+    <span>Notifications par courriel</span>
+  </label>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="infobulle">
+  <h2 class="galerie__titre">Infobulle</h2>
+  <div class="galerie__sujet"><span class="sdcd-tooltip">Aide<span class="sdcd-tooltip__bulle" role="tooltip">Explication complémentaire.</span></span></div>
+</section>
+<section class="galerie__bloc" data-composant="choixtheme">
+  <h2 class="galerie__titre">Choix du thème</h2>
+  <div class="galerie__sujet"><fieldset class="sdcd-display">
+  <legend class="sdcd-display__legende">Affichage</legend>
+  <div class="sdcd-display__options">
+    <button type="button" class="sdcd-display__option" role="radio" aria-checked="false" data-sdcd-theme="clair">
+      <i class="ri-sun-line" aria-hidden="true"></i> Clair</button>
+    <button type="button" class="sdcd-display__option" role="radio" aria-checked="false" data-sdcd-theme="sombre">
+      <i class="ri-moon-line" aria-hidden="true"></i> Sombre</button>
+    <button type="button" class="sdcd-display__option" role="radio" aria-checked="true" data-sdcd-theme="systeme">
+      <i class="ri-computer-line" aria-hidden="true"></i> Système</button>
+  </div>
+</fieldset></div>
+</section>
+<section class="galerie__bloc" data-composant="champ">
+  <h2 class="galerie__titre">Champ de saisie</h2>
+  <div class="galerie__sujet">
+<div class="sdcd-champ">
+  <label class="sdcd-champ__label" for="courriel">Adresse électronique *</label>
+  <p class="sdcd-champ__aide" id="courriel-aide">Format : nom@exemple.cd</p>
+  <input class="sdcd-input__champ" type="email" id="courriel" name="courriel" value=""
+         required
+         aria-describedby="courriel-aide">
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="champ-erreur">
+  <h2 class="galerie__titre">Champ en erreur</h2>
+  <div class="galerie__sujet">
+<div class="sdcd-champ">
+  <label class="sdcd-champ__label" for="nom">Nom</label>
+  
+  <input class="sdcd-input__champ" type="text" id="nom" name="nom" value=""
+         
+         aria-invalid="true" aria-describedby="nom-erreur">
+  <p class="sdcd-champ__erreur" id="nom-erreur">Ce champ est requis.</p>
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="select">
+  <h2 class="galerie__titre">Liste déroulante</h2>
+  <div class="galerie__sujet">
+<div class="sdcd-champ">
+  <label class="sdcd-champ__label" for="motif">Motif</label>
+  
+  <select class="sdcd-select__champ" id="motif" name="motif">
+    
+    <option value="a">Naissance</option>
+    
+  </select>
+  
+</div></div>
+</section>
+<section class="galerie__bloc" data-composant="case">
+  <h2 class="galerie__titre">Case à cocher</h2>
+  <div class="galerie__sujet">
+<div class="sdcd-champ">
+  <label class="sdcd-checkbox" for="accord">
+    <input class="sdcd-checkbox__case" type="checkbox" id="accord" name="accord" checked>
+    <span>Je certifie l’exactitude</span>
+  </label>
+  
+</div></div>
+</section>
+<script src="../dist/sdcd.js"></script>
+</body>
+</html>

@@ -4,6 +4,64 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.8.0] — 2026-08-19
+
+Non-régression visuelle. Le système peut désormais détecter qu'une
+modification a changé l'apparence d'un composant, ce qu'aucun contrôle
+précédent ne voyait.
+
+### Ajouté
+
+- **`outils/verifier-visuel.mjs`** — ouvre la galerie dans un Chromium sans
+  interface et relève, pour chaque composant, **16 propriétés calculées**
+  portant l'identité visuelle : couleurs, bordures, rayons, fonte, graisse,
+  interlignage, interlettrage, soulignement, marges internes, casse, opacité.
+  Comparaison à `outils/reference-visuelle.json`, sortie 1 en cas d'écart.
+- **`outils/galerie.py`** — engendre `outils/galerie.html`, page de référence
+  contenant **36 composants**. Elle est produite depuis les macros Jinja2, pas
+  écrite à la main : un composant ajouté à l'adaptateur entre automatiquement
+  dans le périmètre testé.
+- `outils/reference-visuelle.json` — référence figée : 36 composants,
+  **155 éléments**, 2 thèmes.
+
+### Pourquoi des propriétés et non des captures d'écran
+
+Une capture diffère d'une machine à l'autre — lissage des polices, échelle,
+version du moteur — et produit des faux positifs permanents. Les valeurs
+calculées sont stables et disent **ce qui a bougé** : « la couleur du bouton
+primaire est passée de X à Y », et non « 0,3 % de pixels ont changé ». Les
+dimensions sont volontairement exclues, elles dépendent du viewport.
+
+### Éprouvé dans les deux sens
+
+| Situation | Résultat |
+|---|---|
+| Aucun changement | **0 écart**, sortie 0 |
+| `--sdcd-bleu-action` altéré d'**une unité** (`#00729A` → `#00739A`) | **24 écarts**, sortie 1, nommés composant par composant |
+
+Un test incapable d'échouer ne vaut rien : celui-ci attrape un chiffre
+hexadécimal.
+
+### Note d'environnement
+
+Playwright réclame la version de Chromium qu'il a lui-même téléchargée. La
+variable `SDCD_CHROMIUM` permet de désigner un exécutable déjà présent, plutôt
+que d'en télécharger un second :
+
+```
+SDCD_CHROMIUM="…/chrome.exe" node outils/verifier-visuel.mjs
+```
+
+`@playwright/test` est en **dépendance de développement** : le paquet livré
+reste sans aucune dépendance d'exécution.
+
+### Reste à faire
+
+- Publication npm : `npm whoami` renvoie toujours `ENEEDAUTH`.
+- Multilinguisme absent : six langues promises, `LangMenu` n'est qu'un
+  sélecteur. Les traductions en langues nationales relèvent de locuteurs, pas
+  d'une génération automatique.
+
 ## [0.7.0] — 2026-08-19
 
 Adaptateurs FastAPI et WordPress. Le système se consomme désormais depuis
