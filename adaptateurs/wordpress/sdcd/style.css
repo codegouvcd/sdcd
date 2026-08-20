@@ -1,0 +1,19 @@
+/*
+Theme Name: SDCD — Système de design RDC
+Theme URI: https://github.com/codegouvcd/sdcd
+Author: République Démocratique du Congo
+Description: Thème WordPress aux couleurs du Système de design RDC. Sert la feuille et le script du système depuis le thème, sans requête vers un tiers. Réservé aux sites officiels de l'État congolais — voir la marque d'État dans LICENSE.md.
+Version: 0.6.0
+Requires at least: 6.0
+Requires PHP: 8.0
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+Text Domain: sdcd
+Tags: accessibility-ready, translation-ready
+*/
+
+/* La totalité du système est chargée par functions.php depuis
+   assets/sdcd/sdcd.min.css. Cette feuille ne sert qu'aux ajustements propres
+   au site : la laisser quasi vide est le comportement attendu. */
+
+.sdcd-wp-contenu > * + * { margin-top: var(--sdcd-4); }

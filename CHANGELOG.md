@@ -4,6 +4,51 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.7.0] — 2026-08-19
+
+Adaptateurs FastAPI et WordPress. Le système se consomme désormais depuis
+quatre piles, avec les mêmes noms de composants partout.
+
+### Ajouté
+
+- **`adaptateurs/jinja2/sdcd.html` — 31 macros** pour FastAPI, Flask,
+  Starlette. Mêmes noms et mêmes paramètres que les tags Django. La racine des
+  statiques est redéfinissable par `sdcd_base`.
+- **`adaptateurs/jinja2/exemple_fastapi.py`** — application complète : montage
+  de `dist/`, chargeur de gabarits, page de démarche avec formulaire.
+- **`adaptateurs/wordpress/sdcd/`** — thème autonome. `functions.php` sert la
+  feuille et le script depuis le thème, `inc/composants.php` fournit les
+  composants en PHP (`sdcd_x()` renvoie, `sdcd_x_e()` affiche), et les gabarits
+  `header`, `footer`, `index`, `singular` sont fournis. La distribution est
+  embarquée dans `assets/sdcd/` : aucune requête vers un tiers.
+- **`adaptateurs/readme.md`** — mode d'emploi des quatre piles.
+- Deux vérificateurs : `adaptateurs/jinja2/verifier.py` et
+  `adaptateurs/wordpress/verifier.php`, tous deux à sortie 0/1.
+
+### Vérifié
+
+| Contrôle | Résultat |
+|---|---|
+| 31 macros Jinja2 rendues | **98 classes émises, 0 manquante**, 0 fuite `fr-*` |
+| Page FastAPI complète, en navigateur | 43 classes, **0 échec de contraste** sur 29 nœuds, accordéon réactif |
+| 7 fichiers PHP au lint | aucune erreur |
+| 9 composants WordPress rendus | **38 classes émises, 0 manquante** |
+
+Le contrôle « classes émises ∖ classes définies » est appliqué aux trois
+adaptateurs : il garantit qu'aucun ne produit de balisage sans style.
+
+### Écart assumé
+
+Le thème WordPress **n'a jamais tourné dans un WordPress réel**. Les composants
+sont rendus avec les fonctions du CMS simulées, ce qui attrape la syntaxe, le
+nommage et le balisage — pas les surprises d'intégration.
+
+### Reste à faire
+
+- Publication npm : `npm whoami` renvoie toujours `ENEEDAUTH`.
+- Aucun test de non-régression visuelle.
+- Multilinguisme absent.
+
 ## [0.6.0] — 2026-08-19
 
 Le système devient consommable hors React : couche de comportements, fontes

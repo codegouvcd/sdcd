@@ -1,6 +1,6 @@
 {
   "name": "@gouv-cd/sdcd",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Système de design RDC (SDCD) — identité numérique officielle des sites de l'État de la République Démocratique du Congo.",
   "license": "MIT",
   "author": "République Démocratique du Congo",
@@ -15,7 +15,8 @@
     "./source": "./styles.css",
     "./tokens/*": "./tokens/*",
     "./assets/*": "./assets/*",
-    "./components/*": "./components/*"
+    "./components/*": "./components/*",
+    "./jinja2": "./adaptateurs/jinja2/sdcd.html"
   },
   "files": [
     "dist/",
@@ -32,13 +33,16 @@
     "outils/",
     "readme.md",
     "LICENSE.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "adaptateurs/"
   ],
   "scripts": {
     "build": "node outils/construire.mjs",
     "test": "node outils/verifier-contraste.mjs",
     "verifier-contraste": "node outils/verifier-contraste.mjs",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test",
+    "verifier-jinja2": "python adaptateurs/jinja2/verifier.py",
+    "verifier-wordpress": "php adaptateurs/wordpress/verifier.php"
   },
   "keywords": [
     "design-system",

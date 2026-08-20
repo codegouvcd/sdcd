@@ -1,0 +1,378 @@
+{#
+  Système de design RDC — macros Jinja2.
+
+  Pour FastAPI, Flask, Starlette, ou tout ce qui rend du Jinja2. Les noms et les
+  paramètres reprennent ceux des tags Django de `sdcd`, afin qu'un même
+  composant s'écrive pareil des deux côtés.
+
+    {% import "sdcd.html" as sdcd %}
+    {{ sdcd.css() }}
+    {{ sdcd.alerte(titre="Attention", type="alerte", contenu="Dossier incomplet.") }}
+    {{ sdcd.js() }}
+
+  Les états interactifs sont posés par `sdcd.js` : sans lui, les composants
+  s'affichent mais ne réagissent pas.
+
+  Licence : MIT. Marque d'État réservée — voir LICENSE.md.
+#}
+
+{#- Racine des fichiers statiques. Redéfinissable : {% set sdcd_base = "/static/sdcd" %} -#}
+{%- macro _base() -%}{{ sdcd_base | default("/static/sdcd") }}{%- endmacro -%}
+
+{%- macro _classes(sup) -%}{% if sup %} {{ sup }}{% endif %}{%- endmacro -%}
+
+
+{# ---------------------------------------------------------------- socle #}
+
+{% macro css() -%}
+<link rel="stylesheet" href="{{ _base() }}/sdcd.min.css">
+{%- endmacro %}
+
+{% macro js(nonce="") -%}
+<script{% if nonce %} nonce="{{ nonce }}"{% endif %} src="{{ _base() }}/sdcd.js" defer></script>
+{%- endmacro %}
+
+{% macro filet_tricolore() -%}
+<div class="sdcd-filet-tricolore" aria-hidden="true">
+  <div class="sdcd-filet-tricolore__bande--bleu"></div>
+  <div class="sdcd-filet-tricolore__bande--jaune"></div>
+  <div class="sdcd-filet-tricolore__bande--rouge"></div>
+</div>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- messages #}
+
+{% macro alerte(titre="", type="info", contenu="", balise_titre="p", fermable=false, id="", classes="") -%}
+{% set icones = {"succes": "ri-checkbox-circle-line", "erreur": "ri-error-warning-line",
+                 "alerte": "ri-alert-line", "info": "ri-information-line"} %}
+<div role="alert" class="sdcd-alert sdcd-alert--{{ type }}{{ _classes(classes) }}"{% if id %} id="{{ id }}"{% endif %}>
+  <i class="sdcd-alert__icone {{ icones.get(type, icones.info) }}" aria-hidden="true"></i>
+  <div class="sdcd-alert__corps">
+    {% if titre %}<{{ balise_titre }} class="sdcd-alert__titre">{{ titre }}</{{ balise_titre }}>{% endif %}
+    {% if contenu %}<p class="sdcd-alert__texte">{{ contenu | safe }}</p>{% endif %}
+  </div>
+  {% if fermable %}
+  <button type="button" class="sdcd-fermer" title="Masquer le message"
+          onclick="this.closest('.sdcd-alert').remove()">
+    <i class="ri-close-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Masquer le message</span>
+  </button>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro bandeau(titre="", description="", lien="", icone="ri-information-line", fermable=false) -%}
+<div class="sdcd-notice">
+  <div class="sdcd-notice__corps">
+    <i class="sdcd-notice__icone {{ icone }}" aria-hidden="true"></i>
+    <p class="sdcd-notice__texte">
+      {{ titre | safe }}{% if description %} {{ description | safe }}{% endif %}
+      {% if lien %}<a href="{{ lien }}" target="_blank" rel="noopener external">En savoir plus</a>{% endif %}
+    </p>
+    {% if fermable %}
+    <button type="button" class="sdcd-fermer" title="Masquer le message"
+            onclick="this.closest('.sdcd-notice').remove()">
+      <i class="ri-close-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Masquer</span>
+    </button>
+    {% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- actions #}
+
+{% macro bouton(libelle, type="primaire", taille="", html_type="button", icone="", icone_droite="",
+                desactive=false, onclick="", classes="") -%}
+<button type="{{ html_type }}"
+        class="sdcd-button sdcd-button--{{ type }}{% if taille %} sdcd-button--{{ taille }}{% endif %}{{ _classes(classes) }}"
+        {% if onclick %}onclick="{{ onclick }}"{% endif %}{% if desactive %} disabled{% endif %}>
+  {%- if icone %}<i class="{{ icone }}" aria-hidden="true"></i> {% endif -%}
+  {{ libelle }}
+  {%- if icone_droite %} <i class="{{ icone_droite }}" aria-hidden="true"></i>{% endif -%}
+</button>
+{%- endmacro %}
+
+{% macro lien(url, libelle, externe=false, classes="") -%}
+<a class="sdcd-lien{{ _classes(classes) }}" href="{{ url }}"
+   {% if externe %}target="_blank" rel="noopener external" title="{{ libelle }} — ouvre une nouvelle fenêtre"{% endif %}>
+  {{ libelle }}{% if externe %}<i class="sdcd-lien__icone ri-external-link-line" aria-hidden="true"></i>{% endif %}
+</a>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- contenus #}
+
+{% macro carte(titre, description="", lien_url="", image="", alt="", sur_titre="", meta="",
+               balise_titre="h3", classes="") -%}
+<div class="sdcd-card{{ _classes(classes) }}">
+  {% if image %}<div class="sdcd-card__media"><img src="{{ image }}" alt="{{ alt }}" loading="lazy"></div>{% endif %}
+  <div class="sdcd-card__corps">
+    {% if sur_titre %}<p class="sdcd-card__sur-titre">{{ sur_titre }}</p>{% endif %}
+    <{{ balise_titre }} class="sdcd-card__titre">
+      {% if lien_url %}<a href="{{ lien_url }}">{{ titre }}</a>{% else %}{{ titre }}{% endif %}
+    </{{ balise_titre }}>
+    {% if description %}<p class="sdcd-card__description">{{ description | safe }}</p>{% endif %}
+    {% if meta %}<p class="sdcd-card__meta">{{ meta | safe }}</p>{% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro tuile(titre, url="", description="", icone="", balise_titre="h3", classes="") -%}
+<div class="sdcd-tile{{ _classes(classes) }}">
+  {% if icone %}<i class="sdcd-tile__icone {{ icone }}" aria-hidden="true"></i>{% endif %}
+  <{{ balise_titre }} class="sdcd-tile__titre">
+    {% if url %}<a href="{{ url }}">{{ titre }}</a>{% else %}{{ titre }}{% endif %}
+  </{{ balise_titre }}>
+  {% if description %}<p class="sdcd-tile__description">{{ description | safe }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro citation(texte, auteur="", source="", source_url="", classes="") -%}
+<figure class="sdcd-quote{{ _classes(classes) }}">
+  <i class="sdcd-quote__guillemet ri-double-quotes-l" aria-hidden="true"></i>
+  <blockquote class="sdcd-quote__texte">{{ texte | safe }}</blockquote>
+  {% if auteur or source %}
+  <figcaption class="sdcd-quote__source">
+    {{ auteur }}{% if auteur and source %} — {% endif %}
+    {%- if source %}{% if source_url %}<a href="{{ source_url }}">{{ source }}</a>{% else %}{{ source }}{% endif %}{% endif -%}
+  </figcaption>
+  {% endif %}
+</figure>
+{%- endmacro %}
+
+{% macro exergue(contenu, taille="", classes="") -%}
+<div class="sdcd-highlight{% if taille %} sdcd-highlight--{{ taille }}{% endif %}{{ _classes(classes) }}">{{ contenu | safe }}</div>
+{%- endmacro %}
+
+{% macro mise_en_avant(titre="", texte="", icone="", balise_titre="p", classes="") -%}
+<div class="sdcd-callout{{ _classes(classes) }}">
+  {% if icone %}<i class="{{ icone }}" aria-hidden="true"></i>{% endif %}
+  <div>
+    {% if titre %}<{{ balise_titre }} class="sdcd-callout__titre">{{ titre }}</{{ balise_titre }}>{% endif %}
+    {% if texte %}<p class="sdcd-callout__texte">{{ texte | safe }}</p>{% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro etiquette(libelle, lien="", selectionnable=false, selectionne=false, classes="") -%}
+{% if lien %}
+<a class="sdcd-tag sdcd-tag--cliquable{{ _classes(classes) }}" href="{{ lien }}">{{ libelle }}</a>
+{% elif selectionnable %}
+<button type="button" class="sdcd-tag sdcd-tag--cliquable{{ _classes(classes) }}"
+        aria-pressed="{{ 'true' if selectionne else 'false' }}">{{ libelle }}</button>
+{% else %}
+<p class="sdcd-tag{{ _classes(classes) }}">{{ libelle }}</p>
+{% endif %}
+{%- endmacro %}
+
+{% macro badge(libelle, type="", classes="") -%}
+<p class="sdcd-badge{% if type %} sdcd-badge--{{ type }}{% endif %}{{ _classes(classes) }}">{{ libelle }}</p>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- navigation #}
+
+{% macro fil_ariane(liens=[], courant="", racine="/") -%}
+<nav role="navigation" class="sdcd-breadcrumb" aria-label="vous êtes ici :">
+  <a class="sdcd-breadcrumb__lien" href="{{ racine }}">Accueil</a>
+  {% for l in liens %}
+  <i class="sdcd-breadcrumb__separateur ri-arrow-right-s-line" aria-hidden="true"></i>
+  <a class="sdcd-breadcrumb__lien" href="{{ l.url }}">{{ l.titre }}</a>
+  {% endfor %}
+  <i class="sdcd-breadcrumb__separateur ri-arrow-right-s-line" aria-hidden="true"></i>
+  <span class="sdcd-breadcrumb__courant" aria-current="page">{{ courant }}</span>
+</nav>
+{%- endmacro %}
+
+{% macro liens_evitement(items=[]) -%}
+<nav role="navigation" aria-label="Liens d’évitement">
+  {% for i in items %}<a class="sdcd-skiplink" href="{{ i.lien }}">{{ i.libelle }}</a>{% endfor %}
+</nav>
+{%- endmacro %}
+
+{#- Pagination. `page` et `total` sont des entiers ; `url` reçoit le numéro. -#}
+{% macro pagination(page, total, url="?page=") -%}
+<nav role="navigation" class="sdcd-pagination" aria-label="Pagination">
+  <a class="sdcd-pagination__lien"
+     {% if page > 1 %}href="{{ url }}{{ page - 1 }}"{% else %}aria-disabled="true"{% endif %}>
+    <i class="ri-arrow-left-s-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Page précédente</span>
+  </a>
+  {% for n in range(1, total + 1) %}
+    {% if n == 1 or n == total or (n >= page - 2 and n <= page + 2) %}
+      <a class="sdcd-pagination__lien"{% if n == page %} aria-current="page"{% endif %}
+         title="Page {{ n }}" href="{{ url }}{{ n }}">{{ n }}</a>
+    {% elif n == page - 3 or n == page + 3 %}
+      <span class="sdcd-pagination__lien" aria-hidden="true">…</span>
+    {% endif %}
+  {% endfor %}
+  <a class="sdcd-pagination__lien"
+     {% if page < total %}href="{{ url }}{{ page + 1 }}"{% else %}aria-disabled="true"{% endif %}>
+    <i class="ri-arrow-right-s-line" aria-hidden="true"></i><span class="sdcd-lecteur-seul">Page suivante</span>
+  </a>
+</nav>
+{%- endmacro %}
+
+{% macro sommaire(items=[], balise_titre="p") -%}
+<nav class="sdcd-summary" aria-label="Sommaire">
+  <{{ balise_titre }} class="sdcd-summary__titre">Sommaire</{{ balise_titre }}>
+  <ol class="sdcd-summary__liste">
+    {% for i in items %}<li><a href="{{ i.lien }}">{{ i.libelle }}</a></li>{% endfor %}
+  </ol>
+</nav>
+{%- endmacro %}
+
+{% macro menu_lateral(titre="", items=[], chemin_actif="") -%}
+<nav class="sdcd-sidemenu" aria-label="{{ titre | default('Menu latéral') }}">
+  {% if titre %}<p class="sdcd-sidemenu__titre">{{ titre }}</p>{% endif %}
+  <ul class="sdcd-sidemenu__liens">
+    {% for i in items %}
+    <li><a class="sdcd-sidemenu__lien" href="{{ i.lien }}"
+           {% if i.lien == chemin_actif %}aria-current="page"{% endif %}>{{ i.libelle }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- interactifs
+   Ces composants exigent `sdcd.js` : c'est lui qui pose les attributs ARIA. #}
+
+{% macro accordeon(id, titre, contenu, ouvert=false) -%}
+<div class="sdcd-accordion">
+  <div class="sdcd-accordion__item">
+    <button type="button" class="sdcd-accordion__entete"
+            aria-expanded="{{ 'true' if ouvert else 'false' }}" aria-controls="{{ id }}">{{ titre }}</button>
+    <div class="sdcd-accordion__contenu" id="{{ id }}"{% if not ouvert %} hidden{% endif %}>{{ contenu | safe }}</div>
+  </div>
+</div>
+{%- endmacro %}
+
+{#- Onglets. `items` : liste de dicts {id, titre, contenu}. -#}
+{% macro onglets(items=[], libelle="Sections") -%}
+<div class="sdcd-tabs">
+  <div class="sdcd-tabs__liste" role="tablist" aria-label="{{ libelle }}">
+    {% for o in items %}
+    <button type="button" class="sdcd-tabs__onglet" role="tab"
+            aria-selected="{{ 'true' if loop.first else 'false' }}"
+            aria-controls="{{ o.id }}" tabindex="{{ '0' if loop.first else '-1' }}">{{ o.titre }}</button>
+    {% endfor %}
+  </div>
+  {% for o in items %}
+  <div class="sdcd-tabs__panneau" id="{{ o.id }}" role="tabpanel"{% if not loop.first %} hidden{% endif %}>
+    {{ o.contenu | safe }}
+  </div>
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro interrupteur(id, libelle, actif=false, aide="", desactive=false) -%}
+<div class="sdcd-champ">
+  <label class="sdcd-toggle" for="{{ id }}">
+    <button type="button" class="sdcd-toggle__piste" role="switch" id="{{ id }}"
+            aria-checked="{{ 'true' if actif else 'false' }}"{% if desactive %} disabled{% endif %}>
+      <span class="sdcd-toggle__pastille" aria-hidden="true"></span>
+    </button>
+    <span>{{ libelle }}</span>
+  </label>
+  {% if aide %}<p class="sdcd-champ__aide">{{ aide }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro infobulle(libelle, contenu, id="") -%}
+<span class="sdcd-tooltip">{{ libelle }}<span class="sdcd-tooltip__bulle" role="tooltip"{% if id %} id="{{ id }}"{% endif %}>{{ contenu }}</span></span>
+{%- endmacro %}
+
+{% macro modale(id, titre, contenu, actions="") -%}
+<dialog id="{{ id }}" class="sdcd-modal" aria-labelledby="{{ id }}-titre">
+  <div class="sdcd-modal__entete">
+    <h2 class="sdcd-modal__titre" id="{{ id }}-titre">{{ titre }}</h2>
+    <button type="button" class="sdcd-modal__fermer">Fermer <i class="ri-close-line" aria-hidden="true"></i></button>
+  </div>
+  <div class="sdcd-modal__corps">{{ contenu | safe }}</div>
+  {% if actions %}<div class="sdcd-modal__actions">{{ actions | safe }}</div>{% endif %}
+</dialog>
+{%- endmacro %}
+
+{% macro choix_theme() -%}
+<fieldset class="sdcd-display">
+  <legend class="sdcd-display__legende">Affichage</legend>
+  <div class="sdcd-display__options">
+    <button type="button" class="sdcd-display__option" role="radio" aria-checked="false" data-sdcd-theme="clair">
+      <i class="ri-sun-line" aria-hidden="true"></i> Clair</button>
+    <button type="button" class="sdcd-display__option" role="radio" aria-checked="false" data-sdcd-theme="sombre">
+      <i class="ri-moon-line" aria-hidden="true"></i> Sombre</button>
+    <button type="button" class="sdcd-display__option" role="radio" aria-checked="true" data-sdcd-theme="systeme">
+      <i class="ri-computer-line" aria-hidden="true"></i> Système</button>
+  </div>
+</fieldset>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- formulaires #}
+
+{% macro champ(nom, libelle, type="text", valeur="", aide="", erreur="", requis=false, id="") -%}
+{% set cid = id or nom %}
+<div class="sdcd-champ">
+  <label class="sdcd-champ__label" for="{{ cid }}">{{ libelle }}{% if requis %} *{% endif %}</label>
+  {% if aide %}<p class="sdcd-champ__aide" id="{{ cid }}-aide">{{ aide }}</p>{% endif %}
+  <input class="sdcd-input__champ" type="{{ type }}" id="{{ cid }}" name="{{ nom }}" value="{{ valeur }}"
+         {% if requis %}required{% endif %}
+         {% if erreur %}aria-invalid="true" aria-describedby="{{ cid }}-erreur"{% elif aide %}aria-describedby="{{ cid }}-aide"{% endif %}>
+  {% if erreur %}<p class="sdcd-champ__erreur" id="{{ cid }}-erreur">{{ erreur }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro liste_deroulante(nom, libelle, options=[], selection="", aide="", erreur="", id="") -%}
+{% set cid = id or nom %}
+<div class="sdcd-champ">
+  <label class="sdcd-champ__label" for="{{ cid }}">{{ libelle }}</label>
+  {% if aide %}<p class="sdcd-champ__aide">{{ aide }}</p>{% endif %}
+  <select class="sdcd-select__champ" id="{{ cid }}" name="{{ nom }}">
+    {% for o in options %}
+    <option value="{{ o.valeur }}"{% if o.valeur == selection %} selected{% endif %}>{{ o.libelle }}</option>
+    {% endfor %}
+  </select>
+  {% if erreur %}<p class="sdcd-champ__erreur">{{ erreur }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro case_a_cocher(nom, libelle, cochee=false, aide="", id="") -%}
+{% set cid = id or nom %}
+<div class="sdcd-champ">
+  <label class="sdcd-checkbox" for="{{ cid }}">
+    <input class="sdcd-checkbox__case" type="checkbox" id="{{ cid }}" name="{{ nom }}"{% if cochee %} checked{% endif %}>
+    <span>{{ libelle }}</span>
+  </label>
+  {% if aide %}<p class="sdcd-champ__aide">{{ aide }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+
+{# ---------------------------------------------------------------- marque d'État #}
+
+{% macro bloc_marque(entite="", sous_titre="", devise=true) -%}
+<div class="sdcd-blocmarque">
+  <img class="sdcd-blocmarque__armoiries" src="{{ _base() }}/assets/armoiries-rdc.png"
+       alt="Armoiries de la République Démocratique du Congo">
+  <div>
+    <div class="sdcd-blocmarque__republique">République Démocratique du Congo</div>
+    {% if devise %}<div class="sdcd-blocmarque__devise">Justice · Paix · Travail</div>{% endif %}
+    {% if entite %}<div class="sdcd-blocmarque__entite">{{ entite }}</div>{% endif %}
+    {% if sous_titre %}<div class="sdcd-blocmarque__sous-titre">{{ sous_titre }}</div>{% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro congoconnect(service="CongoConnect", id="") -%}
+<div class="sdcd-connectbutton">
+  <button type="button" class="sdcd-connectbutton__bouton"{% if id %} id="{{ id }}"{% endif %}>
+    <img class="sdcd-connectbutton__logo" src="{{ _base() }}/assets/logo-blanc-tricolore.png" alt="">
+    <span class="sdcd-connectbutton__textes">
+      <span class="sdcd-connectbutton__amorce">S’identifier avec</span>
+      <span class="sdcd-connectbutton__service">{{ service }}</span>
+    </span>
+  </button>
+  <a class="sdcd-connectbutton__aide" href="#">Qu’est-ce que {{ service }} ?</a>
+</div>
+{%- endmacro %}

@@ -230,7 +230,7 @@ classe à la frame suivante. Le composant `Display` le fait ; un intégrateur qu
 
 ## Version et licence
 
-Version courante : **0.6.0** (voir `CHANGELOG.md`). Le `0.x` est assumé :
+Version courante : **0.7.0** (voir `CHANGELOG.md`). Le `0.x` est assumé :
 l'API des composants et les noms de classes ne sont pas encore gelés ; ils le
 seront à la 1.0.0, une fois la couche CSS éprouvée sur un premier site réel.
 Un changement de valeur d'un jeton de couleur sera traité comme une rupture
@@ -252,6 +252,8 @@ ligne de commande).
 
 ## Index
 
+- `adaptateurs/` — Jinja2 (FastAPI, Flask) et thème WordPress. Voir
+  `adaptateurs/readme.md`.
 - `dist/` — **distribution** : `sdcd.min.css` et `sdcd.js`, à charger tels quels.
 - `sdcd.js` — comportements sans React : c'est ce fichier qui pose les
   attributs ARIA dont dépend le CSS. Sans lui, les composants s'affichent mais
