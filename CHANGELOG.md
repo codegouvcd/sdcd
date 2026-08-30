@@ -4,6 +4,21 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.9.1] — 2026-08-30
+
+### Corrigé
+
+- **Le bouton de menu de l'en-tête n'avait aucun comportement.** `Header.jsx`
+  tient cet état dans React, mais la couche JavaScript autonome ne le gérait pas :
+  toute intégration en HTML simple — Django, WordPress, FastAPI — se retrouvait
+  avec un menu qui **ne s'ouvrait pas du tout sur mobile**. Découvert en portant
+  le CMS, où le défaut était masqué tant que le JavaScript du DSFR était présent.
+
+  `sdcd.js` traite désormais `.sdcd-header__menu[aria-controls]` : bascule de
+  `aria-expanded`, retrait de `hidden` sur la cible, permutation de l'icône
+  menu/fermer. La cible est masquée par `hidden` et non par une classe, pour
+  qu'un lecteur d'écran ne l'annonce pas tant qu'elle est fermée.
+
 ## [0.9.0] — 2026-08-19
 
 Audit sécurité, responsive et ergonomie, puis correction de ce qu'il a trouvé.
