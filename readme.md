@@ -237,7 +237,7 @@ Un changement de valeur d'un jeton de couleur sera traité comme une rupture
 majeure à partir de la 1.0.0.
 
 Code et documentation sous **licence MIT** ; **marque d'État réservée**
-(armoiries, logo, filet tricolore, dénomination SDCD) — voir `LICENSE.md`.
+(armoiries, logo, filet tricolore, dénomination SDCD) — voir `TRADEMARK.md`.
 Le régime juridique reste **à valider par le commanditaire**.
 
 Contrôle du contrat d'accessibilité :
@@ -263,7 +263,10 @@ ligne de commande).
 - `components.css` — présentation de tous les composants convertis.
 - `exemples/sans-react.html` — catalogue en HTML seul, sans JavaScript.
 - `package.json` — nom, version, `exports`, script de vérification.
-- `LICENSE.md` — MIT + marque d'État réservée. `CHANGELOG.md` — journal.
+- `LICENSE` — MIT, pour le code et la documentation.
+- `TRADEMARK.md` — marque d'État, usage réservé.
+- `NOTICE.md` — ressources tierces redistribuées et leurs licences.
+- `CHANGELOG.md` — journal des versions.
 - `outils/verifier-contraste.mjs` — vérificateur du contrat d'accessibilité.
 - `responsive.css` — couche responsive (grilles, tiroirs, utilitaires).
 - `ui_kits/modeles` — gabarits de pages, rangés par familles : **Parcours usager**

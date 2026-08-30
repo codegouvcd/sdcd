@@ -32,9 +32,11 @@
     "guidelines/",
     "outils/",
     "readme.md",
-    "LICENSE.md",
     "CHANGELOG.md",
-    "adaptateurs/"
+    "adaptateurs/",
+    "LICENSE",
+    "TRADEMARK.md",
+    "NOTICE.md"
   ],
   "scripts": {
     "build": "node outils/construire.mjs",

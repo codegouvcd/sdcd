@@ -14,7 +14,7 @@
  *  - L'état vit dans le DOM, pas dans une variable : `aria-expanded`,
  *    `aria-selected`, `aria-pressed`… sont à la fois le style et l'accessibilité.
  *
- *  Licence : MIT. Marque d'État réservée — voir LICENSE.md.
+ *  Licence : MIT (LICENSE). Marque d'État réservée — voir TRADEMARK.md.
  */
 (function () {
   "use strict";
