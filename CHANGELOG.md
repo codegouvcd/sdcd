@@ -4,6 +4,22 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.15.3] — 2026-08-30
+
+### Corrige
+
+- **Le selecteur de theme ne changeait rien.** Le gestionnaire lisait `el.value`
+  sur le `<label>`, qui n'a pas de propriete `value` : le mode retombait donc
+  toujours sur « systeme », quel que soit le choix du visiteur. Il lit desormais
+  le bouton radio contenu, qui est le balisage naturel d'un choix exclusif.
+
+  Constate en activant le selecteur sur le CMS : cliquer « Sombre » laissait la
+  page en clair, l'attribut `data-theme` et le stockage inchanges.
+
+- **Une modale fermee restait affichee.** Un `<dialog>` sans `open` est masque
+  par la feuille du navigateur, mais `.sdcd-modal__voile { display: flex }` la
+  supplantait : il subsistait un fragment de 54 x 6 px sur la page.
+
 ## [0.15.2] — 2026-08-30
 
 ### Corrige
