@@ -61,7 +61,13 @@ la marque d'État** : armoiries, logo, filet tricolore et bloc typographique.
 ## 3. Ressources tierces
 
 - **Remix Icon** v4 — Apache License 2.0 (https://remixicon.com)
-- **Schibsted Grotesk**, **Spline Sans Mono** — SIL Open Font License 1.1
+- **Inter** — SIL Open Font License 1.1 (https://rsms.me/inter/)
+- **Noto Sans Mono** — SIL Open Font License 1.1 (https://fonts.google.com/noto)
+
+> Les fichiers `.woff2` correspondants sont redistribues dans
+> `assets/fontes/`, sous-ensembles latin et latin-etendu. La licence OFL
+> autorise cette redistribution ; elle interdit en revanche de vendre les
+> fontes seules et impose de conserver la presente mention.
 - **React** — licence MIT, utilisé par les gabarits de démonstration uniquement
 
 Le dossier `uploads/` contient des sources de référence tierces (DSFR français)
