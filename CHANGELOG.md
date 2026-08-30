@@ -4,6 +4,19 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.9.3] — 2026-08-30
+
+### Corrigé
+
+- **La garde `[hidden]` de 0.9.2 ne suffisait pas.** Les utilitaires responsive
+  portent eux aussi `!important`, et à `!important` égal c'est la spécificité qui
+  tranche : `[hidden]` et `.sdcd-mobile-only` valent toutes deux 0-1-0, si bien
+  que l'ordre des feuilles décidait — et `responsive.css` est importée après
+  `base.css`. Le sélecteur est désormais doublé, `[hidden][hidden]`, soit 0-2-0.
+
+  Constaté en vérifiant la correction précédente sur le site déployé : la
+  navigation mobile s'affichait toujours dépliée malgré `hidden`.
+
 ## [0.9.2] — 2026-08-30
 
 ### Corrigé
