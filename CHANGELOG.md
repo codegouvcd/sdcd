@@ -4,6 +4,21 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.11.1] — 2026-08-30
+
+### Corrige
+
+- **`.sdcd-lien` ne fonctionnait que sur une balise `<a>`.** La classe ne posait
+  que la disposition ; la couleur et le soulignement venaient de la regle `a` de
+  `base.css`. Un bouton presente comme un lien — « masquer », « tout voir », un
+  motif courant — n'heritait donc de rien. La couleur est desormais portee par la
+  classe. Aucune derive visuelle : c'est exactement ce que `<a>` avait deja.
+
+### Ajoute
+
+- **`.sdcd-alert--sm`**, variante compacte. Le DSFR la distingue et le CMS
+  l'emploie pour ses messages de formulaire.
+
 ## [0.11.0] — 2026-08-30
 
 ### Ajoute
