@@ -4,6 +4,22 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.15.2] — 2026-08-30
+
+### Corrige
+
+- **Un enfant de `.sdcd-grille` sans classe de colonne etait ecrase sur une
+  piste.** En flexbox il prenait sa largeur naturelle ; dans une grille a douze
+  pistes il se retrouvait a 74 px sur 1 152, et son texte se brisait mot par mot.
+  Constate sur le plan du site du CMS.
+
+  `.sdcd-grille > *:not([class*="sdcd-col"])` occupe desormais la ligne entiere.
+  Le defaut n'existait pas avant le passage a la grille : il devait donc etre
+  traite dans la grille, et non gabarit par gabarit, ou il serait revenu au
+  premier oubli.
+
+  Cas ajoute au banc d'essai de `verifier-grille`.
+
 ## [0.15.1] — 2026-08-30
 
 ### Corrige
