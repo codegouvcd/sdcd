@@ -4,6 +4,23 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.9.2] — 2026-08-30
+
+### Corrigé
+
+- **`hidden` ne masquait pas.** `sdcd.js` masque par l'attribut `hidden`, dont la
+  règle du navigateur porte la spécificité la plus faible : toute classe fixant
+  `display` la supplante — à plus forte raison les utilitaires responsive, qui
+  l'imposent en `!important`. L'élément restait donc **visible tout en étant
+  annoncé masqué** aux technologies d'assistance.
+
+  Le défaut touchait les **huit points d'appel** de `afficher()` : accordéon,
+  onglets, menus, panneaux. Constaté sur la navigation mobile du CMS, qui
+  s'affichait dépliée alors qu'elle portait `hidden`.
+
+  `base.css` pose désormais `[hidden]{display:none!important}`.
+  Non-régression visuelle vérifiée : 0 écart sur 36 composants, 155 éléments.
+
 ## [0.9.1] — 2026-08-30
 
 ### Corrigé

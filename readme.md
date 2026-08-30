@@ -230,7 +230,7 @@ classe à la frame suivante. Le composant `Display` le fait ; un intégrateur qu
 
 ## Version et licence
 
-Version courante : **0.9.1** (voir `CHANGELOG.md`). Le `0.x` est assumé :
+Version courante : **0.9.2** (voir `CHANGELOG.md`). Le `0.x` est assumé :
 l'API des composants et les noms de classes ne sont pas encore gelés ; ils le
 seront à la 1.0.0, une fois la couche CSS éprouvée sur un premier site réel.
 Un changement de valeur d'un jeton de couleur sera traité comme une rupture
