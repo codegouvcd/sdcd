@@ -4,6 +4,15 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.10.1] — 2026-08-30
+
+### Ajoute
+
+- **`.sdcd-tags`**, conteneur d'une serie d'etiquettes. Le systeme avait
+  `.sdcd-tagcloud` — un nuage pondere, autre chose — mais rien pour poser
+  simplement des etiquettes cote a cote. Lacune relevee en portant le CMS, dont
+  chaque liste d'articles en affiche une.
+
 ## [0.10.0] — 2026-08-30
 
 ### Ajoute
