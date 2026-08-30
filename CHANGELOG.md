@@ -4,6 +4,16 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.14.1] — 2026-08-30
+
+### Ajoute
+
+- **`.sdcd-footer__legaux`**, conteneur des mentions de bas de page. Les
+  elements `.sdcd-footer__legal` sont des freres separes par un filet, mais rien
+  ne les groupait : une integration les posait donc en `<li>` hors liste —
+  balisage invalide, et le navigateur affichait leurs puces. Constate sur le pied
+  de page du CMS.
+
 ## [0.14.0] — 2026-08-30
 
 ### Ajoute — la liste de navigation est enfin admise
