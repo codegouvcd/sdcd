@@ -4,6 +4,36 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.12.0] — 2026-08-30
+
+### Ajoute — carte
+
+Six modificateurs et deux elements, releves en portant le CMS. Le rediger y
+choisit la presentation de chaque carte ; sans eux, le portage aurait supprime
+une capacite editoriale existante — une regression deguisee en migration.
+
+- `--horizontal`, `--gris`, `--sans-fond`, `--sans-bordure`, `--ombre`,
+  `--telechargement`
+- `__actions` — boutons ou liens au bas de la carte, distincts de `__pied` qui
+  porte la metadonnee et la fleche
+- `--cliquable` — etend la zone de clic a partir du lien que la carte contient,
+  sans le dupliquer. Le composant React fait de la carte un `<a>` ; une
+  integration en gabarit ne le peut pas toujours, le titre portant deja son
+  propre lien, et imbriquer un lien dans un lien est invalide.
+
+### Change — ordre du media
+
+`.sdcd-card` passe de `display: block` a une colonne flex, et
+`.sdcd-card__media` porte `order: -1`.
+
+Le composant React place le media en premier dans la source ; une integration en
+gabarit le place souvent en dernier, parce que le titre est l'element principal
+et qu'on l'ecrit d'abord. Les deux ordres rendent desormais la meme chose. Sans
+cela, neuf gabarits du CMS auraient du etre restructures — exactement ce qu'un
+systeme de design doit epargner a ses integrations.
+
+Non-regression visuelle verifiee : 0 ecart, 36 composants, 155 elements.
+
 ## [0.11.1] — 2026-08-30
 
 ### Corrige
