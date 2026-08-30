@@ -4,6 +4,46 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.15.0] — 2026-08-30
+
+Version qui acheve le portage du CMS : **plus aucune classe DSFR** n'y subsiste.
+Chaque ajout ci-dessous repond a un usage constate dans un gabarit reel.
+
+### Ajoute — composants et primitives
+
+Exergue, infobulle et son ancre, separateur « ou », mega-menu, champ de mot de
+passe, groupe de cases a cocher, etats d'erreur, groupes de messages et de liens,
+logotype textuel, parties complementaires de l'en-tete, enveloppes de tableau,
+onglet a icone, titre de partage, parties du bouton de connexion, region
+repliable, bloc « suivez-nous », video responsive, mode deuil, proportions
+d'image, ordre inverse d'un groupe de boutons, modificateurs de tuile.
+
+### Ajoute — teintes d'illustration
+
+Dix-huit classes `--chart-1` a `--chart-6` sur l'exergue, la mise en avant, le
+badge, la citation et le bandeau.
+
+**Ces classes etaient offertes au rediger et n'existaient nulle part** : il
+choisissait une couleur, rien ne se produisait. Le defaut vivait dans le CMS
+depuis l'origine ; le portage l'a mis au jour.
+
+La teinte ne porte **que l'accent** — filet, bordure — jamais le texte ni un
+aplat. Ce n'est pas une preference : `--sdcd-chart-1` ne fait que 3,0:1 sur
+blanc et echouerait le contrat de contraste comme couleur de texte. Une bordure
+releve de WCAG 1.4.11 et n'a besoin que de 3:1.
+
+### Ajoute — grille
+
+`--haut` et `--bas` pour l'alignement vertical.
+
+### Note sur le decalage relatif
+
+`fr-col` sans numero signifie « part egale » en flexbox. Trois implementations
+en CSS Grid ont ete mesurees au navigateur, dont `grid-column-end: -1` : aucune
+ne tient, un `grid-column-end` seul avec un debut automatique valant une portee
+de 1. La compatibilite reglait deja `.fr-col` sur `span 12`, exactement comme
+`.sdcd-col` : le portage de ces vingt colonnes est donc sans effet visuel.
+
 ## [0.14.1] — 2026-08-30
 
 ### Ajoute
