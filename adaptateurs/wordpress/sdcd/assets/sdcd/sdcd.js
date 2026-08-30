@@ -168,6 +168,15 @@
   // s'ouvrait pas du tout sur mobile. L'état vit dans `aria-expanded`, et la
   // cible est masquée par l'attribut `hidden` plutôt que par une classe :
   // un lecteur d'écran ne l'annonce alors pas non plus.
+  // Repli d'un menu lateral. Meme mecanique que le menu d'en-tete : le bouton
+  // porte aria-expanded et aria-controls, la cible est masquee par `hidden`.
+  // Sans ce comportement, une integration en HTML simple se retrouvait avec un
+  // bouton inerte — le JavaScript du DSFR le pilotait, il n'a pas ete remplace.
+  surClic(".sdcd-sidemenu__entete[aria-controls]", function (el) {
+    var ouvert = basculer(el, "aria-expanded");
+    afficher(el.getAttribute("aria-controls"), ouvert);
+  });
+
   surClic(".sdcd-header__menu[aria-controls]", function (el) {
     var ouvert = basculer(el, "aria-expanded");
     afficher(el.getAttribute("aria-controls"), ouvert);

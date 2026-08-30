@@ -4,6 +4,33 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.14.0] — 2026-08-30
+
+### Ajoute — la liste de navigation est enfin admise
+
+`.sdcd-header__nav > ul` et `.sdcd-nav__liste` reprennent la disposition du
+`<nav>`. Le composant React rend les liens directement dans le `<nav>` ; une
+integration en gabarit les enveloppe presque toujours dans un `<ul>`, qui est le
+balisage correct pour une liste de liens et ce qu'attend un lecteur d'ecran. Le
+systeme forcait donc les integrations a renoncer a la semantique pour obtenir la
+bonne disposition — ce n'etait pas tenable.
+
+### Ajoute — primitives de formulaire et de contenu
+
+- **`.sdcd-fieldset`**, `__legende`, `__element`. Le systeme n'avait pas de jeu
+  de champs ; le CMS groupe les siens par intention et attend une legende.
+- **`.sdcd-media`**, `__image`, `__legende` — une illustration et sa legende
+  dans le fil du contenu.
+- **`.sdcd-dropdown__liste`** — un menu deroulant en gabarit enveloppe ses
+  entrees dans un `<ul>`.
+
+### Ajoute — comportement
+
+`sdcd.js` traite `.sdcd-sidemenu__entete[aria-controls]` : bascule de
+`aria-expanded`, retrait de `hidden` sur la cible. Meme mecanique que le menu
+d'en-tete. Sans cela une integration en HTML simple se retrouvait avec un bouton
+inerte — le JavaScript du DSFR le pilotait, rien ne l'avait remplace.
+
 ## [0.13.0] — 2026-08-30
 
 Sept lacunes relevees en portant le CMS. Aucune n'apparaissait dans le systeme
