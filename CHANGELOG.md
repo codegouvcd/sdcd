@@ -4,6 +4,35 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.13.0] — 2026-08-30
+
+Sept lacunes relevees en portant le CMS. Aucune n'apparaissait dans le systeme
+isole : ce sont les gabarits reels qui les ont fait sortir.
+
+### Ajoute — typographie
+
+- **`--sdcd-h5`, `--sdcd-h6`** et les utilitaires correspondants. L'echelle
+  s'arretait a `h4` ; le CMS emploie 27 titres de niveau 5 et 6. Les rabattre
+  sur `h4` les aurait grossis. Deux crans de meme graisse et de meme interligne,
+  seule la taille descend — jusqu'au corps de texte pour `h6`.
+
+- **`.sdcd-image-fluide`**. Motif si courant qu'il figurait dans dix-huit
+  gabarits sans que le systeme le fournisse : chacun le reecrivait.
+
+### Ajoute — composants
+
+- **Menu lateral** : `--collant`, pour garder la navigation a portee sur une
+  longue liste.
+- **Bandeau** : `__titre` et `__lien`, distincts de `__texte`.
+- **Tuile** : `__media` et `__meta` — une tuile peut porter une illustration
+  plutot qu'une icone, et une metadonnee sous son intitule.
+- **Fil d'Ariane** : `__liste` et `__bouton`. Le composant React rend le fil
+  entier ; une integration en gabarit a besoin de nommer ses parties.
+- **Badge** : `.sdcd-badges` comme conteneur, et `--sm`.
+
+Non-regression visuelle verifiee a chaque ajout : 0 ecart, 36 composants,
+155 elements.
+
 ## [0.12.0] — 2026-08-30
 
 ### Ajoute — carte
