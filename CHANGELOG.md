@@ -4,6 +4,45 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.10.0] — 2026-08-30
+
+### Ajoute
+
+- **Grille en 12 colonnes** (`utilitaires.css`). Le systeme n'en avait pas : sa
+  grille etait pilotee par `--sdcd-cols`, ce qui convient a un composant qui
+  declare sa propre repartition, mais pas a une page ou le rediger raisonne en
+  colonnes. Son absence rendait impossible le portage de mises en page ecrites
+  dans des gabarits — le premier obstacle rencontre en migrant le CMS.
+
+  `.sdcd-grille`, ses modificateurs (`--gouttieres`, `--centre`, `--milieu`,
+  `--gauche`, `--droite`), `.sdcd-col`, `.sdcd-col-1..12`, leurs declinaisons
+  `sm` / `md` / `lg`, les decalages `.sdcd-col-decale-*` et `.sdcd-conteneur`.
+
+  Implementee en CSS Grid : ni marges negatives, ni largeurs en pourcentage.
+
+- **Espacement au point de rupture `md`** — les 14 proprietes de marge et de
+  remplissage sur les 9 pas de l'echelle. Les autres ruptures viendront quand un
+  gabarit les demandera ; la sobriete de cette feuille est une decision.
+
+- **`outils/verifier-grille.mjs`**, ajoute a `npm run verifier-grille`. Il mesure
+  la largeur reelle de chaque colonne a 1280 et 375 px.
+
+### Deux defauts que ce controle a attrapes avant publication
+
+- Les colonnes qualifiees d'un point de rupture (`sdcd-col-md-6`) **ne se
+  repliaient pas** sous ce point : sans regle de base elles retombaient sur
+  `span 1`, et cinq colonnes se serraient sur une ligne a 375 px.
+- Le **decalage etait ecrase** : `grid-column` en raccourci reinitialise
+  `grid-column-start`. Les largeurs emploient donc `grid-column-end`.
+
+Aucun des deux ne se voyait a 1280 px sur un rendu statique.
+
+### Note de portage
+
+Les points de rupture sont ceux du SDCD (sm 640, md 900, lg 1024), non ceux du
+DSFR (576, 768, 992). Une mise en page portee bascule donc a des largeurs
+differentes : c'est voulu, elle adopte les ruptures du systeme.
+
 ## [0.9.3] — 2026-08-30
 
 ### Corrigé
