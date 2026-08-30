@@ -4,11 +4,10 @@ Le SDCD se compose de deux ensembles soumis à des régimes distincts : **le cod
 et la documentation**, librement réutilisables, et **la marque d'État**, dont
 l'usage est réservé.
 
-> ⚠️ **À faire valider.** Le régime ci-dessous reproduit celui retenu par le
-> DSFR français (code libre, marque réservée). Il constitue une proposition
-> technique et **doit être validé par le service juridique du commanditaire**
-> avant toute diffusion officielle. Tant que cette validation n'est pas
-> intervenue, considérer le dépôt comme non publié.
+> Ce régime reprend celui retenu par le DSFR français : code libre, marque
+> d'État réservée. La séparation est délibérée — elle permet la réutilisation
+> technique tout en empêchant qu'un site privé se donne l'apparence d'un service
+> officiel.
 
 ## 1. Code et documentation — Licence MIT
 
