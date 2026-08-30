@@ -4,6 +4,28 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.11.0] — 2026-08-30
+
+### Ajoute
+
+- **`.sdcd-boutons`**, groupe de boutons. Le systeme n'en avait pas : chaque
+  integration alignait ses actions a la main. Vertical par defaut — la
+  disposition qui tient sur un telephone — et horizontal a partir du point de
+  rupture demande (`--enligne-sm` / `-md` / `-lg`), avec `--centre`, `--droite`
+  et `--icones`.
+
+- **`.sdcd-button--tertiaire-bordure`**. Le systeme n'avait que la tertiaire sans
+  bordure. Le DSFR distingue les deux a raison : bordee, l'action se lit comme un
+  bouton ; sans bordure, comme un lien.
+
+Les deux manques ont ete releves en portant le CMS.
+
+### Note a l'intention des integrations
+
+`.sdcd-button` **seul est neutre** : ni fond, ni bordure visible. Il attend une
+variante. C'est l'inverse du DSFR, ou `.fr-btn` seul est primaire — un portage
+qui renomme sans ajouter `--primaire` rend les boutons invisibles.
+
 ## [0.10.1] — 2026-08-30
 
 ### Ajoute
