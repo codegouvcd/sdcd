@@ -4,6 +4,19 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.15.1] — 2026-08-30
+
+### Corrige
+
+- **Le bouton du fil d'Ariane etait inerte.** Troisieme commande de cette
+  famille — apres le menu d'en-tete (0.9.1) et le menu lateral (0.14.0) — a
+  porter `aria-expanded` et `aria-controls` sans que rien ne les pilote. Le
+  JavaScript du DSFR s'en chargeait ; son retrait avait laisse trois boutons
+  morts, chacun decouvert separement.
+- **Le bouton s'affichait sur grand ecran**, ou le fil est deja deplie : la page
+  montrait a la fois « Voir le fil d'Ariane » et le fil lui-meme. Il n'apparait
+  plus qu'en dessous de 640 px.
+
 ## [0.15.0] — 2026-08-30
 
 Version qui acheve le portage du CMS : **plus aucune classe DSFR** n'y subsiste.
