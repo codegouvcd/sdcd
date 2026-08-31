@@ -4,6 +4,26 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.16.1] — 2026-08-31
+
+### Corrige
+
+- **La police d'icones debordait sur le texte de l'element.** La feuille amont de
+  Remix Icon pose `font-family: remixicon !important` sur l'ELEMENT. Un element
+  portant a la fois la classe d'icone et du texte — bouton, lien, etiquette,
+  ligne de detail d'une carte — voyait son libelle rendu dans la police
+  d'icones, qui n'a aucune lettre latine : le navigateur remplaçait caractere
+  par caractere et le texte s'affichait a empattements, plus petit que le reste
+  de la page.
+
+  Ce motif est celui du CMS, herite du DSFR, ou les icones etaient des masques
+  CSS que la classe n'imposait pas au texte. Le passage a une police d'icones a
+  rendu le defaut visible partout a la fois : dix gabarits composent ainsi leurs
+  classes.
+
+  Le glyphe vit de toute facon dans `::before`. La police y est deplacee ;
+  l'element garde la sienne.
+
 ## [0.16.0] — 2026-08-31
 
 Version issue d'une revue complete du CMS Sites Conformes, ou le portage avait
