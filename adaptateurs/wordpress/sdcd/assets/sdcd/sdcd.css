@@ -110,6 +110,8 @@
   --sdcd-1:4px; --sdcd-2:8px; --sdcd-3:12px; --sdcd-4:16px; --sdcd-5:24px; --sdcd-6:32px; --sdcd-7:40px; --sdcd-8:64px;
   --sdcd-rayon:0; --sdcd-rayon-carte:0; --sdcd-rayon-pilule:999px;
   --sdcd-maxw:1200px; --sdcd-gouttiere:clamp(16px,4vw,24px);
+  /* Mesure de lecture du texte courant : environ 75 caracteres a 16 px. */
+  --sdcd-mesure:42rem;
   --sdcd-ombre:0 4px 16px rgba(22,26,29,.14);
   --sdcd-transition:160ms ease-out;
 }
@@ -6309,6 +6311,23 @@ dialog.sdcd-modal__voile:not([open]) { display: none; }
 /* Conteneur de page : meme largeur maximale et meme gouttiere que les
    composants, pour qu'une page et un composant s'alignent sur la meme colonne. */
 .sdcd-conteneur { max-width: var(--sdcd-maxw); margin: 0 auto; padding: 0 var(--sdcd-gouttiere); }
+/* Un conteneur imbrique dans un conteneur ne doit rien reappliquer : la largeur
+   maximale est deja atteinte, et sa gouttiere se cumulerait a celle du parent.
+   Releve sur le CMS, ou le flux de blocs enveloppe chaque bloc et ou dix-sept
+   gabarits de bloc en reposaient un second : le corps de texte se decalait de
+   24 px vers la droite par rapport a son propre titre. */
+.sdcd-conteneur .sdcd-conteneur {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Mesure de lecture. Au-dela de 75 caracteres par ligne, l'oeil peine a
+   retrouver le debut de la ligne suivante. Mesure sur la page d'accueil du CMS
+   avant correction : 131 caracteres a 1440 px, le texte occupant toute la
+   largeur du conteneur. La classe borne le texte courant sans le centrer : il
+   reste aligne a gauche, sous son titre, qui peut rester plus large. */
+.sdcd-mesure { max-width: var(--sdcd-mesure); }
 .sdcd-conteneur--fluide { max-width: none; }
 
 /* Espacement au point de rupture md (> 900 px). Les autres ruptures seront
