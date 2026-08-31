@@ -4,6 +4,44 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.16.0] — 2026-08-31
+
+Version issue d'une revue complete du CMS Sites Conformes, ou le portage avait
+laisse des composants sans habillage et des boutons sans effet. Ce que le portage
+n'avait pas vu : les selecteurs CSS et les crochets JavaScript ne vivent pas dans
+des attributs `class`, seuls endroits que le controle automatique inspectait.
+
+### Ajoute
+
+- `.sdcd-header__outils` — liste des outils d'en-tete. Menu haut, selecteur de
+  langue et menu de compte ont chacun un `<li>` pour racine : sans liste
+  englobante, ils flottaient comme des `<li>` orphelins dans un `<div>`, balisage
+  invalide qui prive les lecteurs d'ecran du regroupement et du decompte.
+- `.sdcd-champ__erreurs` — Django enveloppe les erreurs d'un champ dans un `<ul>`.
+  Sans reinitialisation, la puce noire du navigateur s'affichait a cote du
+  message rouge.
+- `data-sdcd-replie` — un bouton place a l'interieur d'une region depliee peut
+  la nommer pour la refermer. Le declencheur correspondant repasse a
+  `aria-expanded="false"`, pour que l'etat annonce reste celui du DOM. Comble
+  l'absence relevee sur le bouton « Fermer » d'un mega-menu.
+
+### Corrige
+
+- **Le fil d'Ariane s'affichait deplie sous 640 px, bouton compris.** La regle
+  ajoutee en 0.15.1 masquait le bouton au-dessus de 640 px mais laissait la liste
+  visible en dessous : le mobile montrait a la fois « Voir le fil d'Ariane » et le
+  fil. Le gabarit pose maintenant `hidden`, et la feuille responsive reaffiche la
+  liste au-dessus de 640 px, ou le bouton n'existe plus pour la deplier.
+
+### Retire
+
+- `.sdcd-header__entite` et `.sdcd-header__sous-titre`. Ces deux classes,
+  inventees lors de la reecriture de l'en-tete, repetaient mot pour mot
+  `.sdcd-header__service` et `.sdcd-header__service-accroche`, qui sont les noms
+  du systeme et les cibles de la correspondance de portage. Deux noms pour un
+  role finissent toujours par diverger : c'est arrive ici, ou le gabarit emettait
+  l'un et les tests attendaient l'autre.
+
 ## [0.15.3] — 2026-08-30
 
 ### Corrige
