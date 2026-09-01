@@ -3316,7 +3316,7 @@ a{color:var(--sdcd-action);text-decoration:underline;text-underline-offset:3px;t
 a:hover{color:var(--sdcd-action-survol);text-decoration-thickness:2px}
 :focus-visible{outline:none;box-shadow:var(--sdcd-focus)}
 code,pre{font-family:var(--sdcd-font-mono);font-size:.875em}
-.sdcd-container{max-width:var(--sdcd-maxw);margin:0 auto;padding:0 var(--sdcd-gouttiere)}
+.sdcd-container{max-width:var(--sdcd-maxw);margin:0 auto;padding-left:var(--sdcd-gouttiere);padding-right:var(--sdcd-gouttiere)}
 .sdcd-filet-tricolore{display:flex;height:4px}
 .sdcd-filet-tricolore>*{flex:1}
 .sdcd-eyebrow{font-size:var(--sdcd-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sdcd-muet)}
@@ -6538,7 +6538,12 @@ dialog.sdcd-modal__voile:not([open]) { display: none; }
 
 /* Conteneur de page : meme largeur maximale et meme gouttiere que les
    composants, pour qu'une page et un composant s'alignent sur la meme colonne. */
-.sdcd-conteneur { max-width: var(--sdcd-maxw); margin: 0 auto; padding: 0 var(--sdcd-gouttiere); }
+/* Gouttiere en longhand, jamais en raccourci : `padding: 0 X` remettait aussi le
+   haut et le bas a zero. Declaree apres les utilitaires d'espacement, a meme
+   specificite, cette regle annulait tout `sdcd-pt-*` ou `sdcd-py-*` pose sur un
+   conteneur. Vu au navigateur : le titre de page collait au bord de l'en-tete,
+   `sdcd-pt-6` calculant 0 px. */
+.sdcd-conteneur { max-width: var(--sdcd-maxw); margin: 0 auto; padding-left: var(--sdcd-gouttiere); padding-right: var(--sdcd-gouttiere); }
 /* Un conteneur imbrique dans un conteneur ne doit rien reappliquer : la largeur
    maximale est deja atteinte, et sa gouttiere se cumulerait a celle du parent.
    Releve sur le CMS, ou le flux de blocs enveloppe chaque bloc et ou dix-sept
@@ -6858,5 +6863,16 @@ pre{overflow-x:auto}
    `[hidden][hidden]` de base.css, qui porte lui aussi !important. */
 @media (min-width: 641px) {
   .sdcd-breadcrumb .sdcd-repli[hidden] { display: block !important; }
+}
+
+/* En-tete sous 900 px, la ou le bouton Menu apparait. Sans regle, la rangee flex
+   se contentait de passer a la ligne : armoiries, puis entite, puis le bouton
+   Menu seul sur une troisieme rangee, colle a droite, avec un vide a sa gauche.
+   Le bouton remonte a cote des armoiries ; l'entite prend la rangee suivante en
+   pleine largeur. */
+@media (max-width:900px){
+  .sdcd-header__actions{order:2;margin-left:auto}
+  .sdcd-header__entite-bloc{order:3;flex-basis:100%}
+  .sdcd-header__filet{display:none}
 }
 
