@@ -4,6 +4,27 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.17.2] — 2026-09-01
+
+Suite du controle au navigateur, page par page, sur mobile.
+
+### Corrige
+
+- **Tout `sdcd-mt-*`, `sdcd-mb-*` ou `sdcd-my-*` pose sur un conteneur etait
+  annule.** Meme piege que la gouttiere en 0.17.1 : `.sdcd-conteneur` centrait
+  par `margin: 0 auto`, raccourci qui remet le haut et le bas a zero. Comme la
+  regle vient apres les utilitaires, a meme specificite, elle gagnait. Or chaque
+  bloc du CMS est un conteneur portant `sdcd-mb-6` : les blocs se touchaient
+  (une alerte collee au paragraphe suivant, 0 px mesure). Longhand, et meme
+  correction sur `.sdcd-container`.
+- **L'accordeon n'annoncait pas qu'il s'ouvre.** `<summary>` en `display: flex`
+  perd son triangle natif, et rien ne le remplacait. Un chevron Remix Icon en
+  `::after`, qui pivote a l'ouverture.
+- **Dans l'indicateur d'etapes, les etapes se touchaient** (`dd` → `dt` a 0 px).
+- **Sous 640 px, les mentions de bas de page se brisaient** au milieu de la
+  rangee, la mention rejetee gardant son filet gauche — un trait orphelin,
+  decale de 12 px. Elles s'empilent, sans filet.
+
 ## [0.17.1] — 2026-09-01
 
 Deux defauts vus en naviguant sur le site deploye, dans un navigateur, apres
