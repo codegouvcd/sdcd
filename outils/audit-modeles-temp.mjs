@@ -49,11 +49,19 @@ const SONDE = () => {
   for (const g of document.querySelectorAll(".sdcd-grille")) {
     const enf = [...g.children].filter((e) => e.getBoundingClientRect().height > 4);
     if (enf.length < 2) continue;
-    const larg = enf.map((e) => {
+    // Ne comparer que des enfants de MEME classe de colonne : une grille
+    // asymetrique — texte sur 9 pistes, image sur 3 — est voulue, pas fautive.
+    const parClasse = {};
+    for (const e of enf) {
+      const cle = [...e.classList].filter((x) => /^sdcd-col/.test(x)).sort().join(" ") || "(sans)";
       const k = e.querySelector(".sdcd-tile, .sdcd-card") || e;
-      return Math.round(k.getBoundingClientRect().width);
-    });
-    if (new Set(larg).size > 1) out.push(`largeurs heterogenes : ${larg.join("/")}`);
+      (parClasse[cle] ||= []).push(Math.round(k.getBoundingClientRect().width));
+    }
+    for (const [cle, larg] of Object.entries(parClasse)) {
+      if (larg.length > 1 && new Set(larg).size > 1) {
+        out.push(`largeurs heterogenes (${cle}) : ${larg.join("/")}`);
+      }
+    }
   }
 
   // Contraste reel du texte sur son fond.
