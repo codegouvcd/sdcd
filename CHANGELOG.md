@@ -30,6 +30,12 @@ d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
   boutons.
 - **Cibles tactiles** : lien de titre de carte et de tuile (20 px), bouton du
   bandeau (18 px) portes a 24 px.
+- **Sous-menus et mega-menus de la navigation** : le declencheur
+  (`button.sdcd-header__lien[aria-controls]`) etait un bouton natif inerte.
+  sdcd.js l'ouvre et le ferme (un seul ouvert, Echap, clic hors du menu) ; le
+  panneau se pose sous la barre, et reprend le flux dans le menu mobile.
+- **Carte** : une image enveloppee d'un `<div>` debordait du media et
+  recouvrait le corps.
 
 ## [0.17.2] — 2026-09-01
 
