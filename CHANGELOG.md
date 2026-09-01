@@ -4,6 +4,23 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.17.1] — 2026-09-01
+
+Deux defauts vus en naviguant sur le site deploye, dans un navigateur, apres
+que les controles automatiques avaient tout declare conforme.
+
+### Corrige
+
+- **Tout `sdcd-pt-*` ou `sdcd-py-*` pose sur un conteneur etait annule.**
+  `.sdcd-conteneur` posait sa gouttiere par le raccourci `padding: 0 X`, qui
+  remet aussi le haut et le bas a zero. Declaree apres les utilitaires
+  d'espacement, a meme specificite, elle gagnait par l'ordre : le titre de chaque
+  page collait au bord de l'en-tete, `sdcd-pt-6` calculant 0 px a toutes les
+  largeurs. La gouttiere passe en longhand. Meme correction sur `.sdcd-container`.
+- **Sous 900 px, le bouton Menu se retrouvait seul sur une troisieme rangee**,
+  colle a droite avec un vide a sa gauche. Il remonte a cote des armoiries ;
+  l'entite prend la rangee suivante en pleine largeur.
+
 ## [0.17.0] — 2026-09-01
 
 Version issue d'un audit au navigateur, sous Brave, du site et du back-office :
