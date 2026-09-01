@@ -4,6 +4,61 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.17.0] — 2026-09-01
+
+Version issue d'un audit au navigateur, sous Brave, du site et du back-office :
+etats interactifs compris, et pour la premiere fois en theme sombre.
+
+### Le contresens du portage flexbox → grille
+
+Une seule erreur expliquait trois defauts visibles. En flexbox, aligner une
+rangee — `justify-content` — deplace l'ensemble sans toucher a la largeur des
+colonnes. Le portage l'a traduit en `justify-items`, qui redimensionne CHAQUE
+enfant a la largeur de son contenu.
+
+- Le formulaire de connexion du back-office s'affichait colle a gauche : 24 px
+  de marge d'un cote, 861 de l'autre.
+- A 768 px, trois tuiles empilees prenaient 655, 605 et 455 px : un escalier.
+- Les cartes d'une meme rangee se terminaient a des hauteurs differentes — la
+  colonne s'etirait, la carte gardait sa hauteur naturelle.
+
+Les trois modificateurs d'alignement repassent en `stretch`. Le placement est
+obtenu en decalant l'enfant unique, condition `:only-child` sans laquelle
+plusieurs enfants s'empileraient sur la meme colonne de depart.
+
+### Corrige
+
+- **Le menu mobile ne s'empilait pas.** Le `<nav>` passait en colonne, mais pas
+  la liste qu'il contient : les entrees se rangeaient deux par deux et leurs
+  filets de separation se croisaient. Sur un telephone, le menu principal etait
+  illisible.
+- **Cibles tactiles sous le seuil de 24 px** : liens du pied 17 px, fil d'Ariane
+  15 px, titre de service 23 px, listes de liens 20 px. L'exception du critere
+  2.5.8 ne couvre que les liens en ligne dans un texte.
+- **Cases a cocher non habillees** : le navigateur les rendait a 13 px, en bleu
+  systeme. `accent-color` les colore sans reconstruire le controle, ce qui
+  preserve le comportement natif au clavier et au lecteur d'ecran.
+- **Titre de service souligne en permanence.** `text-decoration: none` etait pose
+  sur le `<p>` interieur : sans effet, un soulignement declare par un ancetre ne
+  pouvant pas etre annule par un descendant.
+- **Lignes trop longues** dans l'alerte (147 caracteres) et la mise en exergue
+  (149), mesurees a 1440 px.
+- Un groupe de badges debordait de 4 px du media d'une carte ; le premier
+  element des mentions legales depassait de 12 px hors de sa liste.
+
+### Modifie
+
+- `--sdcd-mesure` passe de `42rem` a `42em`. En largeur fixe, la borne donnait
+  75 caracteres a 16 px mais 91 des qu'un bloc employait un corps plus petit.
+  L'essai en `ch` fut pire — l'unite vaut la largeur du zero, plus large que la
+  moyenne des lettres dans Inter, et laissait passer 103 caracteres.
+
+### Verifie, sans defaut
+
+- **Theme sombre** sur les dix modeles de pages, jamais regarde jusqu'ici :
+  aucun defaut de contraste. Les jetons sont employes partout, aucune couleur
+  n'est ecrite en dur.
+
 ## [0.16.1] — 2026-08-31
 
 ### Corrige
