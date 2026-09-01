@@ -28,6 +28,8 @@ Suite du controle au navigateur, page par page, sur mobile.
   meme ligne, et la liste en `<li>` n'avait aucun separateur entre ses maillons
   (« Accueil Questions frequentes »). La region prend la rangee suivante ; le
   chevron vient du CSS (`li + li::before`).
+- **Une mention de bas de page en texte nu se lisait plus petite** (.75rem)
+  que les liens voisins (.875rem). Meme corps pour toute la liste.
 
 ## [0.17.1] — 2026-09-01
 
