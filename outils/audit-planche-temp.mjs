@@ -78,6 +78,11 @@ const SONDE = () => {
     // c'est le cas du pot de miel anti-robot, de 1x1 px et hors tabulation.
     if (e.closest("[aria-hidden=true]") || e.getAttribute("aria-hidden") === "true") continue;
     if (e.tabIndex < 0) continue;
+    // La zone cliquable peut etre etendue par un ancetre : une tuile ou une
+    // carte entierement cliquable est la vraie cible, pas son titre.
+    if (e.closest(".sdcd-cliquable, .sdcd-tile, .sdcd-card")) continue;
+    // Le back-office est habille par Wagtail : hors du perimetre du systeme.
+    if (/^(w-|Draftail-|c-sf-|avatar__)/.test(e.className || "")) continue;
     const r = e.getBoundingClientRect();
     if (r.width < 24 || r.height < 24) out.push(`cible ${nom(e)} ${Math.round(r.width)}x${Math.round(r.height)}`);
   }
