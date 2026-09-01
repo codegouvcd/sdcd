@@ -23,7 +23,13 @@ d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
 ### Corrige
 
-- Le fil d'Ariane du CMS : voir 0.17.2 (chevrons, région sous le bouton).
+- **Sous 900 px, la rangee d'actions de l'en-tete ne se repliait pas** des que
+  le site affichait acces rapides, connexion et recherche : 900 px de
+  debordement, toute la page defilait de cote. Les outils passent dans le
+  panneau du menu (`.sdcd-header__nav-outils`), l'en-tete ne garde que ses
+  boutons.
+- **Cibles tactiles** : lien de titre de carte et de tuile (20 px), bouton du
+  bandeau (18 px) portes a 24 px.
 
 ## [0.17.2] — 2026-09-01
 

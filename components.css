@@ -2807,3 +2807,9 @@ dialog.sdcd-modal__voile:not([open]) { display: none; }
 /* --- typographie complementaire --------------------------------------------- */
 .sdcd-texte-lead { font-size: 1.0625rem; color: var(--sdcd-muet); }
 .sdcd-texte-lg { font-size: 1.0625rem; }
+
+/* Cibles tactiles (WCAG 2.5.8, 24 px) : le lien qui porte le titre d'une carte
+   ou d'une tuile ne faisait que 20 px de haut, le bouton qui masque un message
+   du bandeau 18 px. */
+.sdcd-card__titre a, .sdcd-tile__titre a { display: inline-block; padding-block: 2px; min-height: 24px; }
+.sdcd-notice__fermer, .sdcd-notice button { display: inline-flex; align-items: center; min-height: 24px; }
