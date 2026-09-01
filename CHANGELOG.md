@@ -24,6 +24,10 @@ Suite du controle au navigateur, page par page, sur mobile.
 - **Sous 640 px, les mentions de bas de page se brisaient** au milieu de la
   rangee, la mention rejetee gardant son filet gauche — un trait orphelin,
   decale de 12 px. Elles s'empilent, sans filet.
+- **Le fil d'Ariane deplie sur mobile se rangeait a cote du bouton**, sur la
+  meme ligne, et la liste en `<li>` n'avait aucun separateur entre ses maillons
+  (« Accueil Questions frequentes »). La region prend la rangee suivante ; le
+  chevron vient du CSS (`li + li::before`).
 
 ## [0.17.1] — 2026-09-01
 
