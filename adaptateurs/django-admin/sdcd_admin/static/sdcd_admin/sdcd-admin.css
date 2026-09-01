@@ -1,0 +1,304 @@
+/* Thème SDCD pour l'administration Django.
+ *
+ * Deux couches. D'abord les variables CSS que l'admin Django expose depuis sa
+ * feuille de base : chacune est redéfinie par un jeton --sdcd-*, ce qui
+ * recolore listes, formulaires, boutons et messages sans toucher à leur
+ * balisage. Ensuite la coquille — en-tête, menu latéral, fil d'Ariane, pied —
+ * et quelques sélecteurs de Django dont l'aspect (rayons, dégradés, fontes)
+ * n'est pas gouverné par une variable. */
+
+/* ------------------------------------------------- 1. variables de Django */
+:root, html[data-theme="light"], html[data-theme="dark"] {
+  --primary: var(--sdcd-action);
+  --secondary: var(--sdcd-action-survol);
+  /* --accent colore le nom du site et quelques liens d'en-tete chez Django :
+     le jaune du drapeau y serait illisible sur blanc. */
+  --accent: var(--sdcd-texte);
+  --primary-fg: var(--sdcd-fond);
+
+  --body-fg: var(--sdcd-texte);
+  --body-bg: var(--sdcd-fond);
+  --body-quiet-color: var(--sdcd-muet);
+  --body-medium-color: var(--sdcd-encre-2);
+  --body-loud-color: var(--sdcd-texte);
+
+  --header-color: var(--sdcd-texte);
+  --header-branding-color: var(--sdcd-texte);
+  --header-bg: var(--sdcd-fond);
+  --header-link-color: var(--sdcd-action);
+
+  --breadcrumbs-fg: var(--sdcd-muet);
+  --breadcrumbs-link-fg: var(--sdcd-muet);
+  --breadcrumbs-bg: transparent;
+
+  --link-fg: var(--sdcd-action);
+  --link-hover-color: var(--sdcd-action-survol);
+  --link-selected-fg: var(--sdcd-action-appui);
+
+  --hairline-color: var(--sdcd-ligne);
+  --border-color: var(--sdcd-ligne-forte);
+
+  --error-fg: var(--sdcd-erreur);
+
+  --message-success-bg: var(--sdcd-fond-succes);
+  --message-warning-bg: var(--sdcd-fond-alerte);
+  --message-error-bg: var(--sdcd-fond-erreur);
+  --message-info-bg: var(--sdcd-fond-info);
+
+  --darkened-bg: var(--sdcd-fond-gris);
+  --selected-bg: var(--sdcd-fond-bleu);
+  --selected-row: var(--sdcd-fond-bleu);
+
+  --button-fg: var(--sdcd-fond);
+  --button-bg: var(--sdcd-action);
+  --button-hover-bg: var(--sdcd-action-survol);
+  --default-button-bg: var(--sdcd-action-appui);
+  --default-button-hover-bg: var(--sdcd-action-survol);
+  --close-button-bg: var(--sdcd-muet);
+  --close-button-hover-bg: var(--sdcd-texte);
+  --delete-button-bg: var(--sdcd-erreur);
+  --delete-button-hover-bg: var(--sdcd-erreur);
+
+  --object-tools-fg: var(--sdcd-action);
+  --object-tools-bg: var(--sdcd-fond);
+  --object-tools-hover-bg: var(--sdcd-fond-bleu);
+
+  --font-family-primary: var(--sdcd-font);
+  --font-family-monospace: var(--sdcd-font-mono);
+}
+
+/* ---------------------------------------------------------- 2. coquille */
+body.sdcd-admin { margin: 0; font-family: var(--sdcd-font); background: var(--sdcd-fond-alt); color: var(--sdcd-texte); }
+.sdcd-admin__page { min-height: 100vh; display: flex; flex-direction: column; }
+
+.sdcd-admin__entete {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--sdcd-3) var(--sdcd-4);
+  padding: var(--sdcd-3) var(--sdcd-gouttiere);
+  background: var(--sdcd-fond); border-bottom: 1px solid var(--sdcd-ligne);
+  /* Au-dessus du menu lateral superpose (mobile) : le bouton qui le replie
+     doit rester atteignable une fois le menu ouvert. */
+  position: relative; z-index: 70;
+}
+#header { justify-content: flex-start; height: auto; overflow: visible; }
+.sdcd-admin__menu-bouton { min-width: 44px; min-height: 44px; padding: 0; justify-content: center; }
+.sdcd-admin__menu-bouton i::before { font-size: 22px; }
+.sdcd-admin__marque { display: flex; align-items: center; gap: var(--sdcd-4); }
+.sdcd-admin__marque-lien { display: flex; align-items: center; gap: var(--sdcd-3); text-decoration: none; color: inherit; }
+.sdcd-admin__armoiries { height: 44px; width: auto; }
+.sdcd-admin__republique-bloc { display: flex; flex-direction: column; gap: 2px; }
+.sdcd-admin__republique { font-size: 11px; line-height: 1.15; }
+.sdcd-admin__devise { font-size: 10px; font-style: italic; color: var(--sdcd-muet); }
+#site-name { font-size: var(--sdcd-corps); font-weight: 700; margin: 0; color: var(--sdcd-texte); }
+#user-tools .sdcd-button, #logout-form button.sdcd-button {
+  font-size: var(--sdcd-sm); font-weight: 600; letter-spacing: 0; text-transform: none;
+  min-height: 32px; padding: 4px 12px; border-bottom-width: 1px;
+}
+#user-tools a.sdcd-button--tertiaire { border-bottom: none; }
+.sdcd-admin__site { display: flex; flex-direction: column; padding-left: var(--sdcd-4); border-left: 1px solid var(--sdcd-ligne); }
+.sdcd-admin__site-nom { font-weight: 700; font-size: var(--sdcd-corps); color: var(--sdcd-texte); }
+.sdcd-admin__site-accroche { font-size: var(--sdcd-xs); color: var(--sdcd-muet); }
+#branding h1, #site-name a { color: inherit; }
+
+.sdcd-admin__outils { margin-left: auto; display: flex; align-items: center; flex-wrap: wrap; gap: var(--sdcd-2); font-size: var(--sdcd-sm); }
+#user-tools { padding: 0; text-align: left; font-size: var(--sdcd-sm); font-weight: 400; letter-spacing: 0; text-transform: none; }
+#user-tools a, #user-tools button { border-bottom: none; }
+#logout-form { display: inline; margin: 0; }
+.sdcd-admin__agent { display: inline-flex; align-items: center; gap: var(--sdcd-2); margin-right: var(--sdcd-2); }
+.sdcd-admin__avatar {
+  width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--sdcd-fond-bleu-soutenu); color: var(--sdcd-action); font-weight: 700; font-size: var(--sdcd-xs); text-transform: uppercase;
+}
+.sdcd-admin__agent-nom { font-weight: 600; }
+
+.sdcd-admin__corps { flex: 1; display: flex; align-items: stretch; }
+#main { padding: 0; }
+.sdcd-admin__aside {
+  width: 264px; flex-shrink: 0; padding: var(--sdcd-5) var(--sdcd-4);
+  background: var(--sdcd-fond); border-right: 1px solid var(--sdcd-ligne);
+  min-width: 0;
+}
+.sdcd-admin__aside[data-ouvert="false"] { display: none; }
+.sdcd-admin__aside .sdcd-sidemenu__entete { text-decoration: none; color: var(--sdcd-texte); font-weight: 700; font-size: var(--sdcd-sm); }
+.sdcd-admin__aside .sdcd-sidemenu__lien { display: block; }
+
+.sdcd-admin__contenu { flex: 1; min-width: 0; padding: var(--sdcd-4) var(--sdcd-gouttiere) var(--sdcd-7); }
+#content { padding: 0; }
+/* overflow-wrap : un titre porte souvent une reference sans espace
+   (MINESURSI/DSA/1602/02/0847/2026), qui debordait de 58 px sur un telephone. */
+#content > h1 { font-size: var(--sdcd-h2); margin: 0 0 var(--sdcd-2); overflow-wrap: anywhere; }
+.breadcrumbs { overflow-wrap: anywhere; }
+.sdcd-admin__sous-titre { margin: 0 0 var(--sdcd-5); color: var(--sdcd-muet); font-size: var(--sdcd-sm); }
+
+.sdcd-admin__fil .breadcrumbs {
+  background: none; padding: 0; margin: 0 0 var(--sdcd-4);
+  font-size: var(--sdcd-xs); color: var(--sdcd-muet); border: none;
+}
+.sdcd-admin__fil .breadcrumbs a { color: var(--sdcd-muet); }
+
+/* Messages : la liste de Django, presentee comme une alerte du SDCD. */
+ul.messagelist { margin: 0 0 var(--sdcd-5); padding: 0; }
+ul.messagelist li {
+  background-image: none; padding: var(--sdcd-3) var(--sdcd-4); margin: 0 0 var(--sdcd-2);
+  border-left: 4px solid var(--sdcd-info); background-color: var(--sdcd-fond-info); color: var(--sdcd-texte);
+  font-size: var(--sdcd-sm);
+}
+ul.messagelist li.success { border-left-color: var(--sdcd-succes); background-color: var(--sdcd-fond-succes); }
+ul.messagelist li.warning { border-left-color: var(--sdcd-alerte, #B35C00); background-color: var(--sdcd-fond-alerte); }
+ul.messagelist li.error { border-left-color: var(--sdcd-erreur); background-color: var(--sdcd-fond-erreur); }
+
+.sdcd-admin__pied {
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--sdcd-4);
+  padding: var(--sdcd-3) var(--sdcd-gouttiere); background: var(--sdcd-fond); border-top: 1px solid var(--sdcd-ligne);
+  font-size: var(--sdcd-xs); color: var(--sdcd-muet);
+}
+.sdcd-admin__pied-nom { font-weight: 600; color: var(--sdcd-texte); }
+.sdcd-admin__pied-version { margin-left: auto; display: inline-flex; align-items: center; gap: var(--sdcd-3); }
+.sdcd-admin__mini-filet { display: inline-flex; height: 8px; width: 36px; }
+.sdcd-admin__mini-filet span { flex: 1; }
+.sdcd-admin__mini-filet span:nth-child(1) { background: var(--sdcd-bleu); }
+.sdcd-admin__mini-filet span:nth-child(2) { background: var(--sdcd-jaune); }
+.sdcd-admin__mini-filet span:nth-child(3) { background: var(--sdcd-rouge); }
+
+/* ----------------------------------------------------- 3. tableau de bord */
+.sdcd-admin__applications { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: var(--sdcd-4); }
+#content-main.app-list { float: none; width: auto; }
+.sdcd-admin__application { background: var(--sdcd-fond); border: 1px solid var(--sdcd-ligne); margin: 0; }
+.sdcd-admin__application-titre { margin: 0; padding: var(--sdcd-3) var(--sdcd-4); border-bottom: 1px solid var(--sdcd-ligne); font-size: var(--sdcd-corps); background: none; }
+.sdcd-admin__application-titre a { color: var(--sdcd-texte); text-decoration: none; }
+.sdcd-admin__modeles { list-style: none; margin: 0; padding: 0; }
+.sdcd-admin__modele { display: flex; align-items: center; justify-content: space-between; gap: var(--sdcd-3); padding: var(--sdcd-2) var(--sdcd-4); border-bottom: 1px solid var(--sdcd-ligne); }
+.sdcd-admin__modele:last-child { border-bottom: none; }
+.sdcd-admin__modele-nom a { font-weight: 600; text-decoration: none; }
+.sdcd-admin__modele-actions { display: inline-flex; gap: var(--sdcd-1); flex-shrink: 0; }
+.sdcd-admin__modele-actions .addlink, .sdcd-admin__modele-actions .changelink, .sdcd-admin__modele-actions .viewlink { background-image: none; padding-left: var(--sdcd-3); }
+
+.sdcd-admin__recentes { float: none; width: auto; margin-top: var(--sdcd-5); }
+/* Django sort ce panneau du flux (flottant, marge negative de 300 px) : la page
+   debordait de 276 px a droite. Il reprend sa place sous les applications. */
+.dashboard #content-related { float: none; width: auto; margin: var(--sdcd-5) 0 0; }
+#content-related { background: var(--sdcd-fond); border: 1px solid var(--sdcd-ligne); padding: var(--sdcd-4); }
+#content-related .module h2 { background: none; padding: 0 0 var(--sdcd-2); font-size: var(--sdcd-h5); color: var(--sdcd-texte); }
+#content-related .module h3 { padding: 0; margin: 0 0 var(--sdcd-3); }
+.sdcd-admin__chronologie { list-style: none; margin: 0; padding: 0; }
+.sdcd-admin__chronologie li { display: flex; gap: var(--sdcd-3); padding: 0 0 var(--sdcd-3); background: none; position: relative; }
+.sdcd-admin__chronologie-point { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--sdcd-action); flex-shrink: 0; margin-top: 5px; background: var(--sdcd-fond); }
+.sdcd-admin__chronologie-texte { font-size: var(--sdcd-xs); line-height: 1.5; }
+.sdcd-admin__chronologie-texte .mini { display: block; }
+.dashboard #content { width: auto; }
+.dashboard .colMS { margin-right: 0; }
+
+/* ----------------------------------------------------------- 4. connexion */
+.login #container { width: auto; min-width: 0; margin: 0; background: transparent; }
+.login .sdcd-admin__corps { justify-content: center; padding: var(--sdcd-7) var(--sdcd-gouttiere); }
+.login .sdcd-admin__contenu { flex: 0 1 480px; padding: 0; }
+.sdcd-admin__connexion-carte { background: var(--sdcd-fond); border: 1px solid var(--sdcd-ligne); padding: var(--sdcd-6) var(--sdcd-5); }
+.sdcd-admin__connexion-carte h1 { font-size: var(--sdcd-h3); margin: 0; }
+.login .sdcd-fieldset__element { margin-bottom: var(--sdcd-4); }
+.login .submit-row { padding: 0; margin: var(--sdcd-5) 0 0; background: none; border: none; }
+.login #content-main { float: none; width: auto; }
+.login .form-row { padding: 0; border: none; }
+
+/* --------------------------------------- 5. formulaires et listes de Django */
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="number"],
+input[type="tel"], textarea, select, .vTextField {
+  font-family: var(--sdcd-font); font-size: var(--sdcd-corps); color: var(--sdcd-texte);
+  background: var(--sdcd-fond); border: 1px solid var(--sdcd-ligne-forte); border-radius: 0;
+  padding: 8px 12px; min-height: 40px; box-sizing: border-box;
+}
+input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--sdcd-action); outline-offset: 2px;
+}
+.login input[type="text"], .login input[type="password"] { width: 100%; }
+.form-row { border-bottom: 1px solid var(--sdcd-ligne); padding: var(--sdcd-3) 0; }
+.aligned label { color: var(--sdcd-texte); font-weight: 600; padding-top: 10px; }
+.help, .help-tooltip, p.help { color: var(--sdcd-muet); font-size: var(--sdcd-xs); }
+fieldset.module { border: 1px solid var(--sdcd-ligne); background: var(--sdcd-fond); margin-bottom: var(--sdcd-5); }
+fieldset.module h2, .module h2, .module caption, .inline-group h2 {
+  background: var(--sdcd-fond-gris); color: var(--sdcd-texte); font-weight: 700; font-size: var(--sdcd-sm);
+  padding: var(--sdcd-2) var(--sdcd-4); border-bottom: 1px solid var(--sdcd-ligne);
+}
+.submit-row { background: var(--sdcd-fond); border: 1px solid var(--sdcd-ligne); padding: var(--sdcd-3) var(--sdcd-4); display: flex; flex-wrap: wrap; gap: var(--sdcd-2); align-items: center; }
+.submit-row input[type="submit"], .submit-row a.button, .button, input[type="submit"], input[type="button"], button.button {
+  font-family: var(--sdcd-font); font-weight: 600; font-size: var(--sdcd-sm); border-radius: 0; padding: 10px 16px; min-height: 40px;
+  border: 1px solid transparent; cursor: pointer;
+}
+.submit-row input.default, .button.default { background: var(--sdcd-action); color: var(--sdcd-fond); }
+/* Django flotte le bouton de suppression a droite avec une hauteur de 15 px :
+   il sortait de la rangee et se retrouvait coupe. */
+.submit-row a.deletelink {
+  background: var(--sdcd-erreur); color: var(--sdcd-fond); height: auto; line-height: inherit;
+  float: none; margin-left: auto; display: inline-flex; align-items: center; padding: 10px 16px;
+}
+.submit-row { overflow: visible; }
+.object-tools { margin-top: 0; }
+.object-tools a { border-radius: 0; background: var(--sdcd-fond); color: var(--sdcd-action); border: 1px solid var(--sdcd-action); font-weight: 600; letter-spacing: 0; text-transform: none; padding: 8px 14px; }
+.object-tools a:hover, .object-tools a:focus { background: var(--sdcd-fond-bleu); color: var(--sdcd-action); }
+.object-tools a.addlink { background-image: none; padding-left: 14px; }
+#changelist { background: var(--sdcd-fond); border: 1px solid var(--sdcd-ligne); }
+#changelist-filter { background: var(--sdcd-fond-gris); border-left: 1px solid var(--sdcd-ligne); }
+#changelist-filter h2 { background: none; color: var(--sdcd-texte); font-weight: 700; border-bottom: 1px solid var(--sdcd-ligne); }
+#changelist-filter h3 { font-weight: 600; color: var(--sdcd-muet); }
+#changelist-filter li.selected { border-left-color: var(--sdcd-action); }
+#changelist-filter li.selected a { color: var(--sdcd-action); }
+#changelist table thead th { background: var(--sdcd-fond-gris); color: var(--sdcd-texte); font-weight: 700; border-bottom: 1px solid var(--sdcd-ligne); }
+#changelist table thead th.sorted { background: var(--sdcd-fond-bleu); }
+#changelist tbody tr:nth-child(even) { background: var(--sdcd-fond); }
+#changelist tbody tr:hover { background: var(--sdcd-fond-bleu); }
+#changelist .actions { background: var(--sdcd-fond-gris); border-bottom: 1px solid var(--sdcd-ligne); }
+#changelist .actions select { min-height: 32px; padding: 2px 8px; }
+#changelist .actions .button { min-height: 32px; padding: 4px 12px; }
+#changelist-search #searchbar { min-height: 36px; }
+.paginator { font-size: var(--sdcd-sm); border-top: 1px solid var(--sdcd-ligne); background: var(--sdcd-fond); }
+.paginator a:link, .paginator a:visited { border-radius: 0; background: var(--sdcd-fond); color: var(--sdcd-action); border: 1px solid var(--sdcd-ligne); }
+.paginator .this-page { background: var(--sdcd-action); color: var(--sdcd-fond); border-radius: 0; }
+table { font-family: var(--sdcd-font); }
+td, th { border-bottom-color: var(--sdcd-ligne); font-size: var(--sdcd-sm); }
+.errornote { background: var(--sdcd-fond-erreur); color: var(--sdcd-erreur); border: 1px solid var(--sdcd-erreur); border-radius: 0; }
+.errorlist li { background: var(--sdcd-fond-erreur); color: var(--sdcd-erreur); border-radius: 0; }
+.selector, .selector-chosen h2, .selector-available h2 { border-radius: 0; }
+#changelist-filter, .module, fieldset.module, #changelist, .submit-row, .object-tools a, .paginator a { border-radius: 0; }
+#nav-filter { display: none; }
+
+/* ------------------------------------------- 5 bis. cibles tactiles (24 px) */
+.breadcrumbs a, .sdcd-admin__pied a, .sdcd-admin__modele-nom a, .sdcd-admin__application-titre a,
+.actionlist a, #changelist-filter li a, .paginator a, .paginator .showall, ul.toplinks li a,
+#changelist .actions .clear-action, #changelist .actions span.all a, #changelist .actions span.question a,
+.datetimeshortcuts a, .sdcd-admin__aside .sdcd-sidemenu__entete {
+  display: inline-flex; align-items: center; min-height: 24px;
+}
+.sdcd-admin__modele { flex-wrap: wrap; }
+.sdcd-admin__modele-actions { flex-wrap: wrap; }
+.related-widget-wrapper { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sdcd-1); max-width: 100%; }
+.related-widget-wrapper select { max-width: 100%; }
+.flex-container { flex-wrap: wrap; max-width: 100%; }
+
+/* ------------------------------------------------------------- 6. mobile */
+@media (max-width: 900px) {
+  .sdcd-admin__corps { position: relative; }
+  .sdcd-admin__aside {
+    position: absolute; top: 0; bottom: 0; left: 0; z-index: 60; width: min(300px, 88vw);
+    overflow-y: auto; box-shadow: var(--sdcd-ombre, 0 8px 24px rgba(0,0,0,.18));
+  }
+  .sdcd-admin__site { display: none; }
+  .sdcd-admin__outils { margin-left: 0; width: 100%; }
+  .sdcd-admin__agent-nom { display: none; }
+  .sdcd-admin__contenu { padding-left: var(--sdcd-4); padding-right: var(--sdcd-4); }
+}
+@media (max-width: 767px) {
+  /* Les champs de Django ont des largeurs fixes en em : ils depassaient de
+     58 px sur un telephone. */
+  .aligned input:not([type=checkbox]):not([type=radio]), .aligned select, .aligned textarea,
+  .vTextField, .vLargeTextField, .vURLField, .vIntegerField, .vDateField, .vTimeField {
+    max-width: 100%; box-sizing: border-box;
+  }
+  /* Django donne aux lignes de formulaire une largeur en vw (100vw - 30 px),
+     plus large que leur conteneur une fois nos gouttieres posees. */
+  .aligned .form-row > div, .flex-container { width: 100%; max-width: 100%; box-sizing: border-box; }
+  #content > h2 { overflow-wrap: anywhere; }
+  .submit-row { display: grid; }
+}
+@media (max-width: 640px) {
+  .sdcd-admin__republique-bloc { display: none; }
+  .sdcd-admin__pied-version { margin-left: 0; }
+}

@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% comment %}
+  base_site.html est le gabarit que Django destine a la personnalisation : le
+  sien remplace le bloc `branding` par le nom du site et le bouton de theme.
+  On le redefinit pour que la marque de l'Etat (armoiries, Republique, devise)
+  et le nom du site s'affichent comme dans l'en-tete du SDCD.
+{% endcomment %}
+{% block branding %}
+  <a href="{% url 'admin:index' %}" class="sdcd-admin__marque-lien" title="{% translate 'Home' %}">
+    <img class="sdcd-admin__armoiries" src="{% static 'sdcd_admin/armoiries-rdc.png' %}"
+         alt="{% translate 'Armoiries de la République Démocratique du Congo' %}">
+    <span class="sdcd-admin__republique-bloc">
+      <span class="sdcd-logo sdcd-admin__republique">République<br>Démocratique<br>du Congo</span>
+      <span class="sdcd-admin__devise">Justice · Paix · Travail</span>
+    </span>
+  </a>
+  <div class="sdcd-admin__site">
+    <span id="site-name" class="sdcd-admin__site-nom">{{ site_header|default:_('Django administration') }}</span>
+    {% block site-tagline %}<span class="sdcd-admin__site-accroche">{% translate 'Administration' %}</span>{% endblock %}
+  </div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,28 @@
+{% load i18n %}
+{% comment %}
+  Menu lateral : le composant Sidemenu du SDCD, une section par application,
+  un lien par modele. L'identifiant `nav-sidebar` est celui que Django attend ;
+  le bouton de repli est dans l'en-tete, pilote par sdcd-admin.js.
+{% endcomment %}
+<nav class="sdcd-sidemenu sdcd-admin__aside" id="nav-sidebar" aria-label="{% translate 'Sidebar' %}" data-ouvert="true">
+  <div class="sdcd-eyebrow sdcd-sidemenu__titre">{% translate 'Navigation' %}</div>
+  {% if available_apps %}
+    {% for app in available_apps %}
+      <div class="sdcd-sidemenu__section app-{{ app.app_label }}{% if app.app_url in request.path|urlencode %} current-app{% endif %}">
+        <a class="sdcd-sidemenu__entete" href="{{ app.app_url }}">{{ app.name }}</a>
+        <div class="sdcd-sidemenu__liens">
+          {% for model in app.models %}
+            {% if model.admin_url %}
+              <a class="sdcd-sidemenu__lien" href="{{ model.admin_url }}"
+                 {% if model.admin_url in request.path|urlencode %}aria-current="page"{% endif %}>{{ model.name }}</a>
+            {% else %}
+              <span class="sdcd-sidemenu__lien">{{ model.name }}</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="sdcd-texte-sm">{% translate 'You don’t have permission to view or edit anything.' %}</p>
+  {% endif %}
+</nav>

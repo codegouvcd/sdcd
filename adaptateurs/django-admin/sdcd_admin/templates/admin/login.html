@@ -1,0 +1,66 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}{% if form.errors %}{% translate "Error:" %} {% endif %}{{ block.super }}{% endblock %}
+{% block extrastyle %}{{ block.super }}{{ form.media }}{% endblock %}
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main" class="sdcd-admin__connexion">
+  <form action="{{ app_path }}" method="post" id="login-form" class="sdcd-admin__connexion-carte">{% csrf_token %}
+    <fieldset class="sdcd-fieldset" aria-labelledby="connexion-legende connexion-messages">
+      <legend class="sdcd-fieldset__legende" id="connexion-legende"><h1>{% translate 'Log in' %}</h1></legend>
+      <div class="sdcd-fieldset__element">
+        <p class="sdcd-texte-sm">{% translate 'Reserved for authorised staff. All fields are mandatory.' %}</p>
+        <div id="connexion-messages" aria-live="assertive">
+          {% if form.errors and not form.non_field_errors %}
+            <div class="sdcd-alert sdcd-alert--erreur sdcd-alert--sm" role="alert">
+              <p class="sdcd-alert__texte">{% blocktranslate count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}</p>
+            </div>
+          {% endif %}
+          {% for error in form.non_field_errors %}
+            <div class="sdcd-alert sdcd-alert--erreur sdcd-alert--sm" role="alert"><p class="sdcd-alert__texte">{{ error }}</p></div>
+          {% endfor %}
+          {% if user.is_authenticated %}
+            <div class="sdcd-alert sdcd-alert--alerte sdcd-alert--sm" role="alert">
+              <p class="sdcd-alert__texte">{% blocktranslate trimmed %}
+                You are authenticated as {{ username }}, but are not authorized to
+                access this page. Would you like to login to a different account?
+              {% endblocktranslate %}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="sdcd-fieldset__element">
+        <div class="sdcd-champ{% if form.username.errors %} sdcd-champ--erreur{% endif %}">
+          <label class="sdcd-champ__label" for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+          {{ form.username }}
+          {% for e in form.username.errors %}<p class="sdcd-champ__erreur">{{ e }}</p>{% endfor %}
+        </div>
+      </div>
+      <div class="sdcd-fieldset__element">
+        <div class="sdcd-champ{% if form.password.errors %} sdcd-champ--erreur{% endif %}">
+          <label class="sdcd-champ__label" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+          {{ form.password }}
+          {% for e in form.password.errors %}<p class="sdcd-champ__erreur">{{ e }}</p>{% endfor %}
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
+      {% url 'admin_password_reset' as password_reset_url %}
+      {% if password_reset_url %}
+        <div class="sdcd-fieldset__element">
+          <a href="{{ password_reset_url }}">{% translate 'Forgotten your login credentials?' %}</a>
+        </div>
+      {% endif %}
+      <div class="sdcd-fieldset__element submit-row">
+        <button type="submit" class="sdcd-button sdcd-button--primaire">{% translate 'Log in' %}</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}

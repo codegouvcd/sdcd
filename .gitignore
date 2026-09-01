@@ -3,3 +3,7 @@ uploads/
 .thumbnail
 node_modules/
 dist/essai.html
+
+# Projet d essai de l adaptateur Django
+adaptateurs/django-admin/exemple/exemple.sqlite3
+__pycache__/

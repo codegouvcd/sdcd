@@ -4,6 +4,27 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.0] — 2026-09-02
+
+### Ajoute
+
+- **Thème pour l'administration Django** (`adaptateurs/django-admin/`) : la
+  version Django de la maquette « Back-office MINESURSI » (`ui_kits/admin`).
+  L'application `sdcd_admin` recouvre `admin/base.html`, `base_site.html`,
+  `nav_sidebar.html`, `index.html` et `login.html` avec la coquille du SDCD
+  (lien d'évitement, filet tricolore, en-tête avec armoiries, menu latéral
+  repliable, fil d'Ariane, pied), et redéfinit les variables CSS de l'admin
+  Django à partir des jetons `--sdcd-*`. Les listes, formulaires, suppressions
+  et messages de Django gardent leur balisage et prennent l'aspect du système.
+  Vérifié sous Brave, bureau et mobile : aucun débordement, aucune erreur de
+  console, cibles tactiles de 24 px. Projet d'essai dans `exemple/`.
+- `npm run build` recopie la feuille, les fontes et les armoiries dans les
+  fichiers statiques de l'adaptateur.
+
+### Corrige
+
+- Le fil d'Ariane du CMS : voir 0.17.2 (chevrons, région sous le bouton).
+
 ## [0.17.2] — 2026-09-01
 
 Suite du controle au navigateur, page par page, sur mobile.

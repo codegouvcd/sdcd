@@ -1,0 +1,158 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"fr" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}</title>
+{% comment %}
+  Coquille de l'administration Django, ecrite avec le Systeme de design de l'Etat
+  congolais. Les noms de blocs et les identifiants de Django sont conserves :
+  les gabarits de liste, de formulaire et de suppression de l'admin, ainsi que
+  ses scripts, s'y accrochent. Sa feuille de base reste chargee — elle porte la
+  mise en page des listes et des formulaires — puis le SDCD et ce theme la
+  recouvrent, d'abord par les variables CSS que Django expose, ensuite par
+  quelques selecteurs.
+{% endcomment %}
+<link rel="stylesheet" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+{% block dark-mode-vars %}{% endblock %}
+<link rel="icon" href="{% static "sdcd_admin/armoiries-rdc.png" %}" type="image/png">
+<link rel="stylesheet" href="{% static "sdcd_admin/sdcd.css" %}">
+<link rel="stylesheet" href="{% static "sdcd_admin/sdcd-admin.css" %}">
+{% block extrastyle %}{% endblock %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
+{% block extrahead %}{% endblock %}
+{% block responsive %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "admin/css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+<script src="{% static "sdcd_admin/sdcd-admin.js" %}" defer></script>
+</head>
+
+<body class="sdcd-admin {% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+<a href="#content-start" class="sdcd-skiplink skip-to-content-link">{% translate 'Skip to main content' %}</a>
+<div id="container" class="sdcd-admin__page">
+
+    {% if not is_popup %}
+    {% block header %}
+      <div class="sdcd-filet-tricolore" aria-hidden="true">
+        <div class="sdcd-filet-tricolore__bande--bleu"></div>
+        <div class="sdcd-filet-tricolore__bande--jaune"></div>
+        <div class="sdcd-filet-tricolore__bande--rouge"></div>
+      </div>
+      <header id="header" class="sdcd-admin__entete">
+        {% if has_permission and is_nav_sidebar_enabled %}
+          <button type="button"
+                  class="sdcd-button sdcd-button--tertiaire sdcd-admin__menu-bouton"
+                  id="toggle-nav-sidebar"
+                  aria-expanded="true"
+                  aria-controls="nav-sidebar"
+                  title="{% translate 'Toggle navigation' %}">
+            <i class="ri-menu-fold-line" aria-hidden="true"></i>
+            <span class="sdcd-lecteur-seul">{% translate 'Toggle navigation' %}</span>
+          </button>
+        {% endif %}
+        <div id="branding" class="sdcd-admin__marque">
+        {% block branding %}
+          <a href="{% url 'admin:index' %}" class="sdcd-admin__marque-lien" title="{% translate 'Home' %}">
+            <img class="sdcd-admin__armoiries" src="{% static 'sdcd_admin/armoiries-rdc.png' %}"
+                 alt="{% translate 'Armoiries de la République Démocratique du Congo' %}">
+            <span class="sdcd-logo sdcd-admin__republique">République<br>Démocratique<br>du Congo</span>
+          </a>
+          <div class="sdcd-admin__site">
+            <span id="site-name" class="sdcd-admin__site-nom">{{ site_header|default:_('Django administration') }}</span>
+            {% block site-tagline %}<span class="sdcd-admin__site-accroche">{% translate 'Administration' %}</span>{% endblock %}
+          </div>
+        {% endblock %}
+        </div>
+        {% block usertools %}
+        {% if has_permission %}
+        <div id="user-tools" class="sdcd-admin__outils">
+            {% block welcome-msg %}
+              <span class="sdcd-admin__agent">
+                <span class="sdcd-admin__avatar" aria-hidden="true">{% firstof user.get_short_name|slice:":1" user.get_username|slice:":1" %}</span>
+                <span class="sdcd-admin__agent-nom">{% firstof user.get_short_name user.get_username %}</span>
+              </span>
+            {% endblock %}
+            {% block userlinks %}
+                {% if site_url %}
+                    <a class="sdcd-button sdcd-button--tertiaire sdcd-button--sm" href="{{ site_url }}"><i class="ri-external-link-line" aria-hidden="true"></i> {% translate 'View site' %}</a>
+                {% endif %}
+                {% if user.is_active and user.is_staff %}
+                    {% url 'django-admindocs-docroot' as docsroot %}
+                    {% if docsroot %}
+                        <a class="sdcd-button sdcd-button--tertiaire sdcd-button--sm" href="{{ docsroot }}">{% translate 'Documentation' %}</a>
+                    {% endif %}
+                {% endif %}
+                {% if user.has_usable_password %}
+                <a class="sdcd-button sdcd-button--tertiaire sdcd-button--sm" href="{% url 'admin:password_change' %}"><i class="ri-key-2-line" aria-hidden="true"></i> {% translate 'Change password' %}</a>
+                {% endif %}
+                <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="sdcd-button sdcd-button--tertiaire-bordure sdcd-button--sm"><i class="ri-logout-box-r-line" aria-hidden="true"></i> {% translate 'Log out' %}</button>
+                </form>
+            {% endblock %}
+        </div>
+        {% endif %}
+        {% endblock %}
+        {% block nav-global %}{% endblock %}
+      </header>
+    {% endblock %}
+    {% endif %}
+
+    <div class="main sdcd-admin__corps" id="main">
+      {% if not is_popup and is_nav_sidebar_enabled %}
+        {% block nav-sidebar %}
+          {% include "admin/nav_sidebar.html" %}
+        {% endblock %}
+      {% endif %}
+      <main id="content-start" class="content sdcd-admin__contenu" tabindex="-1">
+        {% if not is_popup %}
+        {% block nav-breadcrumbs %}
+          <nav aria-label="{% translate 'Breadcrumbs' %}" class="sdcd-admin__fil">
+            {% block breadcrumbs %}
+              <div class="breadcrumbs">
+                <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+                {% if title %} &rsaquo; {{ title }}{% endif %}
+              </div>
+            {% endblock %}
+          </nav>
+        {% endblock %}
+        {% endif %}
+        {% block messages %}
+          {% if messages %}
+            <ul class="messagelist">{% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+            {% endfor %}</ul>
+          {% endif %}
+        {% endblock messages %}
+        <div id="content" class="{% block coltype %}colM{% endblock %}">
+          {% block pretitle %}{% endblock %}
+          {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+          {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
+          {% block content %}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
+          {% endblock %}
+          {% block sidebar %}{% endblock %}
+          <br class="clear">
+        </div>
+      </main>
+    </div>
+    <footer id="footer" class="sdcd-admin__pied">
+      {% block footer %}
+        <span class="sdcd-admin__pied-nom">{{ site_header|default:_('Django administration') }}</span>
+        <span>{% translate 'Reserved for authorised staff' %}</span>
+        {% if site_url %}<a href="{{ site_url }}">{% translate 'View site' %}</a>{% endif %}
+        <span class="sdcd-admin__pied-version">
+          <span class="sdcd-font-mono">SDCD</span>
+          <span class="sdcd-admin__mini-filet" aria-hidden="true"><span></span><span></span><span></span></span>
+        </span>
+      {% endblock %}
+    </footer>
+</div>
+{% block extrabody %}{% endblock extrabody %}
+</body>
+</html>

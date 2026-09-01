@@ -78,6 +78,17 @@ for (const f of ['armoiries-rdc.png', 'logo-blanc-tricolore.png']) {
   copyFileSync(join(RACINE, 'assets', f), join(DIST, 'assets', f));
 }
 
+// L'adaptateur Django (adaptateurs/django-admin) embarque la feuille, les
+// fontes et les armoiries dans les fichiers statiques de son application, pour
+// que `collectstatic` suffise a l'installer.
+const ADMIN = join(RACINE, 'adaptateurs', 'django-admin', 'sdcd_admin', 'static', 'sdcd_admin');
+mkdirSync(join(ADMIN, 'assets', 'fontes'), { recursive: true });
+copyFileSync(join(DIST, 'sdcd.css'), join(ADMIN, 'sdcd.css'));
+copyFileSync(join(RACINE, 'assets', 'armoiries-rdc.png'), join(ADMIN, 'armoiries-rdc.png'));
+for (const f of readdirSync(join(RACINE, 'assets', 'fontes'))) {
+  copyFileSync(join(RACINE, 'assets', 'fontes', f), join(ADMIN, 'assets', 'fontes', f));
+}
+
 // Toute url() du fichier construit doit pointer sur un fichier réellement
 // présent dans dist/. Un chemin cassé ne provoque aucune erreur visible : la
 // page s'affiche avec une police de repli. Ce contrôle est donc indispensable.
@@ -95,4 +106,5 @@ console.log(`  dist/sdcd.css      ${ko(complet.length).toString().padStart(5)} K
 console.log(`  dist/sdcd.min.css  ${ko(compact.length).toString().padStart(5)} Ko  (${Math.round(100 - compact.length / complet.length * 100)} % de moins)`);
 console.log(`  dist/sdcd.js       ${ko(readFileSync(join(RACINE, 'sdcd.js')).length).toString().padStart(5)} Ko`);
 console.log(`  dist/assets/       fontes et marque d'État`);
+console.log(`  adaptateurs/django-admin/sdcd_admin/static/  feuille, fontes et armoiries recopiees`);
 console.log('\nUne seule feuille à charger, aucune requête vers un tiers.');
