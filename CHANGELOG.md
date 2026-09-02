@@ -4,6 +4,25 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.1] — 2026-09-02
+
+Affinage du rendu apres une relecture page par page du site vitrine, sous Brave.
+
+### Corrige
+
+- **En-tete au-dessus de 900 px** : les actions (acces rapides, recherche)
+  restent dans la rangee de la marque et s'y replient sur deux lignes au lieu
+  de former une troisieme rangee.
+- **Sous-menus et mega-menus** pilotes et styles ; le mega-menu se pose sur
+  toute la largeur de la barre (`:has`), pas sur celle de son entree.
+- **Onglets** : la liste n'est plus une liste a puces ; un seul panneau visible.
+- **Groupes de cases et de boutons radio** (`fieldset.sdcd-champ`) : pas de
+  cadre natif, options empilees.
+- **Partage et reseaux sociaux** : rangee de boutons discrets ; les couleurs de
+  chaque plateforme sont retirees.
+- **Bandeau** : le texte passe sous le titre sur ecran etroit.
+- Recherche du panneau du menu mobile ; media de carte borne.
+
 ## [0.18.0] — 2026-09-02
 
 ### Ajoute
