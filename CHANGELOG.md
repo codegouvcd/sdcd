@@ -4,6 +4,14 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.5] — 2026-09-03
+
+### Corrige
+
+- Panneau mobile : le bloc des outils (recherche, acces rapides, connexion)
+  debordait de l'ecran et la page defilait de cote menu ouvert
+  (`.sdcd-header__nav-outils`, `min-width: 0`).
+
 ## [0.18.4] — 2026-09-03
 
 ### Corrige
