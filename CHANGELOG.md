@@ -4,6 +4,14 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.4] — 2026-09-03
+
+### Corrige
+
+- Navigation mobile : la region repliee d'un sous-menu ou d'un mega-menu se
+  rangeait a cote de son bouton et sortait de l'ecran ; elle passe dessous,
+  sur toute la largeur (`.sdcd-nav__item > .sdcd-repli`).
+
 ## [0.18.3] — 2026-09-03
 
 ### Corrige

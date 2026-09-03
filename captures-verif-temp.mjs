@@ -23,8 +23,14 @@ for (const [nom, w, h] of [["1440", 1440, 900], ["1280", 1280, 900], ["mobile", 
     const btn = p.locator(".sdcd-header__nav--mobile button[aria-controls]").first();
     await btn.click(); await p.waitForTimeout(400);
     await p.screenshot({ path: `${S}/v-megamenu-${nom}.png` });
+    console.log(nom, "megamenu mobile visible :", await p.locator(".sdcd-header__nav--mobile .sdcd-megamenu:not([hidden])").count(),
+      "| liens visibles :", await p.locator(".sdcd-header__nav--mobile .sdcd-megamenu__liste a:visible").count());
     await p.mouse.wheel(0, 500); await p.waitForTimeout(300);
     await p.screenshot({ path: `${S}/v-megamenu-${nom}-2.png` });
+    const sous = p.locator(".sdcd-header__nav--mobile button[aria-controls]").nth(1);
+    await sous.click(); await p.waitForTimeout(300);
+    console.log(nom, "sous-menu mobile visible :", await p.locator(".sdcd-header__nav--mobile .sdcd-dropdown__menu:not([hidden])").count());
+    await p.screenshot({ path: `${S}/v-sousmenu-${nom}.png` });
   } else {
     await p.locator(".sdcd-header__nav button[aria-expanded]").first().click(); await p.waitForTimeout(400);
     await p.screenshot({ path: `${S}/v-megamenu-${nom}.png` });
