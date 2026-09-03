@@ -4,6 +4,28 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.2] — 2026-09-03
+
+Mega-menu et etapier repris apres relecture du site vitrine.
+
+### Modifie
+
+- **Mega-menu** : en-tete a gauche (titre de rubrique, description, lien vers la
+  rubrique) et « Fermer » a droite, en lien d'action avec une croix ; colonnes
+  avec intitule souligne d'un filet et liens sur une ligne chacun
+  (`.sdcd-megamenu__entete`, `__titre`, `__liste`). Les liens n'empruntent
+  plus le retrait des listes deroulantes. Dans le panneau mobile, titre,
+  description et « Fermer » sont retires.
+- **Etapier** : frise verticale des etapes sous la jauge
+  (`.sdcd-stepper__etapes`, `__etape--faite|--courante|--avenir`, `__marque`,
+  `__etape-titre`, `__etape-detail`) : coche pour les etapes faites, numero
+  cercle pour l'etape en cours, numero en retrait pour la suite.
+
+### Corrige
+
+- `.sdcd-affiche-lg` ne l'emportait jamais sur `.sdcd-masque` (`!important`) :
+  un element portant les deux restait masque a toute largeur.
+
 ## [0.18.1] — 2026-09-02
 
 Affinage du rendu apres une relecture page par page du site vitrine, sous Brave.
