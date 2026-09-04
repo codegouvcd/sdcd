@@ -4,6 +4,13 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.8] — 2026-09-04
+
+### Modifie
+
+- Menu lateral : le bouton de repli (mobile) porte un chevron qui suit son
+  etat, comme l'accordeon.
+
 ## [0.18.7] — 2026-09-04
 
 ### Corrige
