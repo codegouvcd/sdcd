@@ -13,6 +13,8 @@ d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
   « Centre » et « Droite » alignent aussi la colonne.
 - Carte horizontale : sous 900 px, elle s'empile (image au-dessus) au lieu de
   comprimer son texte a cote d'une image sur un tiers.
+- Menu lateral : sous 900 px il se replie derriere son bouton « Dans cette
+  rubrique » ; au-dessus, le bouton est masque et la liste toujours depliee.
 
 ## [0.18.6] — 2026-09-03
 
