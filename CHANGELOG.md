@@ -4,6 +4,16 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.7] — 2026-09-04
+
+### Corrige
+
+- Listes de boutons en colonne (mobile) : les boutons se calent a gauche a
+  leur largeur ; la variante a icones les centrait et le premier s'etirait.
+  « Centre » et « Droite » alignent aussi la colonne.
+- Carte horizontale : sous 900 px, elle s'empile (image au-dessus) au lieu de
+  comprimer son texte a cote d'une image sur un tiers.
+
 ## [0.18.6] — 2026-09-03
 
 Relecture des pages de composants du site vitrine.
