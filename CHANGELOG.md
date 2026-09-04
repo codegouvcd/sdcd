@@ -4,6 +4,22 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Versionnage : [SemVer](https://semver.org/lang/fr/). Un changement de valeur
 d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
+## [0.18.6] — 2026-09-03
+
+Relecture des pages de composants du site vitrine.
+
+### Modifie
+
+- **Tuile** : le pictogramme se lit en haut (ordre inverse du balisage, corps
+  cale en haut) ; en horizontal, corps a gauche et pictogramme a droite.
+- **Carte horizontale** : en rangee, media a gauche sur toute la hauteur.
+- **Fond sur image** (`.sdcd-fond-image`) : image en couverture, texte blanc.
+
+### Corrige
+
+- Exergue : un bouton s'y etirait sur toute la largeur.
+- Deux listes de boutons, ou deux mises en avant, qui se suivent se touchaient.
+
 ## [0.18.5] — 2026-09-03
 
 ### Corrige
