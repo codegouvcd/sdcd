@@ -8,6 +8,9 @@ d'un jeton de couleur est considéré comme **majeur** au-delà de la 1.0.0.
 
 ### Modifie
 
+- Tuile : en theme sombre, le pictogramme en image est eclairci par un
+  filtre — il s'eteignait sur le fond.
+
 - Menu lateral : le bouton de repli (mobile) porte un chevron qui suit son
   etat, comme l'accordeon.
 
